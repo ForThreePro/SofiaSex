@@ -9,13 +9,13 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
   try {
     if (!(isAdmin || isOwner)) {
-      await react('💀')
+      await react('❌')
       return conn.sendMessage(m.chat, {
-        text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL ：✿ 。\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ 🎃\n❌ ➛ Solo admins pueden invocar a los espíritus\n👻 ➛ Fantasma solo obedece a los admins pe\n━━━━━━━━━━━\n🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`
+        text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ Solo admins pueden invocar al sistema\n👻 ➛ PHANTOM solo obedece a los admins pe\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`
       }, { quoted: m })
     }
 
-    const customMessage = args.join(' ') || '🎃 INVOCACIÓN EMBRUJADA - HALLOWEEN EDITION'
+    const customMessage = args.join(' ') || '❄️ LLAMADO GENERAL - PHANTOM IA'
     const groupMetadata = await conn.groupMetadata(m.chat).catch(() => ({ subject: 'Grupo', participants: [] }))
     const groupName = groupMetadata.subject
 
@@ -60,22 +60,22 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩'])
 
-    const catalogoImg = { url: 'https://files.evogb.win/KMrBYL.jpg' }
+    const catalogoImg = { url: 'https://files.evogb.win/luvW09.jpg' }
 
-    let messageText = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    let messageText = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐈𝐍𝐕𝐎𝐂𝐀𝐂𝐈𝐎𝐍 ﹒ GENERAL ：✿ 。
+⛓️ ┇ 𝐋𝐋𝐀𝐌𝐀𝐃𝐎 ﹒ GENERAL
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`TAGALL\`\` 👻 —˙𖦹.꒷
-👻 Fantasma los está invocando... ¡Despierten! 🎃
+👻 PHANTOM los está llamando... ¡Despierten! ❄️
 
-── *📊 INFO FANTASMA* ╏ 🎃
+── *📊 INFO PHANTOM* ╏ ❄️
 👥 ➛ Grupo: *${groupName}*
-👤 ➛ Almas: *${participants.length}*
+👤 ➛ Usuarios: *${participants.length}*
 💬 ➛ Mensaje: *${customMessage}*
 
-── *🌍 ALMAS POR PAÍS* ╏ 🦇
+── *🌍 USUARIOS POR PAÍS* ╏ ⛓️
 `
 
     for (const flag of orderedFlags) {
@@ -90,11 +90,12 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     messageText += `
 ── *📝 NOTA* ╏ 👻
-🎃 ➛ Todos fueron invocados
-🦇 ➛ Lux X Yallico - Halloween Edition los llamó
+❄️ ➛ Todos fueron llamados
+⛓️ ➛ PHANTOM IA los llamó
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
     await conn.sendMessage(m.chat, {
@@ -103,24 +104,25 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       mentions: participants.map(a => a.jid || a.id)
     }, { quoted: m })
 
-    await react('🎃')
+    await react('❄️')
 
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
-    await react('💀')
-    let errorMsg = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    await react('❌')
+    let errorMsg = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ Ocurrió un error al ejecutar el comando
-👻 ➛ Fantasma se asustó
+👻 ➛ PHANTOM falló
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
     conn.sendMessage(m.chat, { text: errorMsg }, { quoted: m })
   }
