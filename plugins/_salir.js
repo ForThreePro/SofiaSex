@@ -8,38 +8,40 @@ let handler = async (m, { conn }) => {
     let groupName = await conn.getName(m.chat)
 
     if (!m.isGroup) {
-        let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐎𝐑 ﹒ SALIR ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ SALIR
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ Este comando solo funciona en grupos
-💀 ➛ El fantasma no sale de su tumba, solo de grupos
+👻 ➛ PHANTOM solo sale de grupos
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 
     let miNumero = '51927174369@s.whatsapp.net'
     if (user !== miNumero) {
-        let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐂𝐄𝐒𝐎 𝐃𝐄𝐍𝐄𝐆𝐀𝐃𝐎 ﹒ SALIR ：✿ 。
+⛓️ ┇ 𝐀𝐂𝐂𝐄𝐒𝐎 𝐃𝐄𝐍𝐄𝐆𝐀𝐃𝐎 ﹒ SALIR
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 🔒 —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 🔒 ➛ Este comando es exclusivo del dueño
-👻 ➛ Solo fantasma mayor puede irse a asustar
+👻 ➛ Solo PHANTOM mayor puede irse
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
@@ -51,31 +53,32 @@ let handler = async (m, { conn }) => {
         pp = 'https://files.evogb.win/YhR5LZ.jpg'
     }
 
-    let texto = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐏𝐄𝐃𝐈𝐃𝐀 ﹒ ADIOS ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐏𝐄𝐃𝐈𝐃𝐀 ﹒ ADIOS
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`SALIENDO\`\` 👋 —˙𖦹.꒷
 
-── *📊 INFORMACIÓN* ╏ 🎃
+── *📊 INFORMACIÓN* ╏ ❄️
 👋 ➛ *${nombre}* se despide de: *${groupName}*
-👻 ➛ Fantasma se va por más dulces
+👻 ➛ PHANTOM se va por nuevos sistemas
 
-── *📝 MENSAJE* ╏ 🦇
+── *📝 MENSAJE* ╏ ⛓️
 ✨ ➛ Gracias por la confianza depositada
 ✨ ➛ Cada momento compartido en este grupo
 ✨ ➛ Por elegirnos como su Bot #1 de WhatsApp 2026
-🎃 ➛ Me llevo los mejores recuerdos y olor a calabaza
+❄️ ➛ Me llevo los mejores recuerdos del sistema
 💌 ➛ Si necesitan volver a contar conmigo, aquí estaré
-🌙 ➛ Odio los sustos malos, pero amo este grupo
+⚡ ➛ PHANTOM siempre vuelve
 
-── *📞 SOPORTE* ╏ 🕯️
+── *📞 SOPORTE* ╏ ❄️
 📱 ➛ Soporte 24/7: *+51 927 174 369*
-🍬 ➛ Soporte con dulces incluido
+❄️ ➛ Soporte PHANTOM incluido
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
     await conn.sendMessage(m.chat, {
@@ -84,11 +87,11 @@ let handler = async (m, { conn }) => {
         mentions: [user]
     })
 
-    await conn.sendMessage(m.chat, { text: `👻 Saliendo en 3... Fantasma terminando dulces` })
+    await conn.sendMessage(m.chat, { text: `👻 Saliendo en 3... PHANTOM cerrando sistema` })
     await new Promise(r => setTimeout(r, 1000))
-    await conn.sendMessage(m.chat, { text: `🎃 Saliendo en 2... Guardando disfraz` })
+    await conn.sendMessage(m.chat, { text: `❄️ Saliendo en 2... Guardando sesión` })
     await new Promise(r => setTimeout(r, 1000))
-    await conn.sendMessage(m.chat, { text: `💀 Saliendo en 1... Boo! Adiós!` })
+    await conn.sendMessage(m.chat, { text: `⚡ Saliendo en 1... Adiós!` })
     await new Promise(r => setTimeout(r, 1000))
 
     await conn.groupParticipantsUpdate(m.chat, [user], "remove")
