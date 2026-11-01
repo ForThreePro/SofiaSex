@@ -13,119 +13,124 @@ let handler = async (m, { conn, text }) => {
     }
 
     if (!text) {
-        await react('💀')
-        let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await react('❌')
+        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ YOUTUBE ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ YOUTUBE
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ ¿Qué deseas buscar en YouTube?
-👻 ➛ Fantasma dice: escribe algo pe
+👻 ➛ PHANTOM dice: escribe algo pe
 
-── *💡 EJEMPLO* ╏ 🦇
-➛.ytsearch Thriller Halloween
+── *💡 EJEMPLO* ╏ ⛓️
+➛.ytsearch Phantom Frost
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 
-    await react('🎃')
-    await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    await react('❄️')
+    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐁𝐔𝐒𝐂𝐀𝐍𝐃𝐎 ﹒ YOUTUBE ：✿ 。
+⛓️ ┇ 𝐁𝐔𝐒𝐂𝐀𝐍𝐃𝐎 ﹒ YOUTUBE
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`BUSCANDO\`\` 🔍 —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
+── *📊 ESTADO* ╏ ❄️
 🔍 ➛ Buscando: *${text}*
-⏳ ➛ Invocando a StellarWA...
-👻 ➛ Fantasma buscando entre niebla
+⏳ ➛ Conectando a StellarWA...
+👻 ➛ PHANTOM buscando
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
 
     try {
         let { data } = await axios.get(`https://api.stellarwa.xyz/search/yt?query=${encodeURIComponent(text)}&key=${APIKEY}`)
 
         if (!data.status ||!data.result || data.result.length === 0) {
-            await react('💀')
-            let vacio = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await react('❌')
+            let vacio = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐒𝐈𝐍 𝐑𝐄𝐒𝐔𝐋𝐓𝐀𝐃𝐎𝐒 ﹒ YOUTUBE ：✿ 。
+⛓️ ┇ 𝐒𝐈𝐍 𝐑𝐄𝐒𝐔𝐋𝐓𝐀𝐃𝐎𝐒 ﹒ YOUTUBE
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`VACIO\`\` 📭 —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 📭 ➛ No se encontraron resultados para: *${text}*
-💀 ➛ Fantasma no encontró ni huesos
+❄️ ➛ PHANTOM no encontró nada
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             return conn.sendMessage(m.chat, { text: vacio }, { quoted: m })
         }
 
         let res = data.result.slice(0, 5).map((v, i) => 
-`── *${i+1}* ╏ 🎃
+`── *${i+1}* ╏ ❄️
 📺 ➛ *${v.title}*
 ⏱️ ➛ Duración: *${v.duration}*
 👁️ ➛ Vistas: *${v.views}*
 👤 ➛ Canal: *${v.author}*
 🔗 ➛ ${v.url}`).join('\n\n')
 
-        let caption = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let caption = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐓𝐎𝐏 𝟓 ﹒ RESULTADOS ：✿ 。
+⛓️ ┇ 𝐓𝐎𝐏 𝟓 ﹒ RESULTADOS
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`RESULTADOS\`\` 📺 —˙𖦹.꒷
 
-── *📊 BÚSQUEDA* ╏ 🎃
+── *📊 BÚSQUEDA* ╏ ❄️
 🔎 ➛ ${text}
 
 ${res}
 
 ━━━━━━━━━━━
-── *📋 INFORMACIÓN* ╏ 🦇
+── *📋 INFORMACIÓN* ╏ ⛓️
 👤 ➛ Solicitado por: ${user}
 👥 ➛ Grupo: *${groupName}*
-👻 ➛ Buscado por fantasma
+👻 ➛ Buscado por PHANTOM
 
-── *💡 TIP* ╏ 🕯️
+── *💡 TIP* ╏ ❄️
 ➛.ytmp4 + link
 ➛.ytmp3 + link
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
         await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender] }, { quoted: m })
-        await react('🎃')
+        await react('❄️')
     } catch (e) { 
         console.error(e)
-        await react('💀')
-        let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await react('❌')
+        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ YOUTUBE ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ YOUTUBE
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ Error al conectar con StellarWA
 🔧 ➛ Intenta más tarde
-👻 ➛ Fantasma dice: el api se fue al más allá
+👻 ➛ PHANTOM dice: el api se cayó
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
