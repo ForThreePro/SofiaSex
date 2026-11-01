@@ -13,8 +13,8 @@ var handler = async (m, { conn }) => {
 
     if (!sessionPath) return m.reply('🧐 *No encontré la carpeta de sesión*')
 
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
-    await m.reply(`‧˚꒰🎃୭ *_𝐏𝐇𝐀𝐍𝐓𝐎𝐌 𝐈𝐀_*\n\n꒰👻꒱ Limpiando sesión... 🕸️`)
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Limpiando sesión...`)
 
     let files = await fs.readdir(sessionPath)
     let filesDeleted = 0
@@ -35,32 +35,32 @@ var handler = async (m, { conn }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     const ownerNum = global.owner?.[0]?.[0] || '51927174369'
 
-    let menu = `‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+    let menu = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐇𝐀𝐋𝐋𝐎𝐖𝐄𝐄𝐍 𝐅𝐈𝐗 ：✿ 。
+⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐅𝐑𝐎𝐒𝐓 𝐅𝐈𝐗
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🎃 ࣪ ꕀ.dsowner ˚. ᵎᵎ
-> *"Limpiando hasta el último fantasma de la sesión"*
+⚡ ࣪ ꕀ.dsowner ˚. ᵎᵎ
+> *"Limpiando hasta el último rastro del sistema"*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FIX DE SESIÓN\`\` [${filesDeleted}] 🕸️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`FIX DE SESIÓN\`\` [${filesDeleted}] 💎 —˙𖦹.꒷
 
-── *📝 DESCRIPCIÓN* ╏ 🎃
+── *📝 DESCRIPCIÓN* ╏ ❄️
 🧹 ➛ Elimina archivos de caché basura
 🔒 ➛ No borra \`creds\` ni \`app-state\` para que no se desconecte
 
-── *📖 USO* ╏ 🦇
+── *📖 USO* ╏ ⛓️
 👑 ➛ Usar solo en el número principal del bot
 🔌 ➛ El bot sigue conectado, no necesita reinicio
 
-── *📊 RESULTADO* ╏ 🕯️
+── *📊 RESULTADO* ╏ 💎
 ✅ ➛ Archivos eliminados: *${filesDeleted}*
-💀 ➛ Estado: *${filesDeleted === 0? 'Todo limpio - Sin fantasmas 😸' : 'Limpieza completada 🎃'}*
+⚡ ➛ Estado: *${filesDeleted === 0? 'Todo limpio - Sistema frío ❄️' : 'Limpieza completada ⚡'}*
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 *Owner*: @${ownerNum}
 ━━━━━━━━━━━`
 
