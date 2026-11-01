@@ -22,58 +22,61 @@ let handler = async (m, { conn, command }) => {
     text = text.replace(`.${command}`, '').trim()
 
     if (!text) {
-        return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒 ﹒ DESCARGAS ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒 ﹒ DESCARGAS
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢𝗦 ׅ 𝆬 ָ֢ ෆ
 📥 ࣪ ꕀ.descargas ˚. ᵎᵎ
-> *"Descargando almas como dulces en Halloween"*
+> *"Descargando con el sistema PHANTOM"*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`USO HALLOWEEN\`\` 📥 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`USO PHANTOM\`\` 📥 —˙𖦹.꒷
 
-── *📝 COMANDOS* ╏ 🎃
+── *📝 COMANDOS* ╏ ❄️
 1️⃣ ➛.*play1* <nombre de canción>
-   🎃 ➛ Descarga audio de YouTube MP3
-   👻 ➛ Fantasma pone la música
+   🎵 ➛ Descarga audio de YouTube MP3
+   👻 ➛ PHANTOM pone la música
 
 2️⃣ ➛.*ttmp3* <link de tiktok>
    🎵 ➛ Descarga audio de TikTok MP3
-   🦇 ➛ TikTok sabor calabaza
+   ⚡ ➛ Audio directo del sistema
 
 3️⃣ ➛.*fb* <link de facebook>
    📹 ➛ Descarga video de Facebook
-   💀 ➛ Hasta el fantasma ve FB
+   ❄️ ➛ Descarga rápida PHANTOM
 
-── *💡 EJEMPLOS* ╏ 🕯️
+── *💡 EJEMPLOS* ╏ ⛓️
 ➛.*play1* despacito
 ➛.*ttmp3* https://tiktok.com/@user/video
 ➛.*fb* https://facebook.com/watch?v=xxx
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━
 *Owner*: @${ownerNum}
 ━━━━━━━━━━━`, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
-    await react(conn, m, '🎃')
+    await react(conn, m, '❄️')
     try {
         if (command === 'play1') {
-            await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ PLAY1 ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ PLAY1
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`YOUTUBE\`\` 🎃 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`YOUTUBE\`\` ❄️ —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
-🔍 ➛ Buscando canción embrujada...
+── *📊 ESTADO* ╏ ❄️
+🔍 ➛ Buscando canción...
 ⬇️ ➛ Descargando audio MP3...
-👻 ➛ Fantasma eligiendo tema...
+👻 ➛ PHANTOM eligiendo tema...
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
             const searchResult = await ytsearch(text)
             if (!searchResult.videos.length) throw new Error("No se encontró la canción.")
@@ -85,7 +88,7 @@ let handler = async (m, { conn, command }) => {
             if (!dl) throw new Error('No se pudo descargar el audio de YT')
 
             const audioBuffer = await getBuffer(dl)
-            await react(conn, m, '🦇')
+            await react(conn, m, '⚡')
             await conn.sendMessage(m.chat, {
                 audio: audioBuffer,
                 mimetype: 'audio/mpeg',
@@ -94,19 +97,20 @@ let handler = async (m, { conn, command }) => {
         }
 
         if (command === 'ttmp3') {
-            await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ TTMP3 ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ TTMP3
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`TIKTOK\`\` 🎃 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`TIKTOK\`\` ❄️ —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
+── *📊 ESTADO* ╏ ❄️
 ⬇️ ➛ Descargando audio de TikTok...
-🦇 ➛ Robando audio como dulces...
+⚡ ➛ Extrayendo audio...
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
             const apiUrl = `${api.url}/dl/tiktokmp3?url=${encodeURIComponent(text)}&key=${api.key}`
             const res = await fetch(apiUrl).then(r => r.json())
@@ -116,7 +120,7 @@ let handler = async (m, { conn, command }) => {
             if (!dl) throw new Error('No se pudo descargar. Link mal o privado')
 
             const audioBuffer = await getBuffer(dl)
-            await react(conn, m, '🦇')
+            await react(conn, m, '⚡')
             await conn.sendMessage(m.chat, {
                 audio: audioBuffer,
                 mimetype: 'audio/mpeg',
@@ -125,19 +129,20 @@ let handler = async (m, { conn, command }) => {
         }
 
         if (command === 'fb' || command === 'facebook') {
-            await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ FACEBOOK ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ FACEBOOK
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`FACEBOOK\`\` 📹 —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
+── *📊 ESTADO* ╏ ❄️
 ⬇️ ➛ Descargando video de Facebook...
-👻 ➛ Fantasma: "Odio los lunes, no los videos"
+👻 ➛ PHANTOM procesando video
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
             const apiUrl = `${api.url}/dl/facebook?url=${encodeURIComponent(text)}&key=${api.key}`
             const res = await fetch(apiUrl)
@@ -152,49 +157,51 @@ let handler = async (m, { conn, command }) => {
                 videoBuffer = Buffer.from(await res.arrayBuffer())
             }
 
-            await react(conn, m, '🦇')
+            await react(conn, m, '⚡')
             await conn.sendMessage(m.chat, {
                 video: videoBuffer,
-                caption: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+                caption: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐀𝐃𝐎 ﹒ FACEBOOK ：✿ 。
+⛓️ ┇ 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐀𝐃𝐎 ﹒ FACEBOOK
 
 .⃟𖥔 ݁. 𖦹˙— \`\`DESCARGADO\`\` ✅ —˙𖦹.꒷
 
-── *📊 RESULTADO* ╏ 🎃
-✅ ➛ Video exorcizado correctamente
+── *📊 RESULTADO* ╏ ❄️
+✅ ➛ Video descargado correctamente
 📥 ➛ Disfrútalo
-👻 ➛ Fantasma lo aprueba
+👻 ➛ PHANTOM lo aprueba
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             }, { quoted: m })
         }
 
-        await react(conn, m, '🎃')
+        await react(conn, m, '❄️')
     } catch (e) {
-        await react(conn, m, '💀')
+        await react(conn, m, '❌')
         const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
         console.log("ERROR:", e)
-        return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ${command.toUpperCase()} ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 DESCRIPCIÓN* ╏ 🎃
+── *📝 DESCRIPCIÓN* ╏ ❄️
 ❌ ➛ ${e.message}
-💀 ➛ El fantasma se quedó sin dulces
+⚡ ➛ PHANTOM no pudo completar la descarga
 
-── *💡 SOLUCIÓN* ╏ 🕯️
+── *💡 SOLUCIÓN* ╏ ⛓️
 🔧 ➛ Verifica que el link sea válido
 🔧 ➛ Asegúrate que no sea privado
-🎃 ➛ Intenta de nuevo, como pedir dulces
+❄️ ➛ Intenta de nuevo
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` }, { quoted: m })
     }
 }
