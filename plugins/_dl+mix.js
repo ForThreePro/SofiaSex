@@ -13,10 +13,10 @@ async function myCloud(content) {
   return j.url || j.data?.url
 }
 
-async function faaBuffer(apiUrl) {
+async function stellarBuffer(apiUrl) {
   const res = await fetch(apiUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } })
   const ct = res.headers.get('content-type') || ''
-  // FIX: si devuelve PNG directo
+  // Si devuelve PNG/JPG directo
   if (ct.includes('image')) {
     return Buffer.from(await res.arrayBuffer())
   }
@@ -44,52 +44,53 @@ let handler = async (m, { conn, text }) => {
   let q = m.quoted? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
 
-  if (/image/.test(mime) &&!link) {
+  if (/image/.test(mime) && !link) {
     try {
-      await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
-      await conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎 - 𝐇𝐀𝐋𝐋𝐎𝐖𝐄𝐄𝐍_*\n\n꒰👻꒱ Subiendo al cementerio evogb.win... 🕸️` }, { quoted: m })
+      await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+      await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❄️꒱ Subiendo a evogb.win...` }, { quoted: m })
       let media = await q.download()
       link = await myCloud(media)
     } catch (e) {
-      await conn.sendMessage(m.chat, { react: { text: '💀', key: m.key } })
-      return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎_*\n\n꒰💀꒱ Error al subir: ${e.message}` }, { quoted: m })
+      await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
+      return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❌꒱ Error al subir: ${e.message}` }, { quoted: m })
     }
   }
 
   if (!link) {
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
-    return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎 - 𝐇𝐀𝐋𝐋𝐎𝐖𝐄𝐄𝐍_*\n\n꒰👻꒱ Responde a una imagen o manda link para exorcizar el fondo\n\n‧˚꒰🦇୭ Ejemplo:.removebg https://link.jpg` }, { quoted: m })
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❄️꒱ Responde a una imagen o manda link para quitar el fondo\n\n❄️ Ejemplo: *.removebg https://link.jpg*` }, { quoted: m })
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '🕸️', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
 
-    const buffer = await faaBuffer(`https://api-faa.my.id/faa/removebg?url=${encodeURIComponent(link)}`)
+    // NUEVA API STELLAR
+    const buffer = await stellarBuffer(`https://api.stellarwa.xyz/tools/removebg?method=local&url=${encodeURIComponent(link)}&key=proyectsV2`)
 
-    const apiText = `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎 - 𝐇𝐀𝐋𝐋𝐎𝐖𝐄𝐄𝐍_*
+    const apiText = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-╭───INFO ꒰👻꒱────╮
-‧˚꒰🦇୭ Tipo: Removebg Embrujado
-‧˚꒰🦇୭ Origen: evogb.win
-‧˚꒰🦇୭ API: FAA-BOT
-‧˚꒰🦇୭ Peso: ${(buffer.length / 1024).toFixed(0)} KB
+╭───INFO ꒰❄️꒱────╮
+❄️ Tipo: Removebg
+❄️ Origen: evogb.win
+❄️ API: Stellar
+❄️ Peso: ${(buffer.length / 1024).toFixed(0)} KB
 ╰─────── ݁ ˖Ი𐑼⋆────╯
 
-꒰🎃꒱ Fondo exorcizado - listo para Halloween`
+꒰❄️꒱ Fondo eliminado - listo`
 
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
     await conn.sendMessage(m.chat, { image: buffer, caption: apiText }, { quoted: m })
-    await conn.sendMessage(m.chat, { document: buffer, mimetype: 'image/png', fileName: `removebg-lux-halloween.png` }, { quoted: m })
+    await conn.sendMessage(m.chat, { document: buffer, mimetype: 'image/png', fileName: `removebg-phantom-frost.png` }, { quoted: m })
 
   } catch (e) {
     console.error(e)
-    await conn.sendMessage(m.chat, { react: { text: '💀', key: m.key } })
-    return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎_*\n\n꒰💀꒱ Error: ${e.message}` }, { quoted: m })
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
+    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❌꒱ Error: ${e.message}` }, { quoted: m })
   }
 }
 
 handler.command = ['removebg', 'nobg', 'quitarfondo']
-handler.tags = ['tools', 'halloween']
+handler.tags = ['tools']
 handler.help = ['removebg']
 handler.group = true
 export default handler
