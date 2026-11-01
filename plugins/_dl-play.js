@@ -6,26 +6,28 @@ moment.locale('es')
 
 const handler = async (m, { conn, command, text }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  
-  if (!text) return conn.reply(m.chat, 
-`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
 
-⤷ ┇ 𝐘𝐓 ﹒ ${command.toUpperCase()} ：✿ 。
+  if (!text) return conn.reply(m.chat, 
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+
+⛓️ ┇ 𝐘𝐓 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🎃 ࣪ ꕀ.${command} bad bunny dtmf ˚. ᵎᵎ
+⚡ ࣪ ꕀ.${command} bad bunny dtmf ˚. ᵎᵎ
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EJEMPLO\`\` 🕯️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`EJEMPLO\`\` 💎 —˙𖦹.꒷
 👻 ➛.play diles - bad bunny
-🦇 ➛.play2 diles - video
-🎃 ➛.play3 diles - video nota
+🦂 ➛.play2 diles - video
+❄️ ➛.play3 diles - video nota
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`, m)
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`, m)
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
 
     let link = text
     let info = null
@@ -45,54 +47,58 @@ const handler = async (m, { conn, command, text }) => {
     if (!j.status || !j.result) throw new Error('API FAA está caída')
 
     const downloadUrl = isAudio ? j.result.mp3 : j.result.download_url
-    const title = (j.result.title || info?.title || 'lux').replace(/[^\w\s-]/gi, '').trim()
+    const title = (j.result.title || info?.title || 'phantom').replace(/[^\w\s-]/gi, '').trim()
 
     if (info) {
       const preview = 
-`‧˚꒰🎃୭ 𓆩 𝗬𝗧 - 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐏𝐑𝐄𝐕𝐈𝐄𝐖 ﹒ ${command.toUpperCase()} ：✿ 。
+⛓️ ┇ 𝐏𝐑𝐄𝐕𝐈𝐄𝐖 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 🕸️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
 
-── *📊 VIDEO* ╏ 🎃
+── *📊 VIDEO* ╏ ❄️
 🎧 ➛ Título: *${info.title}*
 👤 ➛ Canal: *${info.author.name}*
 ⏰ ➛ Duración: *${info.timestamp}*
 👀 ➛ Vistas: *${info.views.toLocaleString()}*
 🔗 ➛ Link: ${info.url}
 
-── *📥 ESTADO* ╏ 🦇
-⬇️ ➛ Enviando ${isAudio ? 'audio embrujado' : 'video maldito'}...
+── *📥 ESTADO* ╏ ⛓️
+⬇️ ➛ Enviando ${isAudio ? 'audio PHANTOM' : 'video PHANTOM'}...
 👻 ➛ Espera un momento
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`.trim()
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`.trim()
       await conn.reply(m.chat, preview, m)
     }
 
     const res = await axios.get(downloadUrl, { responseType: 'arraybuffer' })
     const buffer = Buffer.from(res.data)
     const size = (buffer.length / 1024 / 1024).toFixed(2)
-    const type = isAudio ? 'AUDIO EMBRUJADO 🎃' : 'VIDEO MALDITO 🎬'
+    const type = isAudio ? 'AUDIO PHANTOM ❄️' : 'VIDEO PHANTOM 🎬'
 
     const finalText = 
-`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ ${type} ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ ${type}
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 🕯️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
 
-── *📊 DETALLES* ╏ 🎃
+── *📊 DETALLES* ╏ ❄️
 🎵 ➛ Título: *${title}*
 🔌 ➛ API: *FAA-BOT*
 ⚖️ ➛ Peso: *${size} MB*
-✨ ➛ Estado: *Listo - Embrujado*
+✨ ➛ Estado: *Listo*
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`.trim()
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`.trim()
 
     if (command === 'play') {
       await conn.reply(m.chat, finalText, m)
@@ -109,7 +115,7 @@ const handler = async (m, { conn, command, text }) => {
 
   } catch (e) {
     console.log(e)
-    return conn.reply(m.chat, `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎_*\n\n꒰💀꒱ Error: ${e.message}\n꒰👻꒱ El fantasma no encontró la canción`, m)
+    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Error: ${e.message}\n👻 PHANTOM no encontró la canción\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
   }
 }
 
