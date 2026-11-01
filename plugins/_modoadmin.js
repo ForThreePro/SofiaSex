@@ -4,58 +4,61 @@ moment.locale('es')
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     // Validación de permisos para el comando
-    if (!isAdmin &&!isOwner) throw `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n💀 Solo los admins pueden usar este comando en la noche de brujas.`
+    if (!isAdmin &&!isOwner) throw `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Solo los admins pueden usar este comando.`
 
     let chat = global.db.data.chats[m.chat]
     if (!chat) global.db.data.chats[m.chat] = {}
 
     if (/on/i.test(args[0])) {
         chat.modoadmin = true
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ ON ：✿ 。
+⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ ON
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`ACTIVADO\`\` ✅ —˙𖦹.꒷
 
-── *📝 ESTADO* ╏ 🎃
+── *📝 ESTADO* ╏ ❄️
 ✅ ➛ *Modo Administrador activado*
 👻 ➛ Ahora solo los admins pueden usar el bot
-🦇 ➛ Modo maldito activo
+⛓️ ➛ Modo PHANTOM activo
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, m)
     } else if (/off/i.test(args[0])) {
         chat.modoadmin = false
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ OFF ：✿ 。
+⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ OFF
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`DESACTIVADO\`\` ❌ —˙𖦹.꒷
 
-── *📝 ESTADO* ╏ 🎃
+── *📝 ESTADO* ╏ ❄️
 ❌ ➛ *Modo Administrador desactivado*
 👻 ➛ Todos pueden usar el bot de nuevo
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, m)
     } else {
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ HELP ：✿ 。
+⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ HELP
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 📖 —˙𖦹.꒷
 
-── *📖 COMANDOS* ╏ 🎃
+── *📖 COMANDOS* ╏ ❄️
 ➛ *.modoadmin on* - Activa modo solo admins
 ➛ *.modoadmin off* - Desactiva modo
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, m)
     }
 }
