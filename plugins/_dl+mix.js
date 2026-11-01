@@ -1,12 +1,13 @@
 import crypto from "crypto"
 import { FormData, Blob } from "formdata-node"
+import FormDataNode from "form-data"
 import { fileTypeFromBuffer } from "file-type"
 import fetch from 'node-fetch'
 import axios from 'axios'
 
 const STELLAR_KEY = 'proyectsV2'
 
-// ===== SUBIR A EVOGB (de upp) =====
+// ===== SUBIR A EVOGB (de upp) - usa formdata-node + Blob =====
 async function myCloud(content) {
   const ft = await fileTypeFromBuffer(content)
   const form = new FormData()
@@ -16,9 +17,9 @@ async function myCloud(content) {
   return j.url || j.data?.url
 }
 
-// ===== HD x2 -> x4 (de hd.js) =====
+// ===== HD x2 -> x4 (de hd.js) - usa form-data ORIGINAL + Buffer =====
 async function stellarUpscale(buffer, scale) {
-  let form = new FormData()
+  let form = new FormDataNode()
   form.append('file', buffer, { filename: `upscale-${scale}.jpg`, contentType: 'image/jpeg' })
   let url = `https://api.stellarwa.xyz/tools/upscale?method=local&scale=${scale}&key=${STELLAR_KEY}`
   let { data } = await axios.post(url, form, {
@@ -69,7 +70,6 @@ let handler = async (m, { conn, text }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
 
-  // Si es link directo, lo bajamos para procesar
   let media = null
   if (link && /^https?:\/\//i.test(link)) {
     try {
@@ -87,28 +87,23 @@ let handler = async (m, { conn, text }) => {
   }
 
   try {
-    // ===== PASO 1: SUBIR ORIGINAL A EVOGB =====
     await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
     await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n1️⃣ *PASO 1/3:* Subiendo original a Evogb...` }, { quoted: m })
     let linkOriginal = link
     if (!linkOriginal) linkOriginal = await myCloud(media)
     if (!linkOriginal) throw new Error('No se pudo subir original a Evogb')
 
-    // ===== PASO 2: HD x2 -> x4 =====
     await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n2️⃣ *PASO 2/3:* Mejorando HD x2...` }, { quoted: m })
     let hdX2 = await stellarUpscale(media, 2)
     await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n2️⃣ *PASO 2/3:* Mejorando HD x4 automático...` }, { quoted: m })
     let hdX4 = await stellarUpscale(hdX2, 2)
 
-    // Subir HD x4 a Evogb para pasarle URL a removebg
     let linkHD = await myCloud(hdX4)
     if (!linkHD) throw new Error('No se pudo subir HD a Evogb')
 
-    // ===== PASO 3: QUITAR FONDO =====
     await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n3️⃣ *PASO 3/3:* Quitando fondo...` }, { quoted: m })
     let finalBuffer = await stellarRemovebg(linkHD)
 
-    // Subir resultado final a Evogb para entregar enlace
     let linkFinal = await myCloud(finalBuffer).catch(() => null)
 
     const caption = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
@@ -126,9 +121,7 @@ let handler = async (m, { conn, text }) => {
 ꒰❄️꒱ Fondo eliminado - listo`
 
     await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
-    // 1. Foto con caption + enlaces
     await conn.sendMessage(m.chat, { image: finalBuffer, caption }, { quoted: m })
-    // 2. Documento PNG
     await conn.sendMessage(m.chat, { document: finalBuffer, mimetype: 'image/png', fileName: `removebg-hd-phantom-frost.png` }, { quoted: m })
 
   } catch (e) {
