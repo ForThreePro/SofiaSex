@@ -10,27 +10,30 @@ let handler = async (m, { conn }) => {
     }
 
     if (m.sender !== ownerNumber) {
-        await react('💀')
+        await react('❌')
         return conn.sendMessage(m.chat, { 
-            text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ ACCESO DENEGADO ：✿ 。
+⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ ACCESO DENEGADO
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`DENEGADO\`\` 🔴 —˙𖦹.꒷
 👻 Solo mi dueño puede usar esto pe
 
-── *📊 INFO* ╏ 🎃
+── *📊 INFO* ╏ ❄️
 🔒 ➛ Comando: *.kickall*
 👑 ➛ Solo: +51 927 174 369
 
+━━━━━━━━━━━
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
     }
 
     if (!m.isGroup) return m.reply('👻 Solo en grupos pe')
 
     try {
-        await react('🎃')
+        await react('❄️')
         let groupMetadata = await conn.groupMetadata(m.chat)
         let botId = conn.user.jid
         let botLid = conn.user.lid || ''
@@ -47,24 +50,27 @@ let handler = async (m, { conn }) => {
             })
 
         if (!toKick.length) {
-            await react('💀')
-            return m.reply('👻 No hay nadie para exorcizar pe, solo estamos tú y yo 🎃')
+            await react('❌')
+            return m.reply('👻 No hay nadie para sacar pe, solo estamos tú y yo ❄️')
         }
 
         await conn.sendMessage(m.chat, { 
-            text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ KICKALL INICIADO ：✿ 。
+⛓️ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ KICKALL INICIADO
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`PURGA\`\` 🔴 —˙𖦹.꒷
-👻 Exorcizando a todos menos al jefe y al fantasma pe
+👻 Sacando a todos menos al jefe y a PHANTOM pe
 
-── *📊 INFO* ╏ 🎃
+── *📊 INFO* ╏ ❄️
 🔴 ➛ Total: *${toKick.length}*
 👑 ➛ Se quedan: *Tú y el bot*
 👻 ➛ El bot: *NO se va*
 
+━━━━━━━━━━━
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
 
         for (let id of toKick) {
@@ -76,25 +82,26 @@ let handler = async (m, { conn }) => {
 
         await react('🔥')
         await conn.sendMessage(m.chat, { 
-            text: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ COMPLETADO ：✿ 。
+⛓️ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ COMPLETADO
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`LIMPIO\`\` 🟢 —˙𖦹.꒷
 👻 Listo pe, solo quedamos nosotros
 
-── *📊 RESULTADO* ╏ 🎃
+── *📊 RESULTADO* ╏ ❄️
 🗑️ ➛ Eliminados: *${toKick.length}*
 👑 ➛ Quedan: *Tú y yo (bot)*
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` 
         })
 
     } catch (e) {
-        return m.reply(`💀 ${e.message}\n👻 El bot debe ser admin pe`)
+        return m.reply(`❌ ${e.message}\n👻 El bot debe ser admin pe`)
     }
 }
 
