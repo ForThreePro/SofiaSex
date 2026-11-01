@@ -11,54 +11,57 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     const ownerNum = global.owner?.[0]?.[0] || '51927174369'
 
     if (!text) {
-        let menuUso = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let menuUso = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐈𝐀 𝐕𝐎𝐙 ﹒ ${command.toUpperCase()} ：✿ 。
+⛓️ ┇ 𝐈𝐀 𝐕𝐎𝐙 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
 🤖 ࣪ ꕀ.${command} ˚. ᵎᵎ
-> *"Hablando como fantasma después de 3 sustos"*
+> *"Hablando con el sistema PHANTOM"*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`IA HALLOWEEN\`\` 🤖 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`IA PHANTOM\`\` 🤖 —˙𖦹.꒷
 
-── *📝 DESCRIPCIÓN* ╏ 🎃
+── *📝 DESCRIPCIÓN* ╏ ❄️
 🤖 ➛ Responde con IA usando Gemini
 🔊 ➛ Convierte la respuesta a audio PTT
-👻 ➛ Voz de fantasma serio
+👻 ➛ Voz PHANTOM seria
 
-── *📖 USO* ╏ 🦇
+── *📖 USO* ╏ ⛓️
 ➛.${command} <tu pregunta>
 ➛.${command} ¿qué tal causa?
 
-── *⚙️ NOTAS* ╏ 🕯️
+── *⚙️ NOTAS* ╏ ❄️
 📏 ➛ Máx 2 líneas de respuesta
 🗣️ ➛ Voz en español latino
-🎃 ➛ Fantasma opina corto y al grano
+⚡ ➛ PHANTOM responde corto y al grano
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━
 *Owner*: @${ownerNum}
 ━━━━━━━━━━━`
         return conn.sendMessage(m.chat, { text: menuUso, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
-    await m.react('🎃')
-    await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    await m.react('❄️')
+    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐏𝐑𝐎𝐂𝐄𝐒𝐀𝐍𝐃𝐎 ﹒ ${command.toUpperCase()} ：✿ 。
+⛓️ ┇ 𝐏𝐑𝐎𝐂𝐄𝐒𝐀𝐍𝐃𝐎 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`PENSANDO\`\` 🤖 —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
-🧠 ➛ Consultando al espíritu Gemini...
-🗣️ ➛ Generando voz embrujada...
-📤 ➛ Enviando audio maldito...
-👻 ➛ Fantasma despertando...
+── *📊 ESTADO* ╏ ❄️
+🧠 ➛ Consultando a Gemini...
+🗣️ ➛ Generando voz PHANTOM...
+📤 ➛ Enviando audio...
+👻 ➛ PHANTOM despertando...
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
 
     try {
@@ -66,7 +69,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         let aiRes = await fetch(aiUrl)
         let aiJson = await aiRes.json()
 
-        let respuesta = aiJson.result || aiJson.data || aiJson.response || "No te entendí pe causa, el fantasma tiene hambre"
+        let respuesta = aiJson.result || aiJson.data || aiJson.response || "No te entendí pe causa, PHANTOM está procesando"
 
         if(respuesta.length > 200) respuesta = respuesta.substring(0, 200) + "..."
 
@@ -102,30 +105,31 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }, { quoted: m })
 
         if (fs.existsSync(tmpFilePath)) fs.unlinkSync(tmpFilePath)
-        await m.react('🎃')
+        await m.react('❄️')
 
     } catch (e) {
         console.log(e)
-        await m.react('💀')
+        await m.react('❌')
         const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-        await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐎𝐑 ﹒ ${command.toUpperCase()} ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ${command.toUpperCase()}
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 DESCRIPCIÓN* ╏ 🎃
+── *📝 DESCRIPCIÓN* ╏ ❄️
 ❌ ➛ ${e.message}
-💀 ➛ El fantasma se asustó
+⚡ ➛ PHANTOM no pudo procesarlo
 
-── *💡 SOLUCIÓN* ╏ 🕯️
+── *💡 SOLUCIÓN* ╏ ⛓️
 🔧 ➛ Intenta con un texto más corto
 🔧 ➛ Verifica tu conexión
-🎃 ➛ Fantasma dice: menos texto, más dulces
+❄️ ➛ PHANTOM dice: menos texto, más directo
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`)
     }
 }
