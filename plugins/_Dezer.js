@@ -23,34 +23,34 @@ const handler = async (m, { conn, command, text }) => {
 
   if (!query && (!mime || !/audio|video/.test(mime))) {
     return conn.reply(m.chat, 
-`‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐒𝐎𝐍𝐆 ：✿ 。
+⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐒𝐎𝐍𝐆
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🎃 ࣪ ꕀ.song ˚. ᵎᵎ
+⚡ ࣪ ꕀ.song ˚. ᵎᵎ
 > *"Detectando hasta la última canción"*
 
-.⃟𖥔 ݁. 𖦹˙— \`\`SONG - DETECTAR Y DESCARGAR\`\` 🕸️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`SONG - DETECTAR Y DESCARGAR\`\` 💎 —˙𖦹.꒷
 
-── *📝 DESCRIPCIÓN* ╏ 🎃
+── *📝 DESCRIPCIÓN* ╏ ❄️
 🎵 ➛ Detecta qué canción es de un audio/video
 ⬇️ ➛ La descarga en MP3
 
-── *📖 USO* ╏ 🦇
+── *📖 USO* ╏ ⛓️
 👻 ➛.song diles - bad bunny
-🦇 ➛.song (respondiendo a audio)
-🎃 ➛.song (respondiendo a video)
+🦂 ➛.song (respondiendo a audio)
+❄️ ➛.song (respondiendo a video)
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, m)
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
 
     if (!query && mime && /audio|video/.test(mime)) {
       let buffer = await q.download()
@@ -74,13 +74,13 @@ const handler = async (m, { conn, command, text }) => {
       if (!escuchar) escuchar = `> No disponible`
 
       await conn.reply(m.chat,
-`‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐍𝐂𝐎𝐍𝐓𝐑𝐀𝐃𝐎 ﹒ SONG
+⛓️ ┇ 𝐄𝐍𝐂𝐎𝐍𝐓𝐑𝐀𝐃𝐎 ﹒ SONG
 
 .⃟𖥔 ݁. 𖦹˙— \`\`¿QUÉ CANCIÓN ES?\`\` 🎵 —˙𖦹.꒷
 
-── *🎵 CANCIÓN* ╏ 🎃
+── *🎵 CANCIÓN* ╏ ❄️
 📌 ➛ *Título:* ${song.title}
 👤 ➛ *Artista:* ${song.artist}
 💿 ➛ *Álbum:* ${song.album}
@@ -88,12 +88,12 @@ const handler = async (m, { conn, command, text }) => {
 ⏱️ ➛ *Duración:* ${song.duration}
 📅 ➛ *Lanzamiento:* ${song.release_date}
 
-── *🔗 ESCUCHAR* ╏ 🦇
+── *🔗 ESCUCHAR* ╏ ⛓️
 ${escuchar}
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, m)
     }
 
@@ -115,27 +115,27 @@ ${escuchar}
 
     if (info) {
       const preview = 
-`‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐏𝐑𝐄𝐕𝐈𝐄𝐖 ﹒ SONG ：✿ 。
+⛓️ ┇ 𝐏𝐑𝐄𝐕𝐈𝐄𝐖 ﹒ SONG
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 🕸️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
 
-── *📊 VIDEO* ╏ 🎃
+── *📊 VIDEO* ╏ ❄️
 🎧 ➛ Título: *${info.title}*
 👤 ➛ Canal: *${info.author.name}*
 ⏰ ➛ Duración: *${info.timestamp}*
 👀 ➛ Vistas: *${info.views.toLocaleString()}*
 🔗 ➛ Link: ${info.url}
 
-── *📥 ESTADO* ╏ 🦇
+── *📥 ESTADO* ╏ ⛓️
 ⬇️ ➛ Enviando audio...
 👻 ➛ Espera un momento
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`.trim()
       await conn.reply(m.chat, preview, m)
     }
@@ -145,22 +145,22 @@ ${escuchar}
     const size = (buffer.length / 1024 / 1024).toFixed(2)
 
     const finalText = 
-`‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ AUDIO 🎃 ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ AUDIO ❄️
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 🕯️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
 
-── *📊 DETALLES* ╏ 🎃
+── *📊 DETALLES* ╏ ❄️
 🎵 ➛ Título: *${title}*
 🔌 ➛ API: *FAA-BOT*
 ⚖️ ➛ Peso: *${size} MB*
 ✨ ➛ Estado: *Listo*
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`.trim()
 
     await conn.reply(m.chat, finalText, m)
@@ -168,7 +168,7 @@ ${escuchar}
 
   } catch (e) {
     console.log(e)
-    return conn.reply(m.chat, `‧˚꒰🎃୭ *_𝐏𝐇𝐀𝐍𝐓𝐎𝐌 𝐈𝐀_*\n\n꒰💀꒱ Error: ${e.message}\n꒰👻꒱ No se encontró la canción\n\n━━━━━━━━━━━\n🎃 *PHANTOM IA - VENTAS* 🦇\n*Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Error: ${e.message}\n👻 No se encontró la canción\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
   }
 }
 
