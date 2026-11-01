@@ -11,25 +11,27 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || ''
 
     if (!q.msg?.audioMessage && !q.msg?.pttMessage && !/audio/.test(mime)) {
-        return m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐔𝐃𝐈𝐎 ﹒ EFECTOS ：✿ 。
+⛓️ ┇ 𝐀𝐔𝐃𝐈𝐎 ﹒ EFECTOS
 ꒰ ◞⁺⊹ ．${fecha}
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🎃 ࣪ ꕀ.${command} ˚. ᵎᵎ
+⚡ ࣪ ꕀ.${command} ˚. ᵎᵎ
 > Responde a una nota de voz pe
 
 .⃟𖥔 ݁. 𖦹˙— \`\`EFECTOS\`\` 👻 —˙𖦹.꒷
 
-── *🎃 DISPONIBLES* ╏ 🦇
+── *❄️ DISPONIBLES* ╏ ⛓️
 🎧 ➛ bass, blown, deep, earrape
 🎧 ➛ fast, fat, nightcore, reverse
 🎧 ➛ robot, slow, chipmunk, grave
 🎧 ➛ agudo, vibrato
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`)
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`)
     }
 
     let effect = command.toLowerCase()
@@ -53,9 +55,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
 
     try {
-        await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+        await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
         let audio = await q.download()
-        if (!audio) return m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n💀 Audio no disponible, reenvíalo pe`)
+        if (!audio) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Audio no disponible, reenvíalo pe\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`)
 
         let tmp = tmpdir()
         let name = Date.now()
@@ -76,16 +78,16 @@ let handler = async (m, { conn, usedPrefix, command }) => {
             audio: out, 
             mimetype: 'audio/mpeg',
             ptt: false,
-            fileName: `LUX_X_YALLICO_${effect}_HALLOWEEN.mp3`
+            fileName: `PHANTOM_${effect}_FROST.mp3`
         }, { quoted: m })
 
         try { fs.unlinkSync(input) } catch {}
         try { fs.unlinkSync(output) } catch {}
-        await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+        await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
 
     } catch (e) {
         console.log(e)
-        m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n💀 Error embrujado: ${e.message.slice(0,400)}`)
+        m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error PHANTOM: ${e.message.slice(0,400)}\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`)
     }
 }
 
