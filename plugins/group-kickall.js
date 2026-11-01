@@ -3,13 +3,19 @@ moment.locale('es')
 
 let handler = async (m, { conn }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    const ownerNumber = '51927174369@s.whatsapp.net'
+
+    // TUS 2 NÚMEROS PROTEGIDOS
+    const owners = ['51927174369', '51930858072']
+    const ownerJids = owners.map(n => n + '@s.whatsapp.net')
 
     const react = async (text) => {
         try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
     }
 
-    if (m.sender !== ownerNumber) {
+    // Solo tú con cualquiera de tus 2 números puedes usarlo
+    const senderNum = m.sender.replace(/[^0-9]/g, '')
+    const isOwner = owners.some(n => senderNum.includes(n) || senderNum.endsWith(n.slice(2)))
+    if (!isOwner) {
         await react('❌')
         return conn.sendMessage(m.chat, { 
             text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
@@ -18,11 +24,11 @@ let handler = async (m, { conn }) => {
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`DENEGADO\`\` 🔴 —˙𖦹.꒷
-👻 Solo mi dueño puede usar esto pe
+❄️ Solo mi dueño puede usar esto pe
 
 ── *📊 INFO* ╏ ❄️
 🔒 ➛ Comando: *.kickall*
-👑 ➛ Solo: +51 927 174 369
+👑 ➛ Solo: +51 927 174 369 / +51 930 858 072
 
 ━━━━━━━━━━━
 ⛓️ *PHANTOM IA - VENTAS* ⚡
@@ -30,7 +36,7 @@ let handler = async (m, { conn }) => {
 ━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
     }
 
-    if (!m.isGroup) return m.reply('👻 Solo en grupos pe')
+    if (!m.isGroup) return m.reply('❄️ Solo en grupos pe')
 
     try {
         await react('❄️')
@@ -38,20 +44,34 @@ let handler = async (m, { conn }) => {
         let botId = conn.user.jid
         let botLid = conn.user.lid || ''
 
-        // BLINDAJE EXTRA: EL BOT NUNCA SE VA
+        // Normalizar número de un JID/LID para comparar
+        const getNum = (id) => id.split('@')[0].replace(/[^0-9]/g, '')
+
         let toKick = groupMetadata.participants
             .map(p => p.id)
             .filter(id => {
-                if (id === botId) return false // JID del bot
-                if (id === botLid) return false // LID del bot (nuevo WhatsApp)
-                if (id === ownerNumber) return false // Tú
-                if (id.includes('51927174369')) return false // Por si acaso tu LID
+                // 1. NUNCA sacar al BOT (JID o LID)
+                if (id === botId) return false
+                if (botLid && id === botLid) return false
+                if (id === conn.user.jid) return false
+
+                // 2. NUNCA sacar a TUS 2 NÚMEROS (aunque sean creador, admin, o LID)
+                const num = getNum(id)
+                for (let owner of owners) {
+                    if (num.includes(owner) || owner.includes(num) || num.endsWith(owner.slice(2))) return false
+                    if (id.includes(owner)) return false
+                }
+                if (ownerJids.includes(id)) return false
+
+                // 3. AQUÍ ESTÁ LA CLAVE: NO PROTEGEMOS AL CREADOR
+                // Si el creador es uno de tus 2 números, ya quedó protegido arriba.
+                // Si el creador es OTRA persona, SÍ se va en la purga.
                 return true
             })
 
         if (!toKick.length) {
             await react('❌')
-            return m.reply('👻 No hay nadie para sacar pe, solo estamos tú y yo ❄️')
+            return m.reply('❄️ No hay nadie para sacar pe, solo estamos tú y yo ❄️')
         }
 
         await conn.sendMessage(m.chat, { 
@@ -61,11 +81,12 @@ let handler = async (m, { conn }) => {
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`PURGA\`\` 🔴 —˙𖦹.꒷
-👻 Sacando a todos menos al jefe y a PHANTOM pe
+❄️ Sacando a todos, incluido el creador, menos a ti y a PHANTOM pe
 
 ── *📊 INFO* ╏ ❄️
 🔴 ➛ Total: *${toKick.length}*
-👑 ➛ Se quedan: *Tú y el bot*
+👑 ➛ Se quedan: *Tú (2 números) y el bot*
+👻 ➛ Creador: *SÍ se elimina si no eres tú*
 👻 ➛ El bot: *NO se va*
 
 ━━━━━━━━━━━
@@ -73,11 +94,16 @@ let handler = async (m, { conn }) => {
 🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
 
+        let sacados = 0
+        let fallidos = []
         for (let id of toKick) {
             try {
                 await conn.groupParticipantsUpdate(m.chat, [id], 'remove')
+                sacados++
                 await new Promise(r => setTimeout(r, 800))
-            } catch {}
+            } catch (e) {
+                fallidos.push(id)
+            }
         }
 
         await react('🔥')
@@ -88,10 +114,11 @@ let handler = async (m, { conn }) => {
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`LIMPIO\`\` 🟢 —˙𖦹.꒷
-👻 Listo pe, solo quedamos nosotros
+❄️ Listo pe, solo quedamos nosotros
 
 ── *📊 RESULTADO* ╏ ❄️
-🗑️ ➛ Eliminados: *${toKick.length}*
+🗑️ ➛ Eliminados: *${sacados}*
+⚠️ ➛ Fallidos: *${fallidos.length}*
 👑 ➛ Quedan: *Tú y yo (bot)*
 
 ━━━━━━━━━━━
@@ -101,7 +128,7 @@ let handler = async (m, { conn }) => {
         })
 
     } catch (e) {
-        return m.reply(`❌ ${e.message}\n👻 El bot debe ser admin pe`)
+        return m.reply(`❌ ${e.message}\n❄️ El bot debe ser admin pe`)
     }
 }
 
