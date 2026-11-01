@@ -22,7 +22,7 @@ async function faaBuffer(apiUrl) {
   }
   const j = await res.json().catch(async () => {
     const txt = await res.text()
-    if (txt.trim().startsWith('<!DOCTYPE')) throw new Error('API poseída 🎃')
+    if (txt.trim().startsWith('<!DOCTYPE')) throw new Error('API caída ⚡')
     throw new Error('Respuesta no JSON: ' + txt.slice(0,100))
   })
   let url = j.result?.url || j.result?.image || j.result || j.url || j.data
@@ -38,69 +38,70 @@ let handler = async (m, { conn, text, command }) => {
   let mime = (q.msg || q).mimetype || ''
 
   if (!/image/.test(mime) &&!link) {
-    return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐈 ﹒ TOANIME
+⛓️ ┇ 𝐀𝐈 ﹒ TOANIME
+꒰ ◞⁺⊹ ．FROST MODE
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CONVERTIR A ANIME\`\` 🎵 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`CONVERTIR A ANIME\`\` 💎 —˙𖦹.꒷
 
-── *📝 USO* ╏ 🎃
+── *📝 USO* ╏ ❄️
 👻 ➛ Responde a una foto con *.${command}*
-🦇 ➛ O manda *.${command} + link de imagen*
+🦂 ➛ O manda *.${command} + link de imagen*
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` }, { quoted: m })
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '🎃', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
 
     if (/image/.test(mime) &&!link) {
       let media = await q.download()
       link = await myCloud(media)
     }
 
-    await conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+    await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐈 ﹒ CONVIRTIENDO
+⛓️ ┇ 𝐀𝐈 ﹒ CONVIRTIENDO
 
-── *📝 ESTADO* ╏ 🎃
-🕸️ ➛ Convirtiendo a anime...
+── *📝 ESTADO* ╏ ❄️
+⚡ ➛ Convirtiendo a anime...
 👻 ➛ Espera un momento
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` }, { quoted: m })
 
     const buf = await faaBuffer(`https://api-faa.my.id/faa/toanime?url=${encodeURIComponent(link)}`)
 
-    await conn.sendMessage(m.chat, { image: buf, caption: `‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+    await conn.sendMessage(m.chat, { image: buf, caption: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐈 ﹒ ANIME LISTO
+⛓️ ┇ 𝐀𝐈 ﹒ ANIME LISTO
 
-── *📝 DETALLE* ╏ 🎃
+── *📝 DETALLE* ╏ ❄️
 👻 ➛ Anime listo
-🦇 ➛ Peso: ${(buf.length/1024).toFixed(0)} KB
+💎 ➛ Peso: ${(buf.length/1024).toFixed(0)} KB
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` }, { quoted: m })
 
   } catch (e) {
-    return conn.sendMessage(m.chat, { text: `‧˚꒰🎃୭ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 🦇
+    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐈 ﹒ ERROR
+⛓️ ┇ 𝐀𝐈 ﹒ ERROR
 
-── *💀 ERROR* ╏ 🎃
+── *💀 ERROR* ╏ ❄️
 ❌ ➛ ${e.message}
 
 ━━━━━━━━━━━
-🎃 *PHANTOM IA - VENTAS* 🦇
-*Contacto:* +51 927 174 369
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━` }, { quoted: m })
   }
 }
