@@ -78,7 +78,7 @@ export async function before(m, { conn }) {
 
           const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
           let author = update.author || 'Desconocido'
-          let catalogoImg = { url: 'https://files.evogb.win/KMrBYL.jpg' }
+          let catalogoImg = { url: 'https://files.evogb.win/XQuHBW.jpg' }
 
           if (update.subject) {
             let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
