@@ -14,24 +14,25 @@ export async function before(m, { conn }) {
 
         const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
         let author = update.author || update.participants[0]
-        let catalogoImg = { url: 'https://files.evogb.win/KMrBYL.jpg' }
+        let catalogoImg = { url: 'https://files.evogb.win/XQuHBW.jpg' }
 
         for (let user of update.participants) {
           if (update.action === 'promote') {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DADO\`\` 👑 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ASCENDIDO\`\` 👑 —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 🎖️ ➛ Nuevo admin: @${user.split('@')[0]}
-👻 ➛ Fantasma dice: "Que cuide el cementerio"
+👻 ➛ PHANTOM: "Que cuide el sistema"
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
@@ -41,20 +42,21 @@ export async function before(m, { conn }) {
           }
 
           if (update.action === 'demote') {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`QUITADO\`\` 💔 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`DEGRADADO\`\` 💔 —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 💔 ➛ Ex-admin: @${user.split('@')[0]}
-💀 ➛ Fantasma: "Se quedó sin dulces"
+❄️ ➛ PHANTOM: "Se quedó sin acceso"
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
@@ -79,20 +81,21 @@ export async function before(m, { conn }) {
           let catalogoImg = { url: 'https://files.evogb.win/KMrBYL.jpg' }
 
           if (update.subject) {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ NOMBRE ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ NOMBRE
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADO\`\` 📝 —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 📝 ➛ Nuevo: *${update.subject}*
-👻 ➛ Fantasma: "Odio los lunes y los cambios"
+⚡ ➛ PHANTOM detectó el cambio
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
@@ -102,20 +105,21 @@ export async function before(m, { conn }) {
           }
 
           if (update.desc) {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ DESCRIPCION ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ DESCRIPCION
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADA\`\` 📄 —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 📝 ➛ Nueva: ${update.desc.slice(0, 300) || 'Vacía'}
-🕸️ ➛ Descripción embrujada
+❄️ ➛ Descripción actualizada
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
@@ -125,20 +129,21 @@ export async function before(m, { conn }) {
           }
 
           if (update.icon || update.picture) {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ FOTO ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ FOTO
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADA\`\` 🖼️ —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 🖼️ ➛ Foto cambiada
-👻 ➛ Fantasma revisando nueva foto
+👻 ➛ PHANTOM revisando nueva foto
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
@@ -148,20 +153,21 @@ export async function before(m, { conn }) {
           }
 
           if (update.inviteCode) {
-            let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ LINK ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ LINK
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`RESETEADO\`\` 🔗 —˙𖦹.꒷
 
-── *👤 ACCION* ╏ 🎃
+── *👤 ACCION* ╏ ❄️
 👑 ➛ Por: @${author.split('@')[0]}
 🔗 ➛ Nuevo: https://chat.whatsapp.com/${update.inviteCode}
-🎃 ➛ Link fresco como calabaza
+❄️ ➛ Link nuevo generado
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
