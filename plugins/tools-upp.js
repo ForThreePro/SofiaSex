@@ -1,4 +1,3 @@
-
 import crypto from "crypto"
 import { FormData, Blob } from "formdata-node"
 import { fileTypeFromBuffer } from "file-type"
@@ -14,8 +13,8 @@ let handler = async (m, { conn }) => {
   let q = m.quoted? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!mime) {
-    await react('💀')
-    return conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n⤷ ┇ 𝐔𝐏𝐋𝐎𝐀𝐃𝐄𝐑 ﹒ USO ：✿ 。\n꒰ ◞⁺⊹ ．${fecha}\n\n➛ Responde a una *imagen, video, audio o documento* para subirlo. 👻`, m)
+    await react('❌')
+    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⤷ ┇ 𝐔𝐏𝐋𝐎𝐀𝐃𝐄𝐑 ﹒ USO ：✿ 。\n꒰ ◞⁺⊹ ．${fecha}\n\n➛ Responde a una *imagen, video, audio o documento* para subirlo. ❄️`, m)
   }
 
   try {
@@ -24,27 +23,28 @@ let handler = async (m, { conn }) => {
     let link = await myCloud(media)
     if (!link.url) throw new Error('Sin URL')
 
-    let txt = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+    let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
 ⤷ ┇ 𝐔𝐏𝐋𝐎𝐀𝐃𝐄𝐑 ﹒ COMPLETADO ：✿ 。
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` 🎃 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` ❄️ —˙𖦹.꒷
 
-── *📊 DATOS* ╏ 🎃
+── *📊 DATOS* ╏ ❄️
 🔗 ➛ ${link.url}
 📦 ➛ ${formatBytes(media.length)}
 🖥️ ➛ evogb.win
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
-    await react('🎃')
+    await react('❄️')
     await conn.reply(m.chat, txt, m)
   } catch (e) {
-    await react('💀')
-    await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n💀 Error al subir el archivo embrujado.`, m)
+    await react('❌')
+    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error al subir el archivo.`, m)
   }
 }
 
