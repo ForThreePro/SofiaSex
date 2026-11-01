@@ -28,28 +28,28 @@ let handler = async (m, { conn, text }) => {
     }
 
     if (m.message?.extendedTextMessage?.text?.includes('verlista') || m.text?.includes('verlista')) {
-        await react('🎃')
-        let tabla = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await react('❄️')
+        let tabla = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐋𝐈𝐒𝐓𝐀 𝐒𝐄𝐌𝐀𝐍𝐀𝐋 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐋𝐈𝐒𝐓𝐀 𝐒𝐄𝐌𝐀𝐍𝐀𝐋 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`REGISTROS EMBRUJADOS\`\` 📅 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`REGISTROS PHANTOM\`\` 📅 —˙𖦹.꒷
 
-── *📊 INFORMACIÓN* ╏ 🎃
+── *📊 INFORMACIÓN* ╏ ❄️
 📅 ➛ Periodo: *Lunes a Sábado*
 🕒 ➛ Actualizado: *${fechaFormato}*
-👻 ➛ Fantasma controlando la lista
+👻 ➛ PHANTOM controlando la lista
 
 ━━━━━━━━━━━
 `
 
         diasSemana.forEach(dia => {
             let anotadosDelDia = data.filter(v => v.dia.toLowerCase().includes(dia))
-            tabla += `── *${dia.toUpperCase()}* ╏ 🎃\n`
+            tabla += `── *${dia.toUpperCase()}* ╏ ❄️\n`
 
             if (anotadosDelDia.length === 0) {
-                tabla += `📭 ➛ Sin anotados - Fantasma durmiendo\n\n`
+                tabla += `📭 ➛ Sin anotados - PHANTOM en espera\n\n`
             } else {
                 anotadosDelDia.forEach((v, i) => {
                     tabla += `${i+1}️⃣ ➛ *${v.nombre}* [${v.rol}]\n`
@@ -60,75 +60,80 @@ let handler = async (m, { conn, text }) => {
         })
         tabla += `━━━━━━━━━━━
 📦 ➛ Total: *${data.length}* registro${data.length !== 1 ? 's' : ''}
-👻 ➛ Lista supervisada por fantasma
+👻 ➛ Lista supervisada por PHANTOM
 
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━
 *Owner*: @${ownerNum}`
         return conn.sendMessage(m.chat, { text: tabla.trim(), mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
     if (m.message?.extendedTextMessage?.text?.includes('lista') || m.text?.includes('lista')) {
         if (!diasSemana.includes(diaSemana)) {
-            await react('💀')
-            let fueraHorario = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await react('❌')
+            let fueraHorario = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐅𝐔𝐄𝐑𝐀 𝐃𝐄 𝐇𝐎𝐑𝐀𝐑𝐈𝐎 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐅𝐔𝐄𝐑𝐀 𝐃𝐄 𝐇𝐎𝐑𝐀𝐑𝐈𝐎 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ Solo se puede anotar de
 ❌ ➛ *Lunes a Sábado*
-💀 ➛ Domingo el fantasma descansa
+❄️ ➛ Domingo PHANTOM descansa
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             return conn.sendMessage(m.chat, { text: fueraHorario }, { quoted: m })
         }
 
         if (!text) {
-            await react('💀')
-            let formato = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await react('❌')
+            let formato = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐅𝐎𝐑𝐌𝐀𝐓𝐎 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐅𝐎𝐑𝐌𝐀𝐓𝐎 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 📝 —˙𖦹.꒷
 
-── *📖 USO* ╏ 🎃
+── *📖 USO* ╏ ❄️
 ➛ Envía: .lista Nombre/Numero/Premio
 
-── *💡 EJEMPLO* ╏ 🕯️
-➛ .lista Fantasma/+51 927 174 369/Bot
-🍬 ➛ Premio: dulces infinitos
+── *💡 EJEMPLO* ╏ ❄️
+➛ .lista PHANTOM/+51 927 174 369/Bot
+❄️ ➛ Premio: sistema PHANTOM
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             return conn.sendMessage(m.chat, { text: formato }, { quoted: m })
         }
 
         let [nombre, numero, rol] = text.split('/').map(v => v.trim())
         if (!nombre ||!numero ||!rol) {
-            await react('💀')
-            let faltan = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            await react('❌')
+            let faltan = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐅𝐀𝐋𝐓𝐀𝐍 𝐃𝐀𝐓𝐎𝐒 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐅𝐀𝐋𝐓𝐀𝐍 𝐃𝐀𝐓𝐎𝐒 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📖 FORMATO* ╏ 🎃
+── *📖 FORMATO* ╏ ❄️
 ➛ Nombre/Numero/Rol
-👻 ➛ Fantasma: "Faltan datos como faltan dulces"
+👻 ➛ PHANTOM: "Faltan datos"
 
-── *💡 EJEMPLO* ╏ 🕯️
+── *💡 EJEMPLO* ╏ ❄️
 ➛ fetsy/618282/bot
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             return conn.sendMessage(m.chat, { text: faltan }, { quoted: m })
         }
@@ -136,44 +141,46 @@ let handler = async (m, { conn, text }) => {
         let yaAnotado = data.find(v => v.numero === numero && v.dia === fechaFormato)
         if (yaAnotado) {
             await react('⚠️')
-            let duplicado = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+            let duplicado = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐘𝐀 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐘𝐀 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` ⚠️ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ⚠️ ➛ ${nombre} ya fue anotado hoy
 📅 ➛ *${fechaFormato}*
-👻 ➛ Fantasma dice: ya está en la lista
+👻 ➛ PHANTOM dice: ya está en la lista
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
             return conn.sendMessage(m.chat, { text: duplicado }, { quoted: m })
         }
 
         data.push({ nombre, numero, rol, dia: fechaFormato })
         fs.writeFileSync(db, JSON.stringify(data, null, 2))
-        await react('🎃')
+        await react('❄️')
 
-        let ok = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA ：✿ 。
+⛓️ ┇ 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA
 ꒰ ◞⁺⊹ ．${fechaFormato}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`REGISTRO\`\` ✅ —˙𖦹.꒷
 
-── *📊 DATOS* ╏ 🎃
+── *📊 DATOS* ╏ ❄️
 👤 ➛ Nombre: *${nombre}*
 📱 ➛ Número: *${numero}*
 💼 ➛ Rol: *${rol}*
 📅 ➛ Día: *${fechaFormato}*
-👻 ➛ Aprobado por fantasma
+👻 ➛ Aprobado por PHANTOM
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         return conn.sendMessage(m.chat, { text: ok }, { quoted: m })
     }
