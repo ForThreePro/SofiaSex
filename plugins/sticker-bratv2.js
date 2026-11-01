@@ -9,10 +9,10 @@ moment.locale('es')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
-  const head = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
 
   let txt = text || m.quoted?.text || m.quoted?.caption || ''
-  if (!txt) return m.reply(head + `\n💀 Usa: *${usedPrefix}${command} Tu texto*`, m)
+  if (!txt) return m.reply(head + `\n❌ Usa: *${usedPrefix}${command} Tu texto*`, m)
 
   // ===== CAMBIA LA FUENTE AQUÍ =====
   // 1 = Brat Classic Blur
@@ -104,11 +104,11 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.sendMessage(m.chat, { sticker: fs.readFileSync(tmpWebp) }, { quoted: m })
     try { fs.unlinkSync(tmpPng); fs.unlinkSync(tmpWebp) } catch {}
-    await react('🎃')
+    await react('❄️')
   } catch (e) {
     console.error(e)
-    await react('💀')
-    await m.reply(head + `\n💀 Error: ${e.message}`, m)
+    await react('❌')
+    await m.reply(head + `\n❌ Error: ${e.message}`, m)
   }
 }
 
