@@ -2,57 +2,63 @@ const linkRegex = /chat\.whatsapp\.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i
 const channelLinkRegex = /whatsapp\.com\/channel\/([0-9A-Za-z]{20,30})/i
 
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
-    if (!isAdmin &&!isOwner) throw "‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎_*\n\n꒰👻꒱ Solo los admins pueden usar este hechizo"
+    if (!isAdmin &&!isOwner) throw "❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Solo los admins pueden usar este comando"
 
     let chat = global.db.data.chats[m.chat]
     if (!chat) global.db.data.chats[m.chat] = {}
 
     if (/on/i.test(args[0])) {
         chat.antiLink = true
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐎𝐍 ：✿ 。
+⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐎𝐍
 ꒰ ◞⁺⊹ ．Activado
 
-.⃟𖥔 ݁. 𖦹˙— \`\`PROTECCIÓN\`\` 🕸️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`PROTECCIÓN\`\` 💎 —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
+── *📊 ESTADO* ╏ ❄️
 ✅ ➛ Anti-Link: *Activado*
-👻 ➛ Los enlaces serán exorcizados
+👻 ➛ Los enlaces serán eliminados
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`, m)
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`, m)
     } else if (/off/i.test(args[0])) {
         chat.antiLink = false
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐎𝐅𝐅 ：✿ 。
+⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐎𝐅𝐅
 ꒰ ◞⁺⊹ ．Desactivado
 
-.⃟𖥔 ݁. 𖦹˙— \`\`PROTECCIÓN\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`PROTECCIÓN\`\` ⚡ —˙𖦹.꒷
 
-── *📊 ESTADO* ╏ 🎃
+── *📊 ESTADO* ╏ ❄️
 ❌ ➛ Anti-Link: *Desactivado*
-🦇 ➛ Los enlaces están permitidos
+🦂 ➛ Los enlaces están permitidos
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`, m)
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`, m)
     } else {
-        await conn.reply(m.chat, `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐔𝐒𝐎 ：✿ 。
+⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐋𝐈𝐍𝐊 ﹒ 𝐔𝐒𝐎
 
   ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🎃 ࣪ ꕀ.antilink on/off ˚. ᵎᵎ
+⚡ ࣪ ꕀ.antilink on/off ˚. ᵎᵎ
 
-.⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 🕯️ —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 💎 —˙𖦹.꒷
 
-── *📖 EJEMPLO* ╏ 🎃
+── *📖 EJEMPLO* ╏ ❄️
 👻 ➛.antilink on
 👻 ➛.antilink off
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇`, m)
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`, m)
     }
 }
 
@@ -82,15 +88,18 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin }) {
         await conn.sendMessage(m.chat, { delete: m.key })
         await conn.reply(
             m.chat,
-            `‧˚꒰🎃୭ *_𝐋𝐔𝐗 𝐗 𝐘𝐀𝐋𝐋𝐈𝐂𝐎 - 𝐀𝐍𝐓𝐈𝐋𝐈𝐍𝐊_*
+            `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-꒰💀꒱ *Enlace prohibido detectado*
-꒰👻꒱ @${m.sender.split('@')[0]} intentó invocar un portal prohibido
+⛓️ *Enlace prohibido detectado*
+🦂 @${m.sender.split('@')[0]} intentó enviar un enlace prohibido
 
-꒰🦇꒱ *Acción: Exorcismo del grupo*
-꒰🕸️꒱ No se permiten enlaces en Halloween
+⚡ *Acción: Eliminado del grupo*
+❄️ No se permiten enlaces en PHANTOM
 
-> Trick or... ¡BAN! 🎃`,
+━━━━━━━━━━━
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
+━━━━━━━━━━━`,
             m,
             { mentions: [m.sender] }
         )
