@@ -12,46 +12,48 @@ let handler = async (m, { conn }) => {
         let link = await conn.groupInviteCode(m.chat)
         let groupMetadata = await conn.groupMetadata(m.chat)
 
-        let texto = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐋𝐈𝐍𝐊 ﹒ DEL GRUPO ：✿ 。
+⛓️ ┇ 𝐋𝐈𝐍𝐊 ﹒ DEL GRUPO
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`INVITACIÓN\`\` 🔗 —˙𖦹.꒷
 
-── *📊 INFORMACIÓN* ╏ 🎃
+── *📊 INFORMACIÓN* ╏ ❄️
 👥 ➛ Grupo: *${groupMetadata.subject}*
-👻 ➛ Fantasma te pasa el link
+👻 ➛ PHANTOM te pasa el link
 
-── *🔗 ENLACE* ╏ 🦇
+── *🔗 ENLACE* ╏ ⛓️
 https://chat.whatsapp.com/${link}
 
-── *📝 NOTAS* ╏ 🕯️
+── *📝 NOTAS* ╏ ❄️
 🔒 ➛ Solo admins pueden resetear el link
 ⚠️ ➛ No lo compartas con desconocidos
-🎃 ➛ Lux X Yallico lo aprueba
+❄️ ➛ PHANTOM lo aprueba
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
         await conn.sendMessage(m.chat, { text: texto }, { quoted: m })
     } catch (e) {
-        await react('💀')
-        let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+        await react('❌')
+        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐎𝐑 ﹒ LINK ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ LINK
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ No pude obtener el link
 🔒 ➛ ¿Soy admin del grupo?
-👻 ➛ Fantasma dice: hazme admin pe
+👻 ➛ PHANTOM dice: hazme admin pe
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
         conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
