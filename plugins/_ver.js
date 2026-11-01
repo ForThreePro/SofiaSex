@@ -5,57 +5,60 @@ let handler = async (m, { conn }) => {
 const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
 
 if (!m.quoted) {
-  let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+  let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ VER ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ VER
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ Responde a una imagen/video ViewOnce
-👻 ➛ Fantasma: "Ni veo si no respondes"
+👻 ➛ PHANTOM: "Ni veo si no respondes"
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
   return conn.reply(m.chat, error, m)
 }
 
 if (!m?.quoted || !m?.quoted?.viewOnce) {
-  let error = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+  let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐄𝐑𝐎𝐑 ﹒ VER ：✿ 。
+⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ VER
 ꒰ ◞⁺⊹ ．${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 💀 —˙𖦹.꒷
+.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
 
-── *📝 AVISO* ╏ 🎃
+── *📝 AVISO* ╏ ❄️
 ❌ ➛ El mensaje no es ViewOnce
-💀 ➛ Fantasma dice: "Eso no se borra solo"
+❄️ ➛ PHANTOM dice: "Eso no se borra solo"
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
   return conn.reply(m.chat, error, m)
 }
 
 let buffer = await m.quoted.download(false);
 
-let ok = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇
+let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
 
-⤷ ┇ 𝐃𝐄𝐒𝐁𝐋𝐎𝐐𝐔𝐄𝐀𝐃𝐎 ﹒ VIEWONCE ：✿ 。
+⛓️ ┇ 𝐃𝐄𝐒𝐁𝐋𝐎𝐐𝐔𝐄𝐀𝐃𝐎 ﹒ VIEWONCE
 ꒰ ◞⁺⊹ ．${fecha}
 
 .⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` ✅ —˙𖦹.꒷
 
-── *📊 INFORMACIÓN* ╏ 🎃
+── *📊 INFORMACIÓN* ╏ ❄️
 ✅ ➛ Imagen/Video desbloqueado
-👻 ➛ Fantasma lo vio todo
-🎃 ➛ Nada se esconde en la noche de brujas
+👻 ➛ PHANTOM lo vio todo
+❄️ ➛ Nada se esconde del sistema PHANTOM
 
 ━━━━━━━━━━━
-🎃 *LUX X YALLICO - HALLOWEEN EDITION* 🦇
+⛓️ *PHANTOM IA - VENTAS* ⚡
+🦂 *Contacto:* +51 927 174 369
 ━━━━━━━━━━━`
 
 if (/videoMessage/.test(m.quoted.mtype)) {
