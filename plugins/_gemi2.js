@@ -14,7 +14,7 @@ let audios = [
 
 // MENSAJES - Van al final
 let mensajes = [
-    '‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n👻 Aquí tienes tu audio embrujado bro 🎃',
+    '❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n👻 Aquí tienes tu audio PHANTOM bro ❄️',
 ]
 
 let indice = 0
@@ -29,7 +29,7 @@ let handler = async (m, { conn }) => {
     indice = (indice + 1)
 
     try {
-        await m.react('🎃')
+        await m.react('❄️')
 
         // 1. DESCARGAR Y ENVIAR VIDEO PRIMERO
         let resVideo = await axios.get(videoUrl, { responseType: 'arraybuffer', timeout: 120000 })
@@ -38,7 +38,7 @@ let handler = async (m, { conn }) => {
         await conn.sendMessage(m.chat, {
             video: videoBuffer,
             mimetype: 'video/mp4',
-            caption: `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n⤷ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ GEMIDOS ：✿ 。\n꒰ ◞⁺⊹ ．${fecha}\n\n👻 Video maldito enviado`
+            caption: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ GEMIDOS\n꒰ ◞⁺⊹ ．${fecha}\n\n👻 Video PHANTOM enviado\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`
         }, { quoted: m })
 
         await new Promise(resolve => setTimeout(resolve, 800))
@@ -58,11 +58,11 @@ let handler = async (m, { conn }) => {
         // 3. ENVIAR MENSAJE AL FINAL
         await conn.reply(m.chat, texto, m)
 
-        await m.react('🎃')
+        await m.react('❄️')
 
     } catch (err) {
-        await m.react('💀')
-        await m.reply(`‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n💀 Error embrujado: ${err.message || err}`)
+        await m.react('❌')
+        await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error PHANTOM: ${err.message || err}\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`)
     }
 }
 
