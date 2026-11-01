@@ -8,11 +8,11 @@ moment.locale('es')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const head = `‧˚꒰🎃୭ 𓆩 𝗟𝗨𝗫 𝗫 𝗬𝗔𝗟𝗟𝗜𝗖𝗢 𓆪 🦇\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
 
   let emoji = text?.trim() || m.quoted?.text?.trim() || ''
-  if (!emoji) return conn.reply(m.chat, head + `\n💀 Usa: *${usedPrefix + command} 😆*` + `\n━━━━━━━━━━━━━━━\n🎃 *LUX X YALLICO - HALLOWEEN* 🦇`, m)
+  if (!emoji) return conn.reply(m.chat, head + `\n❌ Usa: *${usedPrefix + command} 😆*` + `\n━━━━━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
   emoji = [...emoji][0]
 
   try {
@@ -58,16 +58,16 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       try { fs.unlinkSync(tmpIn) } catch {}
     }
 
-    await react('🎃')
+    await react('❄️')
 
   } catch (e) {
     console.error(e)
-    await react('💀')
-    return conn.reply(m.chat, head + `\n💀 Error emogif: ${e.message}` + `\n━━━━━━━━━━━━━━━\n🎃 *LUX X YALLICO - HALLOWEEN* 🦇`, m)
+    await react('❌')
+    return conn.reply(m.chat, head + `\n❌ Error emogif: ${e.message}` + `\n━━━━━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
   }
 }
 
 handler.help = ['emogif <emoji>']
-handler.tags = ['sticker','fun']
+handler.tags = ['sticker']
 handler.command = ['emogif','emojigerak','emojigif']
 export default handler
