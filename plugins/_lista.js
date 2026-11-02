@@ -11,7 +11,7 @@ let handler = async (m, { conn, text }) => {
     const chatId = m.chat
     const db = path.join(DB_FOLDER, `${chatId}.json`)
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+    const ownerNum = '528621029907'
 
     if (!fs.existsSync(db)) fs.writeFileSync(db, JSON.stringify([]))
 
@@ -28,160 +28,131 @@ let handler = async (m, { conn, text }) => {
     }
 
     if (m.message?.extendedTextMessage?.text?.includes('verlista') || m.text?.includes('verlista')) {
-        await react('❄️')
-        let tabla = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await react('🍫')
+        let tabla = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐋𝐈𝐒𝐓𝐀 𝐒𝐄𝐌𝐀𝐍𝐀𝐋 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 LISTA SEMANAL ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`REGISTROS PHANTOM\`\` 📅 —˙𖦹.꒷
+🍫 Periodo: Lunes a Sábado
+🍨 Actualizado: ${fechaFormato}
+🍪 Cupid controlando la lista
 
-── *📊 INFORMACIÓN* ╏ ❄️
-📅 ➛ Periodo: *Lunes a Sábado*
-🕒 ➛ Actualizado: *${fechaFormato}*
-👻 ➛ PHANTOM controlando la lista
-
-━━━━━━━━━━━
+─── 💗 REGISTROS ───
 `
 
         diasSemana.forEach(dia => {
             let anotadosDelDia = data.filter(v => v.dia.toLowerCase().includes(dia))
-            tabla += `── *${dia.toUpperCase()}* ╏ ❄️\n`
+            tabla += `─── ${dia.toUpperCase()} ───\n`
 
             if (anotadosDelDia.length === 0) {
-                tabla += `📭 ➛ Sin anotados - PHANTOM en espera\n\n`
+                tabla += `🍫 Sin anotados - Cupid en espera\n\n`
             } else {
                 anotadosDelDia.forEach((v, i) => {
-                    tabla += `${i+1}️⃣ ➛ *${v.nombre}* [${v.rol}]\n`
-                    tabla += `   📱 ➛ ${v.numero}\n`
-                    tabla += `   📅 ➛ ${v.dia}\n\n`
+                    tabla += `${i+1}️⃣ 🍫 *${v.nombre}* [${v.rol}]\n`
+                    tabla += `   🍨 Número: ${v.numero}\n`
+                    tabla += `   🍪 Día: ${v.dia}\n\n`
                 })
             }
         })
-        tabla += `━━━━━━━━━━━
-📦 ➛ Total: *${data.length}* registro${data.length !== 1 ? 's' : ''}
-👻 ➛ Lista supervisada por PHANTOM
+        tabla += `─── 💗 TOTAL ───
+🍫 Total: *${data.length}* registro${data.length !== 1 ? 's' : ''}
+🍨 Lista supervisada por Cupid
 
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━
-*Owner*: @${ownerNum}`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907
+Owner: @${ownerNum}`
         return conn.sendMessage(m.chat, { text: tabla.trim(), mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
     if (m.message?.extendedTextMessage?.text?.includes('lista') || m.text?.includes('lista')) {
         if (!diasSemana.includes(diaSemana)) {
-            await react('❌')
-            let fueraHorario = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            await react('🍫')
+            let fueraHorario = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐅𝐔𝐄𝐑𝐀 𝐃𝐄 𝐇𝐎𝐑𝐀𝐑𝐈𝐎 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 FUERA DE HORARIO ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` ❌ —˙𖦹.꒷
+🍫 Solo se puede anotar de
+🍨 *Lunes a Sábado*
+🍪 Domingo Cupid descansa
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Solo se puede anotar de
-❌ ➛ *Lunes a Sábado*
-❄️ ➛ Domingo PHANTOM descansa
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             return conn.sendMessage(m.chat, { text: fueraHorario }, { quoted: m })
         }
 
         if (!text) {
-            await react('❌')
-            let formato = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            await react('🍫')
+            let formato = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐅𝐎𝐑𝐌𝐀𝐓𝐎 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 FORMATO LISTA ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 📝 —˙𖦹.꒷
+🍫 Envía: .lista Nombre/Numero/Premio
 
-── *📖 USO* ╏ ❄️
-➛ Envía: .lista Nombre/Numero/Premio
+🍨 Ejemplo:
+🍪 .lista Cupid/+52 862 102 9907/Bot
+💗 Premio: sistema Cupid
 
-── *💡 EJEMPLO* ╏ ❄️
-➛ .lista PHANTOM/+51 927 174 369/Bot
-❄️ ➛ Premio: sistema PHANTOM
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             return conn.sendMessage(m.chat, { text: formato }, { quoted: m })
         }
 
         let [nombre, numero, rol] = text.split('/').map(v => v.trim())
         if (!nombre ||!numero ||!rol) {
-            await react('❌')
-            let faltan = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            await react('🍫')
+            let faltan = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐅𝐀𝐋𝐓𝐀𝐍 𝐃𝐀𝐓𝐎𝐒 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 FALTAN DATOS ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Formato: Nombre/Numero/Rol
+🍨 Cupid: "Faltan datos"
 
-── *📖 FORMATO* ╏ ❄️
-➛ Nombre/Numero/Rol
-👻 ➛ PHANTOM: "Faltan datos"
+🍪 Ejemplo:
+💗 fetsy/618282/bot
 
-── *💡 EJEMPLO* ╏ ❄️
-➛ fetsy/618282/bot
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             return conn.sendMessage(m.chat, { text: faltan }, { quoted: m })
         }
 
         let yaAnotado = data.find(v => v.numero === numero && v.dia === fechaFormato)
         if (yaAnotado) {
-            await react('⚠️')
-            let duplicado = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            await react('🍫')
+            let duplicado = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐘𝐀 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 YA ANOTADO ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` ⚠️ —˙𖦹.꒷
+🍫 ${nombre} ya fue anotado hoy
+🍨 Día: *${fechaFormato}*
+🍪 Cupid dice: ya está en la lista
 
-── *📝 AVISO* ╏ ❄️
-⚠️ ➛ ${nombre} ya fue anotado hoy
-📅 ➛ *${fechaFormato}*
-👻 ➛ PHANTOM dice: ya está en la lista
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             return conn.sendMessage(m.chat, { text: duplicado }, { quoted: m })
         }
 
         data.push({ nombre, numero, rol, dia: fechaFormato })
         fs.writeFileSync(db, JSON.stringify(data, null, 2))
-        await react('❄️')
+        await react('🍫')
 
-        let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        let ok = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐀𝐍𝐎𝐓𝐀𝐃𝐎 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fechaFormato}
+─── 🍪 ANOTADO ───
+Fecha: ${fechaFormato}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`REGISTRO\`\` ✅ —˙𖦹.꒷
+🍫 Nombre: *${nombre}*
+🍨 Número: *${numero}*
+🍪 Rol: *${rol}*
+💗 Día: *${fechaFormato}*
+🍫 Aprobado por Cupid
 
-── *📊 DATOS* ╏ ❄️
-👤 ➛ Nombre: *${nombre}*
-📱 ➛ Número: *${numero}*
-💼 ➛ Rol: *${rol}*
-📅 ➛ Día: *${fechaFormato}*
-👻 ➛ Aprobado por PHANTOM
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         return conn.sendMessage(m.chat, { text: ok }, { quoted: m })
     }
 }
