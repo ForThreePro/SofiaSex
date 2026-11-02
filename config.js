@@ -7,24 +7,25 @@ import fetch from 'node-fetch'
 import axios from 'axios'
 
 global.owner = [
-  [ '51927174369', 'Barboza OFC 🌃', true ],
+  [ '528621029907', 'Cupid Dolls 🍫', true ],
+  [ '5218621029907', 'Cupid Dolls 🍫', true ],
   [ '51924636698', 'Jota 🐼', true ]
 ]
 
 global.mods = []
 global.prems = []
 
-global.packname = `[ 𝙉𝙤𝙭 𝘽ο𝙩 🌃`
-global.author = '𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃]'
-global.stickpack = '© 𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃'
-global.stickauth = '𝘽𝙮 𝙉𝙤𝙭 𝘽ο𝙩'
-global.wm = '𝙉𝙤𝙭 🌃'
-global.botname = '[ 𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃 ]'
-global.textbot = `𝙋ο𝙬𝙚𝙧𝙚𝙙 𝙗𝙮 𝙉𝙤𝙭 🌀`
-global.dev = '• 𝙋ο𝙬𝙚𝙧𝙚𝙙 𝙗𝙮 𝘾ο𝙢𝙪𝙣𝙞𝙩𝙮 𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃'
-global.wait = '🌪️ *𝘼𝙜𝙪𝙖𝙧𝙙𝙚 𝙪𝙣 𝙢ο𝙢𝙚𝙣𝙩ο, 𝙨ο𝙮 𝙡𝙚𝙣𝙩ο... ฅ^•ﻌ•^ฅ\n> 𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃 🌪️*'
-global.listo = '*𝘼𝙦𝙪𝙞 𝙩𝙞𝙚𝙣𝙚 ฅ^•ﻌ•^ฅ*'
-global.namechannel = '𝙉𝙤𝙭 𝘽ο𝙩 𝙈𝘿 🌃'
+global.packname = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗`
+global.author = '🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.stickpack = '© 🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.stickauth = '💗 𝐁𝐲 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬'
+global.wm = '🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.botname = '🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.textbot = `🍫 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐛𝐲 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗`
+global.dev = '• 🍫 𝐏𝐨𝐰𝐞𝐫𝐞𝐝 𝐛𝐲 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.wait = '🍫 *𝐀𝐠𝐮𝐚𝐫𝐝𝐞 𝐮𝐧 𝐦𝐨𝐦𝐞𝐧𝐭𝐨...*\n> 🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
+global.listo = '*🍫 𝐀𝐪𝐮𝐢 𝐭𝐢𝐞𝐧𝐞 💗*'
+global.namechannel = '🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗'
 global.channel = 'https://whatsapp.com/channel/0029Vaua0ZD3gvWjQaIpSy18'
 
 global.catalogo = fs.readFileSync('./storage/img/catalogo.png')
@@ -33,8 +34,8 @@ global.group = 'https://chat.whatsapp.com/CBuLXuVZcg9FEfCSHiY6b0'
 global.canal = 'https://whatsapp.com/channel/0029Vaua0ZD3gvWjQaIpSy18'
 global.insta = 'https://www.insta.com/sebastian_barboza13'
 
-// IMAGEN GLOBAL FIJA
-global.botimg = 'https://files.evogb.win/QFXQtu.jpg'
+// IMAGEN GLOBAL FIJA - TU FOTO
+global.botimg = 'https://files.evogb.win/yoMAez.jpg'
 
 global.estilo = { 
   key: { 
