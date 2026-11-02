@@ -18,22 +18,17 @@ export async function before(m, { conn }) {
 
         for (let user of update.participants) {
           if (update.action === 'promote') {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ADMIN ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ASCENDIDO\`\` 👑 —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Nuevo admin: @${user.split('@')[0]}
+🍪 Cupid: Que cuide el grupo
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-🎖️ ➛ Nuevo admin: @${user.split('@')[0]}
-👻 ➛ PHANTOM: "Que cuide el sistema"
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
@@ -42,22 +37,17 @@ export async function before(m, { conn }) {
           }
 
           if (update.action === 'demote') {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ ADMIN
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ADMIN ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DEGRADADO\`\` 💔 —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Ex-admin: @${user.split('@')[0]}
+🍪 Se quedó sin acceso
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-💔 ➛ Ex-admin: @${user.split('@')[0]}
-❄️ ➛ PHANTOM: "Se quedó sin acceso"
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
@@ -81,22 +71,17 @@ export async function before(m, { conn }) {
           let catalogoImg = { url: 'https://files.evogb.win/XQuHBW.jpg' }
 
           if (update.subject) {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ NOMBRE
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 NOMBRE CAMBIADO ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADO\`\` 📝 —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Nuevo: ${update.subject}
+🍪 Cupid detectó el cambio
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-📝 ➛ Nuevo: *${update.subject}*
-⚡ ➛ PHANTOM detectó el cambio
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
@@ -105,22 +90,17 @@ export async function before(m, { conn }) {
           }
 
           if (update.desc) {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ DESCRIPCION
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 DESCRIPCIÓN CAMBIADA ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADA\`\` 📄 —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Nueva: ${update.desc.slice(0, 300) || 'Vacía'}
+🍪 Descripción actualizada
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-📝 ➛ Nueva: ${update.desc.slice(0, 300) || 'Vacía'}
-❄️ ➛ Descripción actualizada
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
@@ -129,22 +109,17 @@ export async function before(m, { conn }) {
           }
 
           if (update.icon || update.picture) {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ FOTO
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 FOTO CAMBIADA ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`CAMBIADA\`\` 🖼️ —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Foto cambiada
+🍪 Cupid revisando nueva foto
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-🖼️ ➛ Foto cambiada
-👻 ➛ PHANTOM revisando nueva foto
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
@@ -153,22 +128,17 @@ export async function before(m, { conn }) {
           }
 
           if (update.inviteCode) {
-            let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐓𝐄𝐂𝐓 ﹒ LINK
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 LINK RESETEADO ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESETEADO\`\` 🔗 —˙𖦹.꒷
+🍫 Por: @${author.split('@')[0]}
+🍨 Nuevo: https://chat.whatsapp.com/${update.inviteCode}
+🍪 Link nuevo generado
 
-── *👤 ACCION* ╏ ❄️
-👑 ➛ Por: @${author.split('@')[0]}
-🔗 ➛ Nuevo: https://chat.whatsapp.com/${update.inviteCode}
-❄️ ➛ Link nuevo generado
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
             await conn.sendMessage(update.id, {
               image: catalogoImg,
               caption: txt,
