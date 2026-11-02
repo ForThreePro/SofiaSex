@@ -12,7 +12,7 @@ import fs from 'fs'
 import os from 'os'
 import path from 'path'
 
-const STELLAR_KEY = 'api-b9YNP'
+const STELLAR_KEY = 'proyectsV2'
 const STELLAR_WHATMUSIC = 'https://api.stellarwa.xyz/tools/whatmusic'
 
 const handler = async (m, { conn, command, text }) => {
