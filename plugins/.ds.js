@@ -4,17 +4,16 @@ import moment from 'moment-timezone'
 moment.locale('es')
 
 var handler = async (m, { conn }) => {
-    if (global.conn.user.jid!== conn.user.jid) {
-        return conn.reply(m.chat, '⚠️ *Usa esto en el número principal*', m)
+    if (global.conn.user.jid !== conn.user.jid) {
+        return conn.reply(m.chat, '🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\nUsa esto en el número principal', m)
     }
 
     let rutas = [`./Sesiones/Principal/`, `./sesiones/Principal/`, `./sessions/Principal/`]
     let sessionPath = rutas.find(r => existsSync(r))
 
-    if (!sessionPath) return m.reply('🧐 *No encontré la carpeta de sesión*')
+    if (!sessionPath) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\nNo encontré la carpeta de sesión')
 
-    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
-    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Limpiando sesión...`)
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
     let files = await fs.readdir(sessionPath)
     let filesDeleted = 0
@@ -25,7 +24,7 @@ var handler = async (m, { conn }) => {
             file.startsWith('sender-key') ||
             file.startsWith('session-')
         ) {
-            if (!file.startsWith('creds') &&!file.startsWith('app-state')) {
+            if (!file.startsWith('creds') && !file.startsWith('app-state')) {
                 await fs.unlink(path.join(sessionPath, file))
                 filesDeleted++;
             }
@@ -33,36 +32,31 @@ var handler = async (m, { conn }) => {
     }
 
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+    const ownerNum = global.owner?.[0]?.[0] || '528621029907'
 
-    let menu = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let menu = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐅𝐑𝐎𝐒𝐓 𝐅𝐈𝐗
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 SISTEMA ───
+Fecha: ${fecha}
+Comando: .dsowner
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-⚡ ࣪ ꕀ.dsowner ˚. ᵎᵎ
-> *"Limpiando hasta el último rastro del sistema"*
+─── 🍫 FIX DE SESIÓN [${filesDeleted}] ───
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FIX DE SESIÓN\`\` [${filesDeleted}] 💎 —˙𖦹.꒷
+Descripción:
+🍫 Elimina archivos de caché basura
+🍨 No borra creds ni app-state para que no se desconecte
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-🧹 ➛ Elimina archivos de caché basura
-🔒 ➛ No borra \`creds\` ni \`app-state\` para que no se desconecte
+Uso:
+🍪 Solo en el número principal del bot
+💗 El bot sigue conectado, no necesita reinicio
 
-── *📖 USO* ╏ ⛓️
-👑 ➛ Usar solo en el número principal del bot
-🔌 ➛ El bot sigue conectado, no necesita reinicio
+Resultado:
+🍫 Archivos eliminados: ${filesDeleted}
+🍨 Estado: ${filesDeleted === 0 ? 'Todo limpio' : 'Limpieza completada'}
 
-── *📊 RESULTADO* ╏ 💎
-✅ ➛ Archivos eliminados: *${filesDeleted}*
-⚡ ➛ Estado: *${filesDeleted === 0? 'Todo limpio - Sistema frío ❄️' : 'Limpieza completada ⚡'}*
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-*Owner*: @${ownerNum}
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Dueña: @${ownerNum}
+Número: +52 862 102 9907`
 
     await conn.sendMessage(m.chat, {
         text: menu,
