@@ -7,96 +7,77 @@ const handler = async (m, { conn, command }) => {
     try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
   }
 
-  if (!m.mentionedJid[0] &&!m.quoted) {
-    await react('❌')
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+  if (!m.mentionedJid[0] && !m.quoted) {
+    await react('🍫')
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐀𝐃𝐌𝐈𝐍𝐈𝐒𝐓𝐑𝐀𝐂𝐈𝐎𝐍 ﹒ PROMOTE
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ADMINISTRACION PROMOTE ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FORMATO\`\` 👑 —˙𖦹.꒷
+🍫 Uso:
+🍨 Menciona a un usuario
+🍪 Responde al mensaje del usuario
+💗 Cupid: menciona pe
 
-── *📖 USO* ╏ ❄️
-➛ Menciona a un usuario
-➛ Responde al mensaje del usuario
-👻 ➛ PHANTOM: menciona pe
+🍪 Ejemplos:
+🍫 .promote @user
+🍨 .demote @user
 
-── *💡 EJEMPLOS* ╏ ⛓️
-➛.promote @user
-➛.demote @user
+🍫 Aviso:
+💗 Solo admins
+🍪 Solo los del sistema
 
-── *📝 AVISO* ╏ ❄️
-🔒 ➛ Solo admins
-👻 ➛ Solo los del sistema
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: texto }, { quoted: m })
   }
 
-  let user = m.mentionedJid[0]? m.mentionedJid[0] : m.quoted.sender
-  let action = command === 'promote' || command === 'promover' || command === 'daradmin'? 'promote' : 'demote'
+  let user = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
+  let action = command === 'promote' || command === 'promover' || command === 'daradmin' ? 'promote' : 'demote'
 
-  await react(action === 'promote'? '❄️' : '🔴')
+  await react(action === 'promote' ? '🍫' : '🍪')
 
   try {
     await conn.groupParticipantsUpdate(m.chat, [user], action)
   } catch {
-    await react('❌')
-    let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    await react('🍫')
+    let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ADMIN
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR ADMIN ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 No se pudo completar la acción
+🍨 Verifica permisos del bot
+🍪 Cupid dice: el bot no es admin pe
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ No se pudo completar la acción
-🔒 ➛ Verifica permisos del bot
-👻 ➛ PHANTOM dice: el bot no es admin pe
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: error }, { quoted: m })
   }
 
   let msgAccion = action === 'promote'
-? `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+? `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐏𝐑𝐎𝐌𝐎𝐕𝐈𝐃𝐎 ﹒ NUEVO ADMIN
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 PROMOVIDO NUEVO ADMIN ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` ❄️ —˙𖦹.꒷
+🍫 Nuevo Admin: @${user.split('@')[0]}
+🍨 Por: @${m.sender.split('@')[0]}
+🍪 Cupid aprobó al nuevo admin
 
-── *📊 INFORMACIÓN* ╏ ❄️
-❄️ ➛ Nuevo Admin: @${user.split('@')[0]}
-👤 ➛ Por: @${m.sender.split('@')[0]}
-👻 ➛ PHANTOM aprobó al nuevo admin
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
+    : `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
-    : `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+─── 🍪 DEGRADADO QUITAR ADMIN ───
+Fecha: ${fecha}
 
-⛓️ ┇ 𝐃𝐄𝐆𝐑𝐀𝐃𝐀𝐃𝐎 ﹒ QUITAR ADMIN
-꒰ ◞⁺⊹ ．${fecha}
+🍫 Ya no es Admin: @${user.split('@')[0]}
+🍨 Por: @${m.sender.split('@')[0]}
+🍪 Cupid le quitó el poder
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` 🔴 —˙𖦹.꒷
-
-── *📊 INFORMACIÓN* ╏ ❄️
-🔴 ➛ Ya no es Admin: @${user.split('@')[0]}
-👤 ➛ Por: @${m.sender.split('@')[0]}
-👻 ➛ PHANTOM le quitó el poder
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
 
   await conn.sendMessage(m.chat, { text: msgAccion, mentions: [user, m.sender] }, { quoted: m })
 }
