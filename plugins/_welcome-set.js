@@ -12,7 +12,7 @@ let handler = async (m, { conn, args, command }) => {
   if (command.includes('welcome')) type = 'welcome'
   else if (command.includes('bye')) type = 'bye'
   else if (command.includes('kick')) type = 'kick'
-  else return m.reply('❌ Comando no válido')
+  else return m.reply('🍫 Comando no válido')
 
   let text = args.join(' ').trim()
   let key = `custom${type.charAt(0).toUpperCase() + type.slice(1)}`
@@ -22,96 +22,77 @@ let handler = async (m, { conn, args, command }) => {
   }
 
   if (command.startsWith('set')) {
-    await react('❄️')
+    await react('🍫')
     if (!text) {
-      let uso = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+      let uso = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐌𝐄𝐍𝐒𝐀𝐉𝐄 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 MENSAJE ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FORMATO\`\` ✏️ —˙𖦹.꒷
+🍫 Uso:
+🍨 .${command} <texto del mensaje>
 
-── *📖 USO* ╏ ❄️
-➛.${command} <texto del mensaje>
+🍪 Variables:
+💗 @user = Menciona al usuario
+🍫 @group = Nombre del grupo
+🍨 @desc = Descripción del grupo
+🍪 @cupid = Frase Cupid random
 
-── *💡 VARIABLES* ╏ ⛓️
-👤 ➛ @user = Menciona al usuario
-👥 ➛ @group = Nombre del grupo
-📄 ➛ @desc = Descripción del grupo
-👻 ➛ @ghost = Frase PHANTOM random
+💗 Ejemplos:
+🍫 .setwelcome Bienvenido @user a @group
+🍨 .setbye Se fue @user de @group
+🍪 .setkick @user fue kickeado de @group
 
-── *💡 EJEMPLOS* ╏ ❄️
-➛.setwelcome Bienvenido @user a @group
-➛.setbye Se fue @user de @group
-➛.setkick @user fue kickeado de @group
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
       return conn.sendMessage(m.chat, { text: uso }, { quoted: m })
     }
 
     chat[key] = text
-    let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let ok = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐆𝐔𝐀𝐑𝐃𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 TEXTO GUARDADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`TEXTO GUARDADO\`\` ✅ —˙𖦹.꒷
+🍫 Mensaje de *${type}* guardado
+🍨 Cupid aprobó el texto
 
-── *📊 INFORMACIÓN* ╏ ❄️
-✅ ➛ Mensaje de *${type}* guardado
-👻 ➛ PHANTOM aprobó el texto
+🍪 Vista previa:
+💗 ${text}
 
-── *📝 VISTA PREVIA* ╏ ⛓️
-💬 ➛ ${text}
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: ok }, { quoted: m })
   }
 
   if (command.startsWith('del')) {
-    await react('🗑️')
+    await react('🍫')
     if (!chat[key]) {
-      let vacio = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+      let vacio = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐍𝐎 𝐂𝐎𝐍𝐅𝐈𝐆𝐔𝐑𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 NO CONFIGURADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` 📭 —˙𖦹.꒷
+🍫 No hay un mensaje de *${type}* personalizado
+🍨 Cupid dice: no hay nada configurado
 
-── *📝 AVISO* ╏ ❄️
-📭 ➛ No hay un mensaje de *${type}* personalizado
-❄️ ➛ PHANTOM dice: no hay nada configurado
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
       return conn.sendMessage(m.chat, { text: vacio }, { quoted: m })
     }
 
     delete chat[key]
-    let del = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let del = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 TEXTO ELIMINADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`TEXTO ELIMINADO\`\` 🗑️ —˙𖦹.꒷
+🍫 Mensaje de *${type}* eliminado
+🍨 Volverá al mensaje por defecto
+🍪 Cupid borró el texto
 
-── *📊 INFORMACIÓN* ╏ ❄️
-🗑️ ➛ Mensaje de *${type}* eliminado
-✅ ➛ Volverá al mensaje por defecto
-👻 ➛ PHANTOM borró el texto
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: del }, { quoted: m })
   }
 }
