@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-import { generateWAMessageFromContent, generateWAMessageContent, proto } from '@whiskeysockets/baileys'
 import moment from 'moment-timezone'
 moment.locale('es')
 
@@ -9,89 +8,51 @@ const react = async (conn, m, text) => {
 
 var handler = async (m, { conn, args }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+  const ownerNum = '528621029907'
 
   if (!args[0]) {
-    let menuUso = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let menuUso = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒 ﹒ TIKTOK
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 TIKTOK ───
+Fecha: ${fecha}
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-📱 ࣪ ꕀ.tiktok ˚. ᵎᵎ
-> *"Bajando videos con el sistema PHANTOM"*
+🍫 Descarga videos de TikTok sin marca de agua
+🍨 Uso: .tiktok <link de tiktok>
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DESCARGAS\`\` 📥 —˙𖦹.꒷
+🍫 Ejemplo:
+🍨 https://vm.tiktok.com/ZMkcmTCa6/
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-📱 ➛ Descarga videos de TikTok sin marca de agua
-📱 ➛ Con botones interactivos
-👻 ➛ PHANTOM procesando TikTok
+🍪 Soporte:
+💗 vm.tiktok.com
+🍫 vt.tiktok.com
+🍨 www.tiktok.com
 
-── *📖 USO* ╏ ⛓️
-➛.*tiktok* <link de tiktok>
-➛.*tt* <link de tiktok>
-
-── *💡 EJEMPLO* ╏ ❄️
-➛ https://vm.tiktok.com/ZMkcmTCa6/
-
-── *🔗 SOPORTE* ╏ ❄️
-📱 ➛ vm.tiktok.com
-📱 ➛ vt.tiktok.com
-📱 ➛ www.tiktok.com
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━
-*Owner*: @${ownerNum}
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907
+Owner: @${ownerNum}`
     return conn.sendMessage(m.chat, { text: menuUso, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
   }
 
   const url = args[0]
   if (!url.match(/(https?:\/\/)?(www\.)?(vm\.|vt\.|www\.)?tiktok\.com\//)) {
-    await react(conn, m, '❌')
-    let menuError = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    await react(conn, m, '🍫')
+    let menuError = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TIKTOK
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR TIKTOK ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 El enlace no es válido
+🍨 Eso no es TikTok
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-❌ ➛ El enlace no es válido
-👻 ➛ PHANTOM: "Eso no es TikTok"
+🍪 Uso: Solo links de tiktok.com
 
-── *📖 USO* ╏ ⛓️
-➛ Solo links de: *tiktok.com*
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: menuError }, { quoted: m })
   }
 
   try {
-    await react(conn, m, "❄️")
-    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐏𝐑𝐎𝐂𝐄𝐒𝐀𝐍𝐃𝐎 ﹒ TIKTOK
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`PROCESANDO\`\` ⚙️ —˙𖦹.꒷
-
-── *📊 ESTADO* ╏ ❄️
-🔍 ➛ Analizando link...
-📥 ➛ Obteniendo video HD...
-⬇️ ➛ Preparando descarga sin marca...
-👻 ➛ PHANTOM buscando el video...
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
+    await react(conn, m, "🍫")
 
     const tiktokData = await tiktokdl(url)
     if (!tiktokData?.data) throw new Error('No se pudo obtener el video.')
@@ -102,80 +63,40 @@ var handler = async (m, { conn, args }) => {
     const likes = formatNum(tiktokData.data.digg_count)
     const comments = formatNum(tiktokData.data.comment_count)
 
-    const businessHeader = {
-      key: { remoteJid: m.chat, participant: '0@s.whatsapp.net', fromMe: false },
-      message: {
-        locationMessage: {
-          name: `❄️ PHANTOM IA - FROST MODE ⚡`,
-          jpegThumbnail: Buffer.from(await (await fetch('https://files.catbox.moe/dsgmid.jpg')).arrayBuffer())
-        }
-      }
-    }
+    let caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-    const media = await generateWAMessageContent({ video: { url: videoURL } }, { upload: conn.waUploadToServer, jid: m.chat })
+─── 🍪 TIKTOK ───
+Fecha: ${fecha}
 
-    const msg = generateWAMessageFromContent(m.chat, {
-      viewOnceMessage: {
-        message: {
-          interactiveMessage: proto.Message.InteractiveMessage.fromObject({
-            body: {
-              text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+🍫 Título: ${title}
+🍨 Autor: @${author}
+🍪 Likes: ${likes}
+💗 Comentarios: ${comments}
+🍫 Link: ${url}
 
-⛓️ ┇ 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐀𝐃𝐎 ﹒ TIKTOK
-꒰ ◞⁺⊹ ．${fecha}
+🍨 Video sin marca de agua
+🍪 Listo para ver
 
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` 📥 —˙𖦹.꒷
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
 
-── *📊 INFORMACIÓN* ╏ ❄️
-📌 ➛ Título: *${title}*
-👤 ➛ Autor: *@${author}*
-❤️ ➛ Likes: *${likes}*
-💬 ➛ Comentarios: *${comments}*
-👻 ➛ PHANTOM le dio like
-
-── *📥 DESCARGA* ╏ ⛓️
-⬇️ ➛ Video sin marca de agua
-❄️ ➛ Listo para ver`
-            },
-            footer: { text: 'Sin marca de agua ✨ | PHANTOM IA - FROST MODE ❄️' },
-            header: { hasMediaAttachment: true, videoMessage: media.videoMessage },
-            nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.fromObject({
-              buttons: [
-                { name: 'cta_copy', buttonParamsJson: JSON.stringify({ display_text: '📋 Copiar texto', copy_code: title }) },
-                { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '📱 Ver en TikTok', url: url }) }
-              ]
-            })
-          })
-        }
-      }
-    }, { quoted: businessHeader })
-
-    await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
-    await react(conn, m, "❄️")
+    await conn.sendMessage(m.chat, { video: { url: videoURL }, mimetype: 'video/mp4', fileName: 'tiktok.mp4', caption: caption }, { quoted: m })
+    await react(conn, m, "🍫")
 
   } catch (error) {
-    await react(conn, m, "❌")
-    const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    let menuErr = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    await react(conn, m, "🍫")
+    const fecha2 = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
+    let menuErr = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TIKTOK
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR TIKTOK ───
+Fecha: ${fecha2}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 ${error.message}
+🍨 Verifica que el video sea público
+🍪 Intenta con otro link
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-❌ ➛ ${error.message}
-⚡ ➛ PHANTOM no pudo procesarlo
-
-── *💡 SOLUCIÓN* ╏ ⛓️
-🔧 ➛ Verifica que el video sea público
-🔧 ➛ Intenta con otro link
-❄️ ➛ PHANTOM dice: prueba otra vez
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: menuErr }, { quoted: m })
   }
 }
