@@ -39,9 +39,7 @@ async function stellarUpscale(buffer, scale) {
   return Buffer.from(data)
 }
 
-// ===== REMOVEBG STELLAR - POR ARCHIVO, NO POR URL =====
 async function stellarRemovebg(buffer) {
-  // Intento 1: POST con archivo method=local (el correcto para Stellar)
   try {
     let form = new FormDataNode()
     form.append('file', buffer, { filename: `removebg.jpg`, contentType: 'image/jpeg' })
@@ -55,7 +53,6 @@ async function stellarRemovebg(buffer) {
     console.log('Removebg POST falló, intentando GET url:', e1.message)
   }
 
-  // Intento 2: Fallback GET con url (por si Stellar lo soporta con method=url)
   let linkTmp = await myCloud(buffer)
   const apiUrl = `https://api.stellarwa.xyz/tools/removebg?method=url&url=${encodeURIComponent(linkTmp)}&key=${STELLAR_KEY}`
   const { data } = await axios.get(apiUrl, { responseType: 'arraybuffer', timeout: 120000, headers: { 'User-Agent': 'Mozilla/5.0' } })
@@ -64,16 +61,13 @@ async function stellarRemovebg(buffer) {
 
 async function parseStellarResult(data, headers = {}) {
   const ct = headers['content-type'] || ''
-  // Si es imagen directa
   if (ct.includes('image') || !Buffer.from(data).toString('utf8').slice(0, 200).trim().startsWith('{')) {
-    // Verificar que no sea JSON disfrazado
     try {
       const txt = Buffer.from(data).toString('utf8')
       if (txt.trim().startsWith('{')) throw new Error('es json')
       return Buffer.from(data)
     } catch {}
   }
-  // Si es JSON
   const j = JSON.parse(Buffer.from(data).toString())
   let resultData = j.result?.url || j.result?.image || j.result?.data || j.result || j.url || j.data || j.image
   if (typeof resultData === 'object') resultData = resultData.url || resultData.image || resultData.data
@@ -106,51 +100,59 @@ let handler = async (m, { conn, text }) => {
   }
 
   if (!media && !link) {
-    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
-    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❄️꒱ Responde a una imagen o manda link\n\n❄️ Ejemplo: *.removebg*\n❄️ Ejemplo: *.removebg https://link.jpg*\n\nPasos: 1️⃣ Sube a Evogb → 2️⃣ HD x2 → x4 → 3️⃣ Quita fondo` }, { quoted: m })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
+    return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+
+─── 🍪 REMOVEBG ───
+
+🍫 Responde a una imagen o manda link
+🍨 Ejemplo: .removebg
+🍪 Ejemplo: .removebg https://link.jpg
+
+💗 Proceso: Sube → HD x2 → x4 → Quita fondo
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907` }, { quoted: m })
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
-    await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n1️⃣ *PASO 1/3:* Subiendo original a Evogb...` }, { quoted: m })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
+
     let linkOriginal = link
     if (!linkOriginal) linkOriginal = await myCloud(media)
-    if (!linkOriginal) throw new Error('No se pudo subir original a Evogb')
+    if (!linkOriginal) throw new Error('No se pudo subir original')
 
-    await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n2️⃣ *PASO 2/3:* Mejorando HD x2...` }, { quoted: m })
     let hdX2 = await stellarUpscale(media, 2)
-    await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n2️⃣ *PASO 2/3:* Mejorando HD x4 automático...` }, { quoted: m })
     let hdX4 = await stellarUpscale(hdX2, 2)
     let linkHD = await myCloud(hdX4)
 
-    await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n3️⃣ *PASO 3/3:* Quitando fondo (POST archivo)...` }, { quoted: m })
-    // CAMBIO CLAVE: le pasamos el BUFFER, no la URL
     let finalBuffer = await stellarRemovebg(hdX4)
 
     let linkFinal = await myCloud(finalBuffer).catch(() => null)
 
-    const caption = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    const caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-╭───INFO ꒰❄️꒱────╮
-❄️ Tipo: Removebg + HD x4
-❄️ API: Stellar
-❄️ Peso final: ${(finalBuffer.length / 1024).toFixed(0)} KB
-╰─────── ݁ ˖Ი𐑼⋆────╯
+─── 🍪 REMOVEBG + HD ───
 
-🔗 *Original:* ${linkOriginal}
-🔗 *HD x4:* ${linkHD || 'No se pudo subir'}
-🔗 *Sin fondo:* ${linkFinal || 'No se pudo subir'}
+🍫 Tipo: Removebg + HD x4
+🍨 API: Stellar
+🍪 Peso final: ${(finalBuffer.length / 1024).toFixed(0)} KB
 
-꒰❄️꒱ Fondo eliminado - listo`
+🍫 Original: ${linkOriginal}
+🍨 HD x4: ${linkHD || 'No se pudo subir'}
+🍪 Sin fondo: ${linkFinal || 'No se pudo subir'}
 
-    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+💗 Fondo eliminado - listo
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
+
     await conn.sendMessage(m.chat, { image: finalBuffer, caption }, { quoted: m })
-    await conn.sendMessage(m.chat, { document: finalBuffer, mimetype: 'image/png', fileName: `removebg-hd-phantom-frost.png` }, { quoted: m })
 
   } catch (e) {
     console.error(e)
-    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰❌꒱ Error: ${e.message}` }, { quoted: m })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
+    return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR ───\n\n🍫 ${e.message}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
   }
 }
 
