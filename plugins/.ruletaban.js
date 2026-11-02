@@ -4,40 +4,29 @@ let handler = async (m, { conn }) => {
     let botNumber = conn.user.jid
 
     let candidates = participants.filter(p => !p.admin && p.id !== botNumber)
-    if (!candidates.length) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ No hay víctimas, todos son admins... se salvaron del sistema 👻`)
+    if (!candidates.length) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 No hay víctimas, todos son admins`)
 
     let victim = candidates[Math.floor(Math.random() * candidates.length)]
 
-    await conn.sendMessage(m.chat, { 
-        text: 
-`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-*𝐑 𝐔 𝐋 𝐄 𝐓 𝐀  𝐁 𝐀 𝐍*
-*PHANTOM FROST*
-
-╭─── GIRANDO ❄️ ───╮
-⛓️ Escaneando sistema...
-👻 Participantes: ${candidates.length}
-╰─────── ݁ ˖Ი𐑼⋆────╯
-
-🦂 El sistema eligió a @${victim.id.split('@')[0]} 💥
-
-*¡PHANTOM SE LO LLEVÓ!* ⚡❄️
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`,
-        mentions: [victim.id]
-    })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
     await new Promise(r => setTimeout(r, 1500))
 
     try {
         await conn.groupParticipantsUpdate(m.chat, [victim.id], 'remove')
-        await conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ @${victim.id.split('@')[0]} fue eliminado del grupo\n⚡ Sistema PHANTOM ejecutado\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, mentions: [victim.id] })
-        await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+        await conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+
+─── 🍪 RULETA BAN ───
+
+🍫 Participantes: ${candidates.length}
+🍨 La ruleta eligió a @${victim.id.split('@')[0]}
+🍪 Fue eliminada del grupo
+💗 Cupid se la llevó
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, mentions: [victim.id] })
     } catch (e) {
-        m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ No pude eliminar a @${victim.id.split('@')[0]} - tiene protección del sistema`, null, { mentions: [victim.id] })
+        m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 No pude eliminar a @${victim.id.split('@')[0]}\n🍨 Tiene protección`, null, { mentions: [victim.id] })
     }
 }
 
