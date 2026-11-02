@@ -4,62 +4,48 @@ moment.locale('es')
 const handler = async (m, { conn, args, isAdmin, isOwner }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     // Validación de permisos para el comando
-    if (!isAdmin &&!isOwner) throw `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Solo los admins pueden usar este comando.`
+    if (!isAdmin && !isOwner) throw `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Solo los admins pueden usar este comando.`
 
     let chat = global.db.data.chats[m.chat]
     if (!chat) global.db.data.chats[m.chat] = {}
 
     if (/on/i.test(args[0])) {
         chat.modoadmin = true
-        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ ON
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 MODO ADMIN ON ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ACTIVADO\`\` ✅ —˙𖦹.꒷
+🍫 *Modo Administrador activado*
+🍨 Ahora solo los admins pueden usar el bot
+🍪 Modo Cupid activo
 
-── *📝 ESTADO* ╏ ❄️
-✅ ➛ *Modo Administrador activado*
-👻 ➛ Ahora solo los admins pueden usar el bot
-⛓️ ➛ Modo PHANTOM activo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, m)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
     } else if (/off/i.test(args[0])) {
         chat.modoadmin = false
-        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ OFF
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 MODO ADMIN OFF ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DESACTIVADO\`\` ❌ —˙𖦹.꒷
+🍫 *Modo Administrador desactivado*
+🍨 Todos pueden usar el bot de nuevo
+🍪 Cupid abierto para todos
 
-── *📝 ESTADO* ╏ ❄️
-❌ ➛ *Modo Administrador desactivado*
-👻 ➛ Todos pueden usar el bot de nuevo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, m)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
     } else {
-        await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐌𝐎𝐃𝐎 𝐀𝐃𝐌𝐈𝐍 ﹒ HELP
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 MODO ADMIN ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`USO\`\` 📖 —˙𖦹.꒷
+🍫 .modoadmin on - Activa modo solo admins
+🍨 .modoadmin off - Desactiva modo
 
-── *📖 COMANDOS* ╏ ❄️
-➛ *.modoadmin on* - Activa modo solo admins
-➛ *.modoadmin off* - Desactiva modo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, m)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
     }
 }
 
@@ -68,24 +54,24 @@ handler.tags = ['config']
 handler.command = /^(modoadmin|adminmode)$/i
 
 handler.before = async function (m, { conn, isAdmin, isOwner, isROwner, isPrems }) {
-    if (m.isBaileys || m.fromMe) return!0
+    if (m.isBaileys || m.fromMe) return !0
 
     let chat = global.db.data.chats[m.chat]
-    if (!chat) return!0
+    if (!chat) return !0
 
     if (m.isGroup) {
-        if (chat.modoadmin &&!isAdmin &&!isOwner &&!isROwner &&!isPrems) {
+        if (chat.modoadmin && !isAdmin && !isOwner && !isROwner && !isPrems) {
             if (m.text.startsWith('.') || m.text.startsWith('/') || m.text.startsWith('#')) {
                 return false
             }
         }
     } else {
-        if (!isOwner &&!isROwner &&!isPrems) {
+        if (!isOwner && !isROwner && !isPrems) {
             // return false
         }
     }
 
-    return!0
+    return !0
 }
 
 export default handler
