@@ -3,40 +3,35 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
   if (!user) user = global.db.data.users[m.sender] = { coin: 0, bank: 0, items: {} }
 
   const items = {
-    'pico': { nombre: 'Pico Frost ⛏️', precio: 500, desc: 'Para minar más monedas en la cadena PHANTOM' },
-    'escudo': { nombre: 'Escudo PHANTOM 🛡️', precio: 1000, desc: 'Protege contra robos, sistema blindado' },
-    'vip': { nombre: 'VIP PHANTOM 👑', precio: 5000, desc: 'Ganancias x2 - Modo PHANTOM premium' },
-    'cofre': { nombre: 'Cofre PHANTOM 🎁', precio: 300, desc: 'Premio 100-1000 monedas, sorpresa del sistema' },
-    'pocion': { nombre: 'Poción Frost 🍀', precio: 800, desc: '+20% suerte, hielo eléctrico activado' }
+    'pico': { nombre: 'Pala Dulce 🍫', precio: 500, desc: 'Para minar más galletas en la dollhouse' },
+    'escudo': { nombre: 'Escudo Doll 💗', precio: 1000, desc: 'Protege contra robos' },
+    'vip': { nombre: 'VIP Doll 💗', precio: 5000, desc: 'Ganancias x2 - Modo doll premium' },
+    'cofre': { nombre: 'Cofre Doll 🍪', precio: 300, desc: 'Premio 100-1000 galletas, sorpresa' },
+    'pocion': { nombre: 'Poción Dulce 🍨', precio: 800, desc: '+20% suerte' }
   }
 
   if (!text || ['shop', 'tienda'].includes(command)) {
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-⤷ ┇ 𝐓𝐈𝐄𝐍𝐃𝐀 ﹒ 𝐏𝐇𝐀𝐍𝐓𝐎𝐌
-꒰ ◞⁺⊹ ．FROST MODE
-> *"La bóveda PHANTOM está abierta"*
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-── *💰 TU SALDO* ╏ ❄️
-🪙 ➛ Saldo: *${user.coin} monedas*
-👻 ➛ Cliente: PHANTOM te atiende
+─── 🍪 TIENDA ───
 
-── *🛒 PRODUCTOS* ╏ ⛓️
+🍫 Saldo: ${user.coin} 🍪
+🍨 Bienvenida a la dollhouse
+
+─── 🍫 PRODUCTOS ───
 
 `
     for (let [id, item] of Object.entries(items)) {
-      texto += `💎 *${item.nombre}*\n   💵 Precio: ${item.precio} 🪙\n   📝 ${item.desc}\n   🛒 Comprar: ${usedPrefix}buy ${id}\n\n`
+      texto += `${item.nombre}\n   🍪 Precio: ${item.precio} 🍪\n   🍨 ${item.desc}\n   💗 Comprar: ${usedPrefix}buy ${id}\n\n`
     }
-    texto += `━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+    texto += `─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
     return m.reply(texto)
   }
 
   if (['buy', 'comprar'].includes(command)) {
     let item = items[text.toLowerCase()]
-    if (!item) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n💀 Item no encontrado, ni PHANTOM lo tiene\n⚡ Usa ${usedPrefix}shop para ver la tienda\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (user.coin < item.precio) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ No tienes suficiente, te faltan ${item.precio - user.coin} 🪙\n👻 PHANTOM: "Sin dinero no hay sistema"\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    if (!item) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Item no encontrado\n🍨 Usa ${usedPrefix}shop para ver la tienda\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (user.coin < item.precio) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 No tienes suficiente, te faltan ${item.precio - user.coin} 🍪\n🍨 Sin galletas no hay compra\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
 
     user.coin -= item.precio
     user.items = user.items || {}
@@ -45,9 +40,9 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
     if (text.toLowerCase() === 'cofre') {
       let premio = Math.floor(Math.random() * 901) + 100
       user.coin += premio
-      return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🎁 ¡Abriste un *Cofre PHANTOM*! 💎\n👻 PHANTOM te premió con *${premio} monedas* 🪙\n> *"Este cofre es especial"* ⚡\n\n💰 Saldo: ${user.coin} 🪙\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+      return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 COFRE DOLL ───\n\n🍫 ¡Abriste un Cofre Doll!\n🍨 Te premió con ${premio} 🍪\n\n💗 Saldo: ${user.coin} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
     }
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n✅ ¡Compra perfecta! 👻\n💎 Compraste *${item.nombre}* por ${item.precio} 🪙\n⚡ PHANTOM: "Buena elección"\n\n💰 Saldo: ${user.coin} 🪙\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 COMPRA ───\n\n🍫 Compraste ${item.nombre} por ${item.precio} 🍪\n🍨 Buena elección\n\n💗 Saldo: ${user.coin} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
   }
 }
 
