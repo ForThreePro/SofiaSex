@@ -23,34 +23,26 @@ const handler = async (m, { conn, command, text }) => {
 
   if (!query && (!mime || !/audio|video/.test(mime))) {
     return conn.reply(m.chat, 
-`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ 𝐒𝐎𝐍𝐆
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 SONG ───
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-⚡ ࣪ ꕀ.song ˚. ᵎᵎ
-> *"Detectando hasta la última canción"*
+🍫 Detecta qué canción es de un audio/video
+🍨 La descarga en MP3
 
-.⃟𖥔 ݁. 𖦹˙— \`\`SONG - DETECTAR Y DESCARGAR\`\` 💎 —˙𖦹.꒷
+Uso:
+🍫 .song diles - bad bunny
+🍨 .song (respondiendo a audio)
+🍪 .song (respondiendo a video)
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-🎵 ➛ Detecta qué canción es de un audio/video
-⬇️ ➛ La descarga en MP3
-
-── *📖 USO* ╏ ⛓️
-👻 ➛.song diles - bad bunny
-🦂 ➛.song (respondiendo a audio)
-❄️ ➛.song (respondiendo a video)
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, m)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
   }
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
+
+    let songDetectada = null
 
     if (!query && mime && /audio|video/.test(mime)) {
       let buffer = await q.download()
@@ -63,38 +55,9 @@ const handler = async (m, { conn, command, text }) => {
       if (!audioUrl) throw new Error('No se pudo subir el audio')
 
       let song = await detectarStellar(audioUrl)
-      if (!song) throw new Error('Stellar no reconoció la canción')
+      if (!song) throw new Error('No reconocí la canción')
       query = `${song.title} ${song.artist}`
-
-      let spotify = song.url.find(u => u.includes('spotify')) || ''
-      let deezer = song.url.find(u => u.includes('deezer')) || ''
-      let escuchar = ''
-      if (spotify) escuchar += `> ${spotify}\n`
-      if (deezer) escuchar += `> ${deezer}`
-      if (!escuchar) escuchar = `> No disponible`
-
-      await conn.reply(m.chat,
-`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐄𝐍𝐂𝐎𝐍𝐓𝐑𝐀𝐃𝐎 ﹒ SONG
-
-.⃟𖥔 ݁. 𖦹˙— \`\`¿QUÉ CANCIÓN ES?\`\` 🎵 —˙𖦹.꒷
-
-── *🎵 CANCIÓN* ╏ ❄️
-📌 ➛ *Título:* ${song.title}
-👤 ➛ *Artista:* ${song.artist}
-💿 ➛ *Álbum:* ${song.album}
-🎼 ➛ *Género:* ${song.genres}
-⏱️ ➛ *Duración:* ${song.duration}
-📅 ➛ *Lanzamiento:* ${song.release_date}
-
-── *🔗 ESCUCHAR* ╏ ⛓️
-${escuchar}
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, m)
+      songDetectada = song
     }
 
     let link = query
@@ -108,67 +71,43 @@ ${escuchar}
 
     const apiUrl = `https://api-faa.my.id/faa/ytmp3?url=${encodeURIComponent(link)}`
     const j = await fetch(apiUrl).then(r => r.json())
-    if (!j.status || !j.result) throw new Error('API FAA está caída')
+    if (!j.status || !j.result) throw new Error('API caída')
 
     const downloadUrl = j.result.mp3
-    const title = (j.result.title || info?.title || 'phantom').replace(/[^\w\s-]/gi, '').trim()
-
-    if (info) {
-      const preview = 
-`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐏𝐑𝐄𝐕𝐈𝐄𝐖 ﹒ SONG
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
-
-── *📊 VIDEO* ╏ ❄️
-🎧 ➛ Título: *${info.title}*
-👤 ➛ Canal: *${info.author.name}*
-⏰ ➛ Duración: *${info.timestamp}*
-👀 ➛ Vistas: *${info.views.toLocaleString()}*
-🔗 ➛ Link: ${info.url}
-
-── *📥 ESTADO* ╏ ⛓️
-⬇️ ➛ Enviando audio...
-👻 ➛ Espera un momento
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`.trim()
-      await conn.reply(m.chat, preview, m)
-    }
+    const title = (j.result.title || info?.title || 'cupid').replace(/[^\w\s-]/gi, '').trim()
 
     const res = await axios.get(downloadUrl, { responseType: 'arraybuffer' })
     const buffer = Buffer.from(res.data)
     const size = (buffer.length / 1024 / 1024).toFixed(2)
 
-    const finalText = 
-`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 SONG ───\n\n`
 
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀 ﹒ AUDIO ❄️
-꒰ ◞⁺⊹ ．${fecha}
+    if (songDetectada) {
+      caption += `🍫 Título: ${songDetectada.title}\n`
+      caption += `🍨 Artista: ${songDetectada.artist}\n`
+      caption += `🍪 Álbum: ${songDetectada.album}\n`
+      caption += `💗 Género: ${songDetectada.genres}\n`
+      caption += `🍫 Duración: ${songDetectada.duration}\n`
+      caption += `🍨 Lanzamiento: ${songDetectada.release_date}\n\n`
+    } else if (info) {
+      caption += `🍫 Título: ${info.title}\n`
+      caption += `🍨 Canal: ${info.author.name}\n`
+      caption += `🍪 Duración: ${info.timestamp}\n`
+      caption += `💗 Vistas: ${info.views.toLocaleString()}\n\n`
+    } else {
+      caption += `🍫 Título: ${title}\n\n`
+    }
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INFO\`\` 💎 —˙𖦹.꒷
+    caption += `🍫 Peso: ${size} MB\n`
+    caption += `🍨 Estado: Listo\n`
+    caption += `🍪 Fecha: ${fecha}\n\n`
+    caption += `─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
 
-── *📊 DETALLES* ╏ ❄️
-🎵 ➛ Título: *${title}*
-🔌 ➛ API: *FAA-BOT*
-⚖️ ➛ Peso: *${size} MB*
-✨ ➛ Estado: *Listo*
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`.trim()
-
-    await conn.reply(m.chat, finalText, m)
-    return conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mpeg', fileName: `${title}.mp3` }, { quoted: m })
+    return conn.sendMessage(m.chat, { audio: buffer, mimetype: 'audio/mpeg', fileName: `${title}.mp3`, caption: caption }, { quoted: m })
 
   } catch (e) {
     console.log(e)
-    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Error: ${e.message}\n👻 No se encontró la canción\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    return conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR ───\n\n🍫 ${e.message}\n🍨 No se encontró la canción\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m)
   }
 }
 
