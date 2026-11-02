@@ -6,12 +6,35 @@ let handler = async (m, { conn, args, isOwner }) => {
 
   if (/on/i.test(args[0])) {
     bot.antiSpam = true
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐒𝐏𝐀𝐌 ﹒ 𝐎𝐍\n\n✅ ➛ Anti-Spam: *Activado*\n👻 ➛ Solo filtra Stickers y Emojis\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+
+─── 🍪 ANTISPAM ON ───
+
+🍫 Anti-Spam: Activado
+🍨 Solo filtra Stickers y Emojis
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
   } else if (/off/i.test(args[0])) {
     bot.antiSpam = false
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐒𝐏𝐀𝐌 ﹒ 𝐎𝐅𝐅\n\n❌ ➛ Anti-Spam: *Desactivado*\n🦂 ➛ Stickers y emojis permitidos\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+
+─── 🍪 ANTISPAM OFF ───
+
+🍫 Anti-Spam: Desactivado
+🍨 Stickers y emojis permitidos
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
   } else {
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐀𝐍𝐓𝐈-𝐒𝐏𝐀𝐌 ﹒ 𝐔𝐒𝐎\n\n⚡ ➛ Uso: *.antispam on/off*\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+
+─── 🍪 ANTISPAM ───
+
+🍫 Uso: .antispam on / off
+
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`, m)
   }
 }
 
@@ -49,7 +72,7 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
 
   if (isOwner || isROwner) {
     if (count === warnLimit) {
-      await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ Hey creador, tranquilo... No satures con tanto sticker/emoji.`, m)
+      await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Hey creadora, tranquila... No satures con tanto sticker/emoji`, m)
     }
     return 
   }
@@ -57,10 +80,10 @@ handler.before = async function (m, { conn, isAdmin, isBotAdmin, isOwner, isROwn
   if (m.isGroup && (isAdmin || isPrems || !isBotAdmin)) return  
 
   if (count === warnLimit) {
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⚡ *@${sender.split('@')[0]}*, ¡Corta el spam de stickers/emojis! (${count}/${kickLimit})\n\n⛓️ *PHANTOM IA - VENTAS* ⚡`, m, { mentions: [sender] })
+    await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 SPAM ───\n\n🍫 @${sender.split('@')[0]}, corta el spam de stickers/emojis\n🍨 (${count}/${kickLimit})\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m, { mentions: [sender] })
   } 
   else if (count >= kickLimit) {
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚨 *@${sender.split('@')[0]}* fue eliminado por flood de stickers/emojis.\n\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`, m, { mentions: [sender] })
+    await conn.reply(m.chat, `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 SPAM ───\n\n🍫 @${sender.split('@')[0]} fue eliminada por flood de stickers/emojis\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m, { mentions: [sender] })
     if (m.isGroup) {
       await conn.groupParticipantsUpdate(m.chat, [sender], 'remove')
     }
