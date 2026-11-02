@@ -4,8 +4,8 @@ moment.locale('es')
 let handler = async (m, { conn }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
 
-    // TUS 2 NÚMEROS PROTEGIDOS
-    const owners = ['51927174369', '51930858072']
+    // TUS 2 NÚMEROS PROTEGIDOS - MEXICO
+    const owners = ['528621029907', '5218621029907']
     const ownerJids = owners.map(n => n + '@s.whatsapp.net')
 
     const react = async (text) => {
@@ -16,30 +16,29 @@ let handler = async (m, { conn }) => {
     const senderNum = m.sender.replace(/[^0-9]/g, '')
     const isOwner = owners.some(n => senderNum.includes(n) || senderNum.endsWith(n.slice(2)))
     if (!isOwner) {
-        await react('❌')
+        await react('🍫')
         return conn.sendMessage(m.chat, { 
-            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ﹒ ACCESO DENEGADO
-꒰ ◞⁺⊹ ．${fecha}
+─── ꒰🍨꒱ SISTEMA ACCESO DENEGADO ───
+꒰꒱ ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`DENEGADO\`\` 🔴 —˙𖦹.꒷
-❄️ Solo mi dueño puede usar esto pe
+꒰🍫꒱ Solo mi dueño puede usar esto pe
+꒰꒱
+꒰🍨꒱ Comando: *.kickall*
+꒰🍪꒱ Solo: +52 862 102 9907 / +521 862 102 9907
 
-── *📊 INFO* ╏ ❄️
-🔒 ➛ Comando: *.kickall*
-👑 ➛ Solo: +51 927 174 369 / +51 930 858 072
+꒰🍨꒱ falto estás cositas
+꒰꒱
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
+─── ꒰💗꒱ CONTACTO ───
+꒰🍫꒱ Número: +52 862 102 9907`, mentions: [m.sender] }, { quoted: m })
     }
 
-    if (!m.isGroup) return m.reply('❄️ Solo en grupos pe')
+    if (!m.isGroup) return m.reply('꒰🍫꒱ Solo en grupos pe')
 
     try {
-        await react('❄️')
+        await react('🍫')
         let groupMetadata = await conn.groupMetadata(m.chat)
         let botId = conn.user.jid
         let botLid = conn.user.lid || ''
@@ -70,29 +69,9 @@ let handler = async (m, { conn }) => {
             })
 
         if (!toKick.length) {
-            await react('❌')
-            return m.reply('❄️ No hay nadie para sacar pe, solo estamos tú y yo ❄️')
+            await react('🍫')
+            return m.reply('꒰🍫꒱ No hay nadie para sacar pe, solo estamos tú y yo ꒰💗꒱')
         }
-
-        await conn.sendMessage(m.chat, { 
-            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ KICKALL INICIADO
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`PURGA\`\` 🔴 —˙𖦹.꒷
-❄️ Sacando a todos, incluido el creador, menos a ti y a PHANTOM pe
-
-── *📊 INFO* ╏ ❄️
-🔴 ➛ Total: *${toKick.length}*
-👑 ➛ Se quedan: *Tú (2 números) y el bot*
-👻 ➛ Creador: *SÍ se elimina si no eres tú*
-👻 ➛ El bot: *NO se va*
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`, mentions: [m.sender] }, { quoted: m })
 
         let sacados = 0
         let fallidos = []
@@ -106,29 +85,31 @@ let handler = async (m, { conn }) => {
             }
         }
 
-        await react('🔥')
+        await react('🍫')
         await conn.sendMessage(m.chat, { 
-            text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+            text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐆𝐑𝐔𝐏𝐎 ﹒ COMPLETADO
-꒰ ◞⁺⊹ ．${fecha}
+─── ꒰🍨꒱ GRUPO COMPLETADO KICKALL ───
+꒰꒱ ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`LIMPIO\`\` 🟢 —˙𖦹.꒷
-❄️ Listo pe, solo quedamos nosotros
+꒰🍫꒱ Listo pe, solo quedamos nosotros
+꒰🍨꒱ Sacando a todos, incluido el creador, menos a ti y a Cupid
 
-── *📊 RESULTADO* ╏ ❄️
-🗑️ ➛ Eliminados: *${sacados}*
-⚠️ ➛ Fallidos: *${fallidos.length}*
-👑 ➛ Quedan: *Tú y yo (bot)*
+꒰🍪꒱ Eliminados: *${sacados}*
+꒰💗꒱ Fallidos: *${fallidos.length}*
+꒰꒱ Quedan: *Tú y yo (bot)*
+꒰🍫꒱ Total a sacar: *${toKick.length}*
+꒰🍨꒱ Creador: *SÍ se elimina si no eres tú*
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━` 
+꒰🍨꒱ falto estás cositas
+꒰🍫꒱
+
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907` 
         })
 
     } catch (e) {
-        return m.reply(`❌ ${e.message}\n❄️ El bot debe ser admin pe`)
+        return m.reply(`꒰🍫꒱ ${e.message}\n꒰🍨꒱ El bot debe ser admin pe`)
     }
 }
 
