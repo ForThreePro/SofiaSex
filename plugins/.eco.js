@@ -4,7 +4,7 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
 
   // SALDO - SILENCIOSO, NO AVISA EN GRUPO
   if (['saldo', 'bal', 'balance'].includes(command)) {
-    let who = m.mentionedJid[0]? m.mentionedJid[0] : m.quoted? m.quoted.sender : m.sender
+    let who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.sender
     who = who.replace(/@lid$/, '@s.whatsapp.net')
     if (!global.db.data.users[who]) {
       global.db.data.users[who] = { coin: 0, bank: 0, items: {}, deuda: 0 }
@@ -22,28 +22,24 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
       name = who.split('@')[0]
     }
 
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-⤷ ┇ 𝐁𝐀𝐍𝐂𝐎 ﹒ 𝐒𝐀𝐋𝐃𝐎
-꒰ ◞⁺⊹ ．FROST MODE
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-.⃟𖥔 ݁. 𖦹˙— \`\`SALDO\`\` 💎 —˙𖦹.꒷
+─── 🍪 SALDO ───
+Usuario: @${who.split('@')[0]}
 
-── *📊 BILLETERA* ╏ ❄️
-🪙 ➛ Billetera: *${userTarget.coin} monedas*
-🏦 ➛ Banco: *${userTarget.bank} monedas*
-💵 ➛ Total: *${userTarget.coin + userTarget.bank} monedas*
-🚔 ➛ Deuda: *${userTarget.deuda} monedas*
+🍫 Billetera: ${userTarget.coin} 🍪
+🍨 Banco: ${userTarget.bank} 🍪
+🍪 Total: ${userTarget.coin + userTarget.bank} 🍪
+💗 Deuda: ${userTarget.deuda} 🍪
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
 
     if (userTarget.deuda > 0) {
-      texto += `\n\n⚠️ *¡TIENES DEUDA PHANTOM!* ⚠️\n⛓️ Debes pagar para desbloquear el sistema`
+      texto += `\n\n🍫 Tienes deuda\n💗 Debes pagar para desbloquear`
     }
 
-    if (who!== m.sender) {
+    if (who !== m.sender) {
       try {
         await conn.reply(m.sender, texto, null, { mentions: [who] })
         return
@@ -59,24 +55,24 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
   if (command === 'dall') {
     user.coin = Number(user.coin) || 0
     user.deuda = Number(user.deuda) || 0
-    if (user.deuda > 0) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚔 Tienes una *deuda de ${user.deuda} 🪙*\n⛓️ No puedes depositar con deuda\n\nUsa ${usedPrefix}pagardeuda <monto>\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (user.coin === 0) return m.reply('❄️ No tienes monedas en la billetera... ¡Sistema en cero! ⚡')
+    if (user.deuda > 0) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Tienes una deuda de ${user.deuda} 🍪\n🍨 No puedes depositar con deuda\n\nUsa ${usedPrefix}pagardeuda <monto>\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (user.coin === 0) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 No tienes galletas en la billetera')
     let cantidad = user.coin
     user.coin = 0
     user.bank = (Number(user.bank) || 0) + cantidad
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🏦 Depositaste *${cantidad} monedas* al banco\n💎 Guardado en la bóveda PHANTOM\n\nBilletera: ${user.coin} 🪙\nBanco: ${user.bank} 🏦\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 DEPÓSITO ───\n\n🍫 Depositaste ${cantidad} 🍪 al banco\n\nBilletera: ${user.coin} 🍪\nBanco: ${user.bank} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
   }
 
   // RETIRAR TODO
   if (command === 'rall') {
     user.bank = Number(user.bank) || 0
     user.deuda = Number(user.deuda) || 0
-    if (user.deuda > 0) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚔 Deuda de ${user.deuda} 🪙\nUsa ${usedPrefix}pagardeuda <monto>\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (user.bank === 0) return m.reply('❄️ Banco vacío... ¡Bóveda congelada! 💎')
+    if (user.deuda > 0) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Deuda de ${user.deuda} 🍪\n🍨 Usa ${usedPrefix}pagardeuda <monto>\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (user.bank === 0) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Banco vacío')
     let cantidad = user.bank
     user.bank = 0
     user.coin = (Number(user.coin) || 0) + cantidad
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🏦 Retiraste *${cantidad} monedas*\n⚡ Dinero liberado\n\nBilletera: ${user.coin} 🪙\nBanco: ${user.bank} 🏦\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 RETIRO ───\n\n🍫 Retiraste ${cantidad} 🍪\n\nBilletera: ${user.coin} 🍪\nBanco: ${user.bank} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
   }
 
   // DEPOSITAR MONTO
@@ -84,12 +80,12 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
     let monto = parseInt(text)
     user.coin = Number(user.coin) || 0
     user.deuda = Number(user.deuda) || 0
-    if (user.deuda > 0) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚔 Deuda de ${user.deuda} 🪙\nUsa ${usedPrefix}pagardeuda <monto>\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (isNaN(monto) || monto < 1) return m.reply(`❄️ Uso: ${usedPrefix}d <monto> ⚡`)
-    if (user.coin < monto) return m.reply(`❄️ No tienes suficiente. Billetera: ${user.coin} 🪙\n⛓️ Sistema bloqueado por falta de fondos`)
+    if (user.deuda > 0) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Deuda de ${user.deuda} 🍪\n🍨 Usa ${usedPrefix}pagardeuda <monto>\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (isNaN(monto) || monto < 1) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Uso: ${usedPrefix}d <monto>`)
+    if (user.coin < monto) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 No tienes suficiente. Billetera: ${user.coin} 🍪`)
     user.coin -= monto
     user.bank = (Number(user.bank) || 0) + monto
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🏦 Depositaste *${monto} monedas*\n\nBilletera: ${user.coin} 🪙\nBanco: ${user.bank} 🏦\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 DEPÓSITO ───\n\n🍫 Depositaste ${monto} 🍪\n\nBilletera: ${user.coin} 🍪\nBanco: ${user.bank} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
   }
 
   // RETIRAR MONTO
@@ -97,33 +93,33 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
     let monto = parseInt(text)
     user.bank = Number(user.bank) || 0
     user.deuda = Number(user.deuda) || 0
-    if (user.deuda > 0) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚔 Deuda de ${user.deuda} 🪙\nUsa ${usedPrefix}pagardeuda <monto>\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (isNaN(monto) || monto < 1) return m.reply(`❄️ Uso: ${usedPrefix}r <monto> ⚡`)
-    if (user.bank < monto) return m.reply(`❄️ Banco: ${user.bank} 🏦\n⛓️ No alcanza`)
+    if (user.deuda > 0) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Deuda de ${user.deuda} 🍪\n🍨 Usa ${usedPrefix}pagardeuda <monto>\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (isNaN(monto) || monto < 1) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Uso: ${usedPrefix}r <monto>`)
+    if (user.bank < monto) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Banco: ${user.bank} 🍪\n🍨 No alcanza`)
     user.bank -= monto
     user.coin = (Number(user.coin) || 0) + monto
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🏦 Retiraste *${monto} monedas*\n\nBilletera: ${user.coin} 🪙\nBanco: ${user.bank} 🏦\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 RETIRO ───\n\n🍫 Retiraste ${monto} 🍪\n\nBilletera: ${user.coin} 🍪\nBanco: ${user.bank} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
   }
 
   // PAY
   if (['pay', 'pagar'].includes(command)) {
     let args = text.split(' ')
-    if (args.length < 2) return m.reply(`❄️ Uso: ${usedPrefix + command} <monto> @user ⚡`)
+    if (args.length < 2) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Uso: ${usedPrefix + command} <monto> @user`)
     let monto = parseInt(args[0])
     user.coin = Number(user.coin) || 0
     user.deuda = Number(user.deuda) || 0
-    if (user.deuda > 0) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n🚔 Deuda de ${user.deuda} 🪙\nUsa ${usedPrefix}pagardeuda <monto>\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`)
-    if (isNaN(monto) || monto < 1) return m.reply('❄️ Monto inválido ⚡')
-    if (user.coin < monto) return m.reply(`❄️ Saldo: ${user.coin} 🪙\n⛓️ No alcanza`)
+    if (user.deuda > 0) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Deuda de ${user.deuda} 🍪\n🍨 Usa ${usedPrefix}pagardeuda <monto>\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
+    if (isNaN(monto) || monto < 1) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Monto inválido')
+    if (user.coin < monto) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Saldo: ${user.coin} 🍪\n🍨 No alcanza`)
     let who = m.mentionedJid[0]
-    if (!who) return m.reply('❄️ Menciona a quien le quieres transferir ⚡')
+    if (!who) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 Menciona a quien le quieres transferir')
     who = who.replace(/@lid$/, '@s.whatsapp.net')
-    if (who === m.sender) return m.reply('❄️ No te puedes pagar a ti mismo ⛓️')
+    if (who === m.sender) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 No te puedes pagar a ti misma')
     if (!global.db.data.users[who]) global.db.data.users[who] = { coin: 0, bank: 0, deuda: 0 }
     global.db.data.users[who].coin = Number(global.db.data.users[who].coin) || 0
     user.coin -= monto
     global.db.data.users[who].coin += monto
-    return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n💸 *TRANSFERENCIA PHANTOM* 💸\n⚡ Le pagaste *${monto} monedas* a @${who.split('@')[0]}\n⛓️ Transferencia encriptada\n\nTu saldo: ${user.coin} 🪙\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`, null, { mentions: [who, m.sender] })
+    return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 TRANSFERENCIA ───\n\n🍫 Le pagaste ${monto} 🍪 a @${who.split('@')[0]}\n\nTu saldo: ${user.coin} 🍪\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, null, { mentions: [who, m.sender] })
   }
 
   // LEADERBOARD
@@ -135,20 +131,20 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
       deuda: Number(value.deuda) || 0
     })).filter(v => v.coin || v.bank)
 
-    if (users.length === 0) return m.reply('❄️ No hay usuarios con monedas... ¡Sistema en cero! ⚡')
+    if (users.length === 0) return m.reply('🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍨 No hay usuarios con galletas')
     users.sort((a, b) => (b.coin + b.bank) - (a.coin + a.bank))
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n⛓️ ┇ 𝐓𝐎𝐏 𝐌𝐈𝐋𝐋𝐎𝐍𝐀𝐑𝐈𝐎𝐒\n\n🏆 *TOP 10 MILLONARIOS - PHANTOM EDITION* 🏆\n> *"Los que dominan el sistema"*\n\n`
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 TOP DOLLS ───\n\n`
     let len = Math.min(10, users.length)
     for (let i = 0; i < len; i++) {
       let user = users[i]
       let total = user.coin + user.bank
-      let medalla = i === 0? '🥇' : i === 1? '🥈' : i === 2? '🥉' : `${i + 1}.`
-      texto += `${medalla} @${user.jid.split('@')[0]}\n💎 Total: ${total} 🪙`
-      if (user.deuda > 0) texto += ` 🚔 Deuda: ${user.deuda}`
+      let medalla = i === 0 ? '🍫' : i === 1 ? '🍨' : i === 2 ? '🍪' : `${i + 1}.`
+      texto += `${medalla} @${user.jid.split('@')[0]}\n💗 Total: ${total} 🍪`
+      if (user.deuda > 0) texto += ` | Deuda: ${user.deuda} 🍪`
       texto += `\n\n`
     }
     let posicion = users.findIndex(v => v.jid === m.sender) + 1
-    if (posicion > 0) texto += `📍 Tu posición: #${posicion} ⚡\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369`
+    if (posicion > 0) texto += `─── 💗 TU LUGAR ───\nTu posición: #${posicion}\nNúmero: +52 862 102 9907`
     return conn.reply(m.chat, texto, m, { mentions: users.slice(0, len).map(v => v.jid) })
   }
 }
