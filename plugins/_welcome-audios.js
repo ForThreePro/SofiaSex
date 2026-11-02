@@ -15,106 +15,86 @@ let handler = async (m, { conn, command }) => {
   if (command.includes('welcome')) type = 'welcome'
   else if (command.includes('bye')) type = 'bye'
   else if (command.includes('kick')) type = 'kick'
-  else return m.reply('❌ Comando no válido')
+  else return m.reply('🍫 Comando no válido')
 
   const react = async (text) => {
     try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
   }
 
   if (command.startsWith('audio')) {
-    await react('❄️')
+    await react('🍫')
 
     if (!m.quoted) {
-      let uso = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+      let uso = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐀𝐔𝐃𝐈𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 AUDIO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Debes responder a un audio
+🍨 Cupid dice: responde al audio pe
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Debes responder a un audio
-👻 ➛ PHANTOM dice: responde al audio pe
+🍪 Uso:
+💗 Envía o reenvía un audio
+🍫 Responde al audio con: .${command}
 
-── *📖 USO* ╏ ⛓️
-➛ Envía o reenvía un audio
-➛ Responde al audio con:.${command}
+🍨 Ejemplo:
+🍪 Manda un audio → responde → .${command}
 
-── *💡 EJEMPLO* ╏ ❄️
-➛ Manda un audio → responde → .${command}
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
       return conn.sendMessage(m.chat, { text: uso }, { quoted: m })
     }
 
     if (!mime ||!/audio/.test(mime)) {
-      await react('❌')
-      return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Responde a un audio válido pe - PHANTOM quiere escuchar`, { quoted: m })
+      await react('🍫')
+      return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Responde a un audio válido pe - Cupid quiere escuchar`, { quoted: m })
     }
 
     let buffer = await q.download()
     chat[`audio${type}`] = buffer.toString('base64')
 
-    let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let ok = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐆𝐔𝐀𝐑𝐃𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 AUDIO GUARDADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AUDIO GUARDADO\`\` ✅ —˙𖦹.꒷
+🍫 Audio de *${type}* guardado
+🍨 Se reproducirá cuando alguien ${type === 'welcome'? 'entre' : type === 'bye'? 'salga' : 'sea kickeado'}
+🍪 Cupid aprobó el audio
 
-── *📊 INFORMACIÓN* ╏ ❄️
-✅ ➛ Audio de *${type}* guardado
-🔊 ➛ Se reproducirá cuando alguien ${type === 'welcome'? 'entre' : type === 'bye'? 'salga' : 'sea kickeado'}
-👻 ➛ PHANTOM aprobó el audio
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: ok }, { quoted: m })
   }
 
   if (command.startsWith('delaudio')) {
-    await react('🗑️')
+    await react('🍫')
     if (!chat[`audio${type}`]) {
-      let vacio = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+      let vacio = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐍𝐎 𝐂𝐎𝐍𝐅𝐈𝐆𝐔𝐑𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 NO CONFIGURADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AVISO\`\` 📭 —˙𖦹.꒷
+🍫 No hay un audio de *${type}* configurado
+🍨 Cupid dice: no hay nada que borrar
 
-── *📝 AVISO* ╏ ❄️
-📭 ➛ No hay un audio de *${type}* configurado
-❄️ ➛ PHANTOM dice: no hay nada que borrar
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
       return conn.sendMessage(m.chat, { text: vacio }, { quoted: m })
     }
 
     delete chat[`audio${type}`]
-    let del = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let del = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 AUDIO ELIMINADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`AUDIO ELIMINADO\`\` 🗑️ —˙𖦹.꒷
+🍫 Audio de *${type}* eliminado
+🍨 Ya no se reproducirá
+🍪 Cupid lo borró
 
-── *📊 INFORMACIÓN* ╏ ❄️
-🗑️ ➛ Audio de *${type}* eliminado
-✅ ➛ Ya no se reproducirá
-👻 ➛ PHANTOM lo borró
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: del }, { quoted: m })
   }
 }
