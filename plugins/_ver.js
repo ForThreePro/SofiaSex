@@ -5,61 +5,46 @@ let handler = async (m, { conn }) => {
 const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
 
 if (!m.quoted) {
-  let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+  let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ VER
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR VER ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Responde a una imagen/video ViewOnce
+🍨 Cupid: "Ni veo si no respondes"
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Responde a una imagen/video ViewOnce
-👻 ➛ PHANTOM: "Ni veo si no respondes"
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
   return conn.reply(m.chat, error, m)
 }
 
 if (!m?.quoted || !m?.quoted?.viewOnce) {
-  let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+  let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ VER
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR VER ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 El mensaje no es ViewOnce
+🍨 Cupid dice: "Eso no se borra solo"
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ El mensaje no es ViewOnce
-❄️ ➛ PHANTOM dice: "Eso no se borra solo"
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
   return conn.reply(m.chat, error, m)
 }
 
 let buffer = await m.quoted.download(false);
 
-let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+let ok = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐒𝐁𝐋𝐎𝐐𝐔𝐄𝐀𝐃𝐎 ﹒ VIEWONCE
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 DESBLOQUEADO ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` ✅ —˙𖦹.꒷
+🍫 Imagen/Video desbloqueado
+🍨 Cupid lo vio todo
+🍪 Nada se esconde de Cupid
 
-── *📊 INFORMACIÓN* ╏ ❄️
-✅ ➛ Imagen/Video desbloqueado
-👻 ➛ PHANTOM lo vio todo
-❄️ ➛ Nada se esconde del sistema PHANTOM
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
 
 if (/videoMessage/.test(m.quoted.mtype)) {
   await conn.sendFile(m.chat, buffer, 'media.mp4', m.quoted.caption || ok, m)
