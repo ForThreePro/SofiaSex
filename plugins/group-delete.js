@@ -8,30 +8,25 @@ let handler = async (m, { conn }) => {
   }
 
   if (!m.quoted) {
-    await react('❌')
-    let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    await react('🍫')
+    let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐑 ﹒ MENSAJE
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ELIMINAR MENSAJE ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Responde al mensaje que deseas eliminar
+🍨 Cupid dice: responde al mensaje pe
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Responde al mensaje que deseas eliminar
-👻 ➛ PHANTOM dice: responde al mensaje pe
+🍪 Ejemplo:
+💗 Responde a un mensaje + .del
+🍫 Responde a un mensaje + .delete
 
-── *💡 EJEMPLO* ╏ ⛓️
-➛ Responde a un mensaje + .del
-➛ Responde a un mensaje + .delete
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: error }, { quoted: m })
   }
 
-  await react('🗑️')
+  await react('🍫')
 
   try {
     let delet = m.message.extendedTextMessage.contextInfo.participant
@@ -41,22 +36,17 @@ let handler = async (m, { conn }) => {
     await conn.sendMessage(m.chat, { delete: m.quoted.vM.key })
   }
 
-  let ok = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+  let ok = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐋𝐈𝐌𝐈𝐍𝐀𝐃𝐎 ﹒ MENSAJE
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ELIMINADO MENSAJE ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` 🗑️ —˙𖦹.꒷
+🍫 Mensaje eliminado
+🍨 Por: @${m.sender.split('@')[0]}
+🍪 Cupid lo borró
 
-── *📊 INFORMACIÓN* ╏ ❄️
-🗑️ ➛ Mensaje eliminado
-👤 ➛ Por: @${m.sender.split('@')[0]}
-👻 ➛ PHANTOM lo borró
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
   conn.sendMessage(m.chat, { text: ok, mentions: [m.sender] }, { quoted: m })
 }
 
