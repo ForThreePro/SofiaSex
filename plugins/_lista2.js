@@ -12,7 +12,7 @@ let handler = async (m, { conn }) => {
     const db = path.join(DB_FOLDER, `${chatId}.json`)
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY')
     const hora = moment.tz('America/Lima').format('hh:mm:ss a')
-    const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+    const ownerNum = '528621029907'
 
     if (!fs.existsSync(db)) fs.writeFileSync(db, JSON.stringify([]))
 
@@ -24,52 +24,41 @@ let handler = async (m, { conn }) => {
     }
 
     if (total === 0) {
-        await react('📭')
-        let vacia = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await react('🍫')
+        let vacia = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐁𝐎𝐑𝐑𝐀𝐑 𝐋𝐈𝐒𝐓𝐀 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 BORRAR LISTA ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`LISTA VACÍA\`\` 🗑️ —˙𖦹.꒷
+🍫 La lista de este grupo ya está vacía
+🍨 No hay registros para borrar
+🍪 Cupid: "No hay nada que borrar"
 
-── *📝 AVISO* ╏ ❄️
-📭 ➛ La lista de este grupo ya está vacía
-📭 ➛ No hay registros para borrar
-❄️ ➛ PHANTOM: "No hay registros para borrar"
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         return conn.sendMessage(m.chat, { text: vacia }, { quoted: m })
     }
 
-    await react('🗑️')
+    await react('🍫')
     fs.writeFileSync(db, JSON.stringify([]))
 
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐁𝐎𝐑𝐑𝐀𝐃𝐎 ﹒ LISTA
-꒰ ◞⁺⊹ ．${fecha} ${hora}
+─── 🍪 BORRADO EXITOSO ───
+Fecha: ${fecha} ${hora}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`BORRADO EXITOSO\`\` 🗑️ —˙𖦹.꒷
+🍫 Se eliminaron: *${total}* registro${total > 1 ? 's' : ''}
+🍨 Rango: *Lunes a Sábado*
+🍪 Hora: *${hora}*
+💗 Cupid eliminó la lista
 
-── *📊 INFORMACIÓN* ╏ ❄️
-🗑️ ➛ Se eliminaron: *${total}* registro${total > 1 ? 's' : ''}
-📅 ➛ Rango: *Lunes a Sábado*
-⏰ ➛ Hora: *${hora}*
-👻 ➛ PHANTOM eliminó la lista
+─── 🍪 ESTADO ───
+🍫 Lista de este grupo reiniciada
+🍨 Lista limpia como nueva
 
-── *📦 ESTADO* ╏ ⛓️
-✅ ➛ Lista de este grupo reiniciada
-❄️ ➛ Lista limpia como sistema nuevo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━
-*Admin*: Comando ejecutado por PHANTOM
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907
+Admin: Comando ejecutado por Cupid`
 
     return conn.sendMessage(m.chat, { text: texto }, { quoted: m })
 }
