@@ -14,7 +14,7 @@ export async function before(m, { conn }) {
 
         const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
         let author = update.author || update.participants[0]
-        let catalogoImg = { url: 'https://files.evogb.win/XQuHBW.jpg' }
+        let catalogoImg = { url: 'https://files.evogb.win/yoMAez.jpg' }
 
         for (let user of update.participants) {
           if (update.action === 'promote') {
@@ -68,7 +68,7 @@ Número: +52 862 102 9907`
 
           const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
           let author = update.author || 'Desconocido'
-          let catalogoImg = { url: 'https://files.evogb.win/XQuHBW.jpg' }
+          let catalogoImg = { url: 'https://files.evogb.win/yoMAez.jpg' }
 
           if (update.subject) {
             let txt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
