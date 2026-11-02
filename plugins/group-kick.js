@@ -7,29 +7,25 @@ let handler = async (m, { conn, participants }) => {
         try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
     }
 
-    let mentionedJid = m.mentionedJid && m.mentionedJid[0]? m.mentionedJid[0] : m.quoted? m.quoted.sender : null
+    let mentionedJid = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : null
 
     if (!mentionedJid) {
-        await react('❌')
-        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await react('🍫')
+        let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐗𝐏𝐔𝐋𝐒𝐀𝐑 ﹒ USUARIO
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 EXPULSAR USUARIO ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`FORMATO\`\` 👢 —˙𖦹.꒷
+🍫 Uso:
+🍨 Menciona a un usuario
+🍪 Responde al mensaje del usuario
+💗 Cupid: apunta bien pe
 
-── *📖 USO* ╏ ❄️
-➛ Menciona a un usuario
-➛ Responde al mensaje del usuario
-👻 ➛ PHANTOM: apunta bien pe
+🍫 Aviso:
+🍨 Solo admins
 
-── *📝 AVISO* ╏ ⛓️
-🔒 ➛ Solo admins
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 
@@ -42,60 +38,50 @@ let handler = async (m, { conn, participants }) => {
         let isAdmin = user?.admin
 
         if (mentionedJid === conn.user.jid) {
-            await react('❌')
-            return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ KICK\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ No puedo expulsarme a mí mismo\n👻 ➛ PHANTOM no se auto-banea\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━` }, { quoted: m })
+            await react('🍫')
+            return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR KICK ───\nFecha: ${fecha}\n\n🍫 No puedo expulsarme a mí mismo\n🍨 Cupid no se auto-banea\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
         }
         if (mentionedJid === ownerGroup) {
-            await react('❌')
-            return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ KICK\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ No puedo expulsar al propietario del grupo\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━` }, { quoted: m })
+            await react('🍫')
+            return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR KICK ───\nFecha: ${fecha}\n\n🍫 No puedo expulsar al propietario del grupo\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
         }
         if (mentionedJid === ownerBot) {
-            await react('❌')
-            return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ KICK\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ No puedo expulsar al dueño del bot\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━` }, { quoted: m })
+            await react('🍫')
+            return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR KICK ───\nFecha: ${fecha}\n\n🍫 No puedo expulsar al dueño del bot\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
         }
         if (isAdmin) {
-            await react('❌')
-            return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ KICK\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ No puedo expulsar a un administrador\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━` }, { quoted: m })
+            await react('🍫')
+            return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR KICK ───\nFecha: ${fecha}\n\n🍫 No puedo expulsar a un administrador\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
         }
 
-        await react('👢')
+        await react('🍫')
         await conn.groupParticipantsUpdate(m.chat, [mentionedJid], 'remove')
 
-        let kickMsg = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        let kickMsg = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐗𝐏𝐔𝐋𝐒𝐀𝐃𝐎 ﹒ USUARIO
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 EXPULSADO USUARIO ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EXITO\`\` 👢 —˙𖦹.꒷
+🍫 Usuario: @${mentionedJid.split('@')[0]}
+🍨 Por: @${m.sender.split('@')[0]}
+🍪 Cupid le dio su patada dulce
 
-── *📊 INFORMACIÓN* ╏ ❄️
-👢 ➛ Usuario: @${mentionedJid.split('@')[0]}
-👑 ➛ Por: @${m.sender.split('@')[0]}
-👻 ➛ PHANTOM le dio su patada congelada
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         conn.sendMessage(m.chat, { text: kickMsg, mentions: [mentionedJid, m.sender] }, { quoted: m })
     } catch (e) {
-        await react('❌')
-        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await react('🍫')
+        let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ KICK
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR KICK ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Se ha producido un problema
+🍨 ${e.message}
+🍪 Cupid falló
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Se ha producido un problema
-🔧 ➛ ${e.message}
-👻 ➛ PHANTOM falló
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 }
