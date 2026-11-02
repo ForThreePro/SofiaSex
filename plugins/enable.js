@@ -13,74 +13,69 @@ let handler = async (m, { conn, command, args, isOwner, isAdmin, isROwner }) => 
   }
 
   if (!args[0]) {
-    await react('❌')
-    let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    await react('🍫')
+    let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐂𝐎𝐍𝐅𝐈𝐆𝐔𝐑𝐀𝐂𝐈𝐎𝐍 ﹒ ON/OFF
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 CONFIGURACION ON/OFF ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Falta activar o desactivar
+🍨 Cupid dice: pon on o off pe
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Falta activar o desactivar
-👻 ➛ PHANTOM dice: pon on o off pe
+🍪 Uso:
+💗 .welcome on / off
+🍫 .antilink on / off
+🍨 .nsfw on / off
+🍪 .detect on / off
 
-── *💡 USO* ╏ ⛓️
-➛.welcome on / off
-➛.antilink on / off
-➛.nsfw on / off
-➛.detect on / off
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: error }, { quoted: m })
   }
 
   let fail = false
   switch (type) {
     case 'welcome': case 'bienvenida':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.bienvenida = isEnable
       break
     case 'subbots': case 'serbot':
-      if (!isROwner) { await react('🔒'); fail = true; break }
+      if (!isROwner) { await react('🍫'); fail = true; break }
       bot.jadibotmd = isEnable
       break
     case 'antispam':
-      if (!isOwner) { await react('🔒'); fail = true; break }
+      if (!isOwner) { await react('🍫'); fail = true; break }
       bot.antiSpam = isEnable
       break
     case 'antilink':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.antiLink = isEnable
       break
     case 'antibot':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.antiBot = isEnable
       break
     case 'modoadmin':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.modoadmin = isEnable
       break
     case 'nsfw': case 'antinopor':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.nsfw = isEnable
       break
     case 'audios':
       chat.audios = isEnable
       break
     case 'autoread': case 'autoleer':
-      if (!isROwner) { await react('🔒'); fail = true; break }
+      if (!isROwner) { await react('🍫'); fail = true; break }
       global.opts['autoread'] = isEnable
       break
     case 'antiprivado':
-      if (!isOwner) { await react('🔒'); fail = true; break }
+      if (!isOwner) { await react('🍫'); fail = true; break }
       bot.antiPrivate = isEnable
       break
     case 'detect': case 'detector': case 'avisos':
-      if (m.isGroup &&!isAdmin) { await react('🔒'); fail = true; break }
+      if (m.isGroup && !isAdmin) { await react('🍫'); fail = true; break }
       chat.detect = isEnable
       break
     default:
@@ -88,46 +83,36 @@ let handler = async (m, { conn, command, args, isOwner, isAdmin, isROwner }) => 
   }
 
   if (fail) {
-    let lock = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let lock = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐀𝐂𝐂𝐄𝐒𝐎 𝐃𝐄𝐍𝐄𝐆𝐀𝐃𝐎 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ACCESO DENEGADO ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 🔒 —˙𖦹.꒷
+🍫 No tienes permisos para esto
+🍨 Cupid: solo admins pueden tocar esto
 
-── *📝 AVISO* ╏ ❄️
-🔒 ➛ No tienes permisos para esto
-👻 ➛ PHANTOM: solo admins pueden tocar esto
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
     return conn.sendMessage(m.chat, { text: lock }, { quoted: m })
   }
 
-  await react(isEnable? '❄️' : '🔴')
+  await react(isEnable ? '🍫' : '🍪')
 
-  let estadoTexto = isEnable? 'Activado' : 'Desactivado'
-  let estadoEmoji = isEnable? '❄️' : '🔴'
+  let estadoTexto = isEnable ? 'Activado' : 'Desactivado'
+  let estadoEmoji = isEnable ? '🍫' : '🍪'
 
-  let statusTxt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+  let statusTxt = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐂𝐎𝐍𝐅𝐈𝐆𝐔𝐑𝐀𝐂𝐈𝐎𝐍 ﹒ ${type.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 CONFIGURACION ${type.toUpperCase()} ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ACTUALIZADO\`\` ⚙️ —˙𖦹.꒷
+🍪 Función: *${type}*
+${estadoEmoji} Estado: *${estadoTexto}*
+💗 Por: @${m.sender.split('@')[0]}
+🍫 Cupid ${isEnable ? 'aprobó 🍫' : 'lo apagó 🍪'}
 
-── *📊 ESTADO* ╏ ❄️
-⚙️ ➛ Función: *${type}*
-${estadoEmoji} ➛ Estado: *${estadoTexto}*
-👑 ➛ Por: @${m.sender.split('@')[0]}
-👻 ➛ PHANTOM ${isEnable? 'aprobó ❄️' : 'lo apagó 🔴'}
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
 
   await conn.sendMessage(m.chat, {
     text: statusTxt,
