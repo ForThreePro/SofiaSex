@@ -8,15 +8,15 @@ moment.locale('es')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\nFecha: ${fecha}\n`
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
 
   let emoji = text?.trim() || m.quoted?.text?.trim() || ''
-  if (!emoji) return conn.reply(m.chat, head + `\n❌ Usa: *${usedPrefix + command} 😆*` + `\n━━━━━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+  if (!emoji) return conn.reply(m.chat, head + `\n🍫 Usa: *${usedPrefix + command} 😆*` + `\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m)
   emoji = [...emoji][0]
 
   try {
-    await react('⏳')
+    await react('🍫')
     let api = `https://api-faa.my.id/faa/emojigerak?emoji=${encodeURIComponent(emoji)}`
     let res = await fetch(api)
     if (!res.ok) throw new Error(`API ${res.status}`)
@@ -24,7 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     // detecta tipo
     let isMp4 = buf.slice(0,12).toString().includes('ftyp') || buf.slice(4,8).toString() === 'ftyp'
-    let ext = isMp4? 'mp4' : 'gif'
+    let ext = isMp4 ? 'mp4' : 'gif'
     let tmpIn = path.join(tmpdir(), `emogif-${Date.now()}.${ext}`)
     let tmpOut = path.join(tmpdir(), `emogif-${Date.now()}.webp`)
     fs.writeFileSync(tmpIn, buf)
@@ -58,12 +58,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       try { fs.unlinkSync(tmpIn) } catch {}
     }
 
-    await react('❄️')
+    await react('🍫')
 
   } catch (e) {
     console.error(e)
-    await react('❌')
-    return conn.reply(m.chat, head + `\n❌ Error emogif: ${e.message}` + `\n━━━━━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    await react('🍫')
+    return conn.reply(m.chat, head + `\n🍫 Error emogif: ${e.message}` + `\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m)
   }
 }
 
