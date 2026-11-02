@@ -8,68 +8,39 @@ moment.locale('es')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+    const ownerNum = '528621029907'
 
     if (!text) {
-        let menuUso = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        let menuUso = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐈𝐀 𝐕𝐎𝐙 ﹒ ${command.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 IA VOZ ───
+Fecha: ${fecha}
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-🤖 ࣪ ꕀ.${command} ˚. ᵎᵎ
-> *"Hablando con el sistema PHANTOM"*
+🍫 Soy tu Cupid venezolana
+🍨 Te respondo con voz, coqueta y dulce
+🍪 Uso: .${command} <tu pregunta>
 
-.⃟𖥔 ݁. 𖦹˙— \`\`IA PHANTOM\`\` 🤖 —˙𖦹.꒷
+💗 Ejemplos:
+🍫 .${command} ¿qué tal estás?
+🍨 .${command} dime algo bonito
+🍪 .${command} ¿me extrañaste?
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-🤖 ➛ Responde con IA usando Gemini
-🔊 ➛ Convierte la respuesta a audio PTT
-👻 ➛ Voz PHANTOM seria
-
-── *📖 USO* ╏ ⛓️
-➛.${command} <tu pregunta>
-➛.${command} ¿qué tal causa?
-
-── *⚙️ NOTAS* ╏ ❄️
-📏 ➛ Máx 2 líneas de respuesta
-🗣️ ➛ Voz en español latino
-⚡ ➛ PHANTOM responde corto y al grano
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━
-*Owner*: @${ownerNum}
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907
+Owner: @${ownerNum}`
         return conn.sendMessage(m.chat, { text: menuUso, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
-    await m.react('❄️')
-    await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐏𝐑𝐎𝐂𝐄𝐒𝐀𝐍𝐃𝐎 ﹒ ${command.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`PENSANDO\`\` 🤖 —˙𖦹.꒷
-
-── *📊 ESTADO* ╏ ❄️
-🧠 ➛ Consultando a Gemini...
-🗣️ ➛ Generando voz PHANTOM...
-📤 ➛ Enviando audio...
-👻 ➛ PHANTOM despertando...
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
+    await m.react('🍫')
 
     try {
-        let aiUrl = `https://api.stellarwa.xyz/ai/gemini?text=${encodeURIComponent(text + ". Responde de forma normal, clara, profesional y amable. Sin jerga. Máximo 2 líneas")}&key=proyectsV2`
+        let promptVenezolana = `Responde como una chica venezolana coqueta, dulce, juguetona y cariñosa, con acento y slang venezolano suave (mi amor, bebé, corazón, qué rico, ay papá, vale, chama). Que sea coqueta pero sin nada explícito ni vulgar, solo dulce y pícara. Máximo 2 líneas. Pregunta: ${text}`
+
+        let aiUrl = `https://api.stellarwa.xyz/ai/gemini?text=${encodeURIComponent(promptVenezolana)}&key=proyectsV2`
         let aiRes = await fetch(aiUrl)
         let aiJson = await aiRes.json()
 
-        let respuesta = aiJson.result || aiJson.data || aiJson.response || "No te entendí pe causa, PHANTOM está procesando"
+        let respuesta = aiJson.result || aiJson.data || aiJson.response || "Ay bebé, no te entendí, repíteme eso cerquita"
 
         if(respuesta.length > 200) respuesta = respuesta.substring(0, 200) + "..."
 
@@ -80,7 +51,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             timeout: 10000,
         })
 
-        let tmpFilePath = path.join(tmpdir(), `ia-pe-${Date.now()}.opus`)
+        let tmpFilePath = path.join(tmpdir(), `cupid-ia-${Date.now()}.opus`)
 
         await new Promise((resolve, reject) => {
             ffmpeg(url)
@@ -105,32 +76,23 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         }, { quoted: m })
 
         if (fs.existsSync(tmpFilePath)) fs.unlinkSync(tmpFilePath)
-        await m.react('❄️')
+        await m.react('🍫')
 
     } catch (e) {
         console.log(e)
-        await m.react('❌')
-        const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-        await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await m.react('🍫')
+        const fecha2 = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
+        await m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ${command.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR ${command.toUpperCase()} ───
+Fecha: ${fecha2}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 ${e.message}
+🍨 Intenta con un texto más corto
+🍪 Menos texto, más directo bebé
 
-── *📝 DESCRIPCIÓN* ╏ ❄️
-❌ ➛ ${e.message}
-⚡ ➛ PHANTOM no pudo procesarlo
-
-── *💡 SOLUCIÓN* ╏ ⛓️
-🔧 ➛ Intenta con un texto más corto
-🔧 ➛ Verifica tu conexión
-❄️ ➛ PHANTOM dice: menos texto, más directo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`)
     }
 }
 
