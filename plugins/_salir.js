@@ -8,41 +8,36 @@ let handler = async (m, { conn }) => {
     let groupName = await conn.getName(m.chat)
 
     if (!m.isGroup) {
-        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ SALIR
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 ERROR SALIR ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+🍫 Este comando solo funciona en grupos
+🍨 Cupid solo sale de grupos
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Este comando solo funciona en grupos
-👻 ➛ PHANTOM solo sale de grupos
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 
-    let miNumero = '51927174369@s.whatsapp.net'
-    if (user !== miNumero) {
-        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    // 2 VERSIONES DEL DUEÑO: +52 y +52 1
+    let owners = [
+        '528621029907@s.whatsapp.net',
+        '5218621029907@s.whatsapp.net'
+    ]
 
-⛓️ ┇ 𝐀𝐂𝐂𝐄𝐒𝐎 𝐃𝐄𝐍𝐄𝐆𝐀𝐃𝐎 ﹒ SALIR
-꒰ ◞⁺⊹ ．${fecha}
+    if (!owners.includes(user)) {
+        let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` 🔒 —˙𖦹.꒷
+─── 🍪 ACCESO DENEGADO ───
+Fecha: ${fecha}
 
-── *📝 AVISO* ╏ ❄️
-🔒 ➛ Este comando es exclusivo del dueño
-👻 ➛ Solo PHANTOM mayor puede irse
+🍫 Este comando es exclusivo del dueño
+🍨 Solo Cupid mayor puede irse
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`
         return conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 
@@ -53,45 +48,33 @@ let handler = async (m, { conn }) => {
         pp = 'https://files.evogb.win/YhR5LZ.jpg'
     }
 
-    let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐒𝐏𝐄𝐃𝐈𝐃𝐀 ﹒ ADIOS
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 DESPEDIDA ───
+Fecha: ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`SALIENDO\`\` 👋 —˙𖦹.꒷
+🍫 *${nombre}* se despide de: *${groupName}*
+🍨 Cupid se va por nuevos grupos
 
-── *📊 INFORMACIÓN* ╏ ❄️
-👋 ➛ *${nombre}* se despide de: *${groupName}*
-👻 ➛ PHANTOM se va por nuevos sistemas
+─── 💗 MENSAJE ───
+🍫 Gracias por la confianza depositada
+🍨 Cada momento compartido en este grupo
+🍪 Por elegirnos como su Bot #1 de WhatsApp 2026
+💗 Me llevo los mejores recuerdos
+🍫 Si necesitan volver a contar conmigo, aquí estaré
+🍨 Cupid siempre vuelve
 
-── *📝 MENSAJE* ╏ ⛓️
-✨ ➛ Gracias por la confianza depositada
-✨ ➛ Cada momento compartido en este grupo
-✨ ➛ Por elegirnos como su Bot #1 de WhatsApp 2026
-❄️ ➛ Me llevo los mejores recuerdos del sistema
-💌 ➛ Si necesitan volver a contar conmigo, aquí estaré
-⚡ ➛ PHANTOM siempre vuelve
+─── 💗 SOPORTE ───
+Número: +52 862 102 9907
+🍪 Soporte Cupid incluido`
 
-── *📞 SOPORTE* ╏ ❄️
-📱 ➛ Soporte 24/7: *+51 927 174 369*
-❄️ ➛ Soporte PHANTOM incluido
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
-
+    // 1 SOLO MENSAJE - despedida y salir
     await conn.sendMessage(m.chat, {
         image: { url: pp },
         caption: texto,
         mentions: [user]
     })
 
-    await conn.sendMessage(m.chat, { text: `👻 Saliendo en 3... PHANTOM cerrando sistema` })
-    await new Promise(r => setTimeout(r, 1000))
-    await conn.sendMessage(m.chat, { text: `❄️ Saliendo en 2... Guardando sesión` })
-    await new Promise(r => setTimeout(r, 1000))
-    await conn.sendMessage(m.chat, { text: `⚡ Saliendo en 1... Adiós!` })
     await new Promise(r => setTimeout(r, 1000))
 
     await conn.groupParticipantsUpdate(m.chat, [user], "remove")
