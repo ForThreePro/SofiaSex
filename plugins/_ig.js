@@ -4,16 +4,16 @@ moment.locale('es')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 IGDL ───\nFecha: ${fecha}\n\n`
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
 
   let url = (text || '').trim()
   if (!url.includes('instagram.com')) {
-    return conn.reply(m.chat, head + `\n❄️ Usa: *${usedPrefix+command} https://www.instagram.com/reel/DeQKKA8pJ0e/*\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    return conn.reply(m.chat, head + `🍫 Usa: ${usedPrefix+command} https://www.instagram.com/reel/DeQKKA8pJ0e/\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m)
   }
 
   try {
-    await react('⏳')
+    await react('🍫')
 
     let json = null
     for (let i = 0; i < 3; i++) {
@@ -28,11 +28,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       }
     }
 
-    if (!json) throw new Error('API no respondió (ECONNRESET), intenta de nuevo en 5s')
+    if (!json) throw new Error('API no respondió, intenta de nuevo en 5s')
 
     console.log(json)
 
-    // tu json: result.url = [ "https://d.rapidcdn.app/..." ]
     let result = json.result || json.data || json
     let urls = result.url || result.urls || result.download || []
     if (!Array.isArray(urls)) urls = [urls]
@@ -40,21 +39,22 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let captionMeta = result.metadata?.caption || ''
     let likes = result.metadata?.like || ''
 
-    // limpia urls que sean objetos
     urls = urls.map(u => typeof u === 'string'? u : u?.url).filter(v => typeof v === 'string' && v.startsWith('http'))
 
     if (!urls.length) throw new Error('Sin links: ' + JSON.stringify(json).slice(0,600))
 
-    for (let dl of urls.slice(0,10)) {
-      await conn.sendFile(m.chat, dl, 'ig.mp4', head + `\n📥 *IGDL*\n❤️ ${likes} | 💬 ${captionMeta.slice(0,100)}\n🔗 ${url}\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
-    }
+    // 1 SOLO MENSAJE - solo el primer archivo
+    let dl = urls[0]
+    let caption = head + `🍫 IGDL\n🍨 Likes: ${likes || '?'}\n🍪 Caption: ${captionMeta.slice(0,100) || 'Sin caption'}\n💗 Link: ${url}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
 
-    await react('❄️')
+    await conn.sendFile(m.chat, dl, 'ig.mp4', caption, m)
+
+    await react('🍫')
 
   } catch (e) {
     console.error(e)
-    await react('❌')
-    conn.reply(m.chat, head + `\n❌ Error IG: ${e.message}\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`, m)
+    await react('🍫')
+    conn.reply(m.chat, head + `🍫 Error IG: ${e.message}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`, m)
   }
 }
 
