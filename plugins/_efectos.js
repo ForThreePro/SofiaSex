@@ -11,27 +11,22 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || ''
 
     if (!q.msg?.audioMessage && !q.msg?.pttMessage && !/audio/.test(mime)) {
-        return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐀𝐔𝐃𝐈𝐎 ﹒ EFECTOS
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 EFECTOS DE AUDIO ───
+Fecha: ${fecha}
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢 ׅ 𝆬 ָ֢ ෆ
-⚡ ࣪ ꕀ.${command} ˚. ᵎᵎ
-> Responde a una nota de voz pe
+🍫 Responde a una nota de voz
+🍨 Ejemplo: .${command}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`EFECTOS\`\` 👻 —˙𖦹.꒷
+🍪 Disponibles:
+💗 bass, blown, deep, earrape
+🍫 fast, fat, nightcore, reverse
+🍨 robot, slow, chipmunk, grave
+🍪 agudo, vibrato
 
-── *❄️ DISPONIBLES* ╏ ⛓️
-🎧 ➛ bass, blown, deep, earrape
-🎧 ➛ fast, fat, nightcore, reverse
-🎧 ➛ robot, slow, chipmunk, grave
-🎧 ➛ agudo, vibrato
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907`)
     }
 
     let effect = command.toLowerCase()
@@ -55,9 +50,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
 
     try {
-        await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+        await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
         let audio = await q.download()
-        if (!audio) return m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Audio no disponible, reenvíalo pe\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`)
+        if (!audio) return m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR ───\n\n🍫 Audio no disponible, reenvíalo\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
 
         let tmp = tmpdir()
         let name = Date.now()
@@ -74,20 +69,23 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
         let out = fs.readFileSync(output)
 
+        let caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 EFECTO: ${effect.toUpperCase()} ───\nFecha: ${fecha}\n\n🍫 Efecto aplicado\n🍨 Listo para escuchar\n🍪 Cupid lo aprueba\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
+
         await conn.sendMessage(m.chat, { 
             audio: out, 
             mimetype: 'audio/mpeg',
             ptt: false,
-            fileName: `PHANTOM_${effect}_FROST.mp3`
+            fileName: `CUPID_${effect}.mp3`,
+            caption: caption
         }, { quoted: m })
 
         try { fs.unlinkSync(input) } catch {}
         try { fs.unlinkSync(output) } catch {}
-        await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+        await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
     } catch (e) {
         console.log(e)
-        m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error PHANTOM: ${e.message.slice(0,400)}\n\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`)
+        m.reply(`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR ───\nFecha: ${fecha}\n\n🍫 ${e.message.slice(0,400)}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`)
     }
 }
 
