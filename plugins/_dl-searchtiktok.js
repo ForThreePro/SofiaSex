@@ -12,11 +12,11 @@ let ttCache = new Map()
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n꒰ ◞⁺⊹ ．${fecha}\n`
-  const footer = `\n━━━━━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`
+  const head = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n─── 🍪 ${command.toUpperCase()} ───\nFecha: ${fecha}\n\n`
+  const footer = `\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
 
-  if (!text) return conn.reply(m.chat, head + `\n❄️ Usa: *${usedPrefix + command} Goku Black*` + footer, m)
+  if (!text) return conn.reply(m.chat, head + `🍫 Usa: ${usedPrefix + command} Goku Black` + footer, m)
 
   let type = ''
   if (['ttsearch','tiktoksearch','ttss'].includes(command)) type = 'tiktok'
@@ -35,7 +35,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 
   try {
-    await react('🔍')
+    await react('🍫')
     let list = await fetchApi(type, text)
     if (!list.length) throw new Error(`Sin resultados para "${text}"`)
 
@@ -57,32 +57,29 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       let outF = path.join(tmpdir(), `out_${Date.now()}.mp4`)
       fs.writeFileSync(inF, buf)
       try { execSync(`ffmpeg -y -i "${inF}" -c copy -movflags +faststart "${outF}"`) } catch { fs.copyFileSync(inF, outF) }
-      let cap = head + `\n‧˚꒰❄️୭ *PINVID - ${text}* ⚡\n` + footer
+      let cap = head + `🍫 PINVID - ${text}` + footer
       await conn.sendFile(m.chat, outF, 'pinvid.mp4', cap, m, false, { mimetype: 'video/mp4' })
       try { fs.unlinkSync(inF); fs.unlinkSync(outF) } catch {}
-      await react('❄️')
+      await react('🍫')
       return
     }
 
     if (type === 'pinterest') {
-      // SALE DE LO QUE BUSCAS - EXACTO
       let imgs = []
       for (let o of list) {
         let u = o.dl || o.url || o.image || o.img || o.imageUrl || o.src || o.thumbnail || ''
-        if (typeof u === 'string' && u.startsWith('http') &&!u.includes('.mp4')) imgs.push(u)
+        if (typeof u === 'string' && u.startsWith('http') && !u.includes('.mp4')) imgs.push(u)
         let str = JSON.stringify(o)
         let m = str.match(/https:\/\/i\.pinimg[^\"]+\.(jpg|jpeg|png|webp)/g)
         if (m) imgs.push(...m)
       }
-      imgs = [...new Set(imgs)].sort(() => 0.5 - Math.random()).slice(0, 5)
+      imgs = [...new Set(imgs)].sort(() => 0.5 - Math.random())
       if (!imgs.length) throw new Error('No hay imágenes')
 
-      for (let i = 0; i < imgs.length; i++) {
-        let cap = i === 0? head + `\n‧˚꒰❄️୭ *PINTEREST - ${text}* ⚡\n\n꒰ 👻 ꒱ Resultados para *${text}*\n` + footer : `꒰ ❄️ ꒱ ${i+1}/5 - ${text}`
-        await conn.sendFile(m.chat, imgs[i], 'pin.jpg', cap, m)
-        await new Promise(r => setTimeout(r, 400))
-      }
-      await react('❄️')
+      // 1 SOLO MENSAJE - 1 imagen
+      let cap = head + `🍫 PINTEREST - ${text}\n🍨 Resultado para ${text}` + footer
+      await conn.sendFile(m.chat, imgs[0], 'pin.jpg', cap, m)
+      await react('🍫')
       return
     }
 
@@ -90,16 +87,16 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       let cache = ttCache.get(m.chat) || []
       let disp = list.filter(v => {
         let u = v.dl || v.play || v.hdplay || v.video || v.url
-        return u &&!cache.includes(u)
+        return u && !cache.includes(u)
       })
       if (!disp.length) { disp = list; cache = [] }
       let v = disp[Math.floor(Math.random() * disp.length)]
       let url = v.dl || v.play || v.hdplay || v.video || v.url
       cache.push(url); if (cache.length > 20) cache.shift()
       ttCache.set(m.chat, cache)
-      let cap = head + `\n‧˚꒰❄️୭ *TTSEARCH - ${text}* ⚡\n` + footer
+      let cap = head + `🍫 TTSEARCH - ${text}` + footer
       await conn.sendFile(m.chat, url, 'tt.mp4', cap, m)
-      await react('❄️')
+      await react('🍫')
       return
     }
 
@@ -107,15 +104,16 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       let v = list[0]
       let dl = v.dl || v.url
       let title = v.name || v.title || text
-      await conn.sendMessage(m.chat, { document: { url: dl }, mimetype: 'application/vnd.android.package-archive', fileName: `${title.replace(/[^a-z0-9]/gi,'_')}.apk` }, { quoted: m })
-      await react('❄️')
+      let cap = head + `🍫 APK - ${title}\n🍨 Descargando...` + footer
+      await conn.sendMessage(m.chat, { document: { url: dl }, mimetype: 'application/vnd.android.package-archive', fileName: `${title.replace(/[^a-z0-9]/gi,'_')}.apk`, caption: cap }, { quoted: m })
+      await react('🍫')
       return
     }
 
   } catch (e) {
     console.error(e)
-    await react('❌')
-    return conn.reply(m.chat, head + `\n❄️ Error en *${type}*: ${e.message}` + footer, m)
+    await react('🍫')
+    return conn.reply(m.chat, head + `🍫 Error en ${type}: ${e.message}` + footer, m)
   }
 }
 
