@@ -17,67 +17,38 @@ const getBuffer = async (url) => {
 
 let handler = async (m, { conn, command }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-    const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+    const ownerNum = '528621029907'
     let text = m.text || m.message?.conversation || m.message?.extendedTextMessage?.text || ''
     text = text.replace(`.${command}`, '').trim()
 
     if (!text) {
-        return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
 
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒 ﹒ DESCARGAS
-꒰ ◞⁺⊹ ．${fecha}
+─── 🍪 DESCARGAS ───
+Fecha: ${fecha}
 
-  ꒱ ׁ. ᘏ 𝗖𝗢𝗠𝗔𝗡𝗗𝗢𝗦 ׅ 𝆬 ָ֢ ෆ
-📥 ࣪ ꕀ.descargas ˚. ᵎᵎ
-> *"Descargando con el sistema PHANTOM"*
+🍫 .play1 <nombre de canción>
+🍨 Descarga audio de YouTube MP3
 
-.⃟𖥔 ݁. 𖦹˙— \`\`USO PHANTOM\`\` 📥 —˙𖦹.꒷
+🍫 .ttmp3 <link de tiktok>
+🍨 Descarga audio de TikTok MP3
 
-── *📝 COMANDOS* ╏ ❄️
-1️⃣ ➛.*play1* <nombre de canción>
-   🎵 ➛ Descarga audio de YouTube MP3
-   👻 ➛ PHANTOM pone la música
+🍫 .fb <link de facebook>
+🍨 Descarga video de Facebook
 
-2️⃣ ➛.*ttmp3* <link de tiktok>
-   🎵 ➛ Descarga audio de TikTok MP3
-   ⚡ ➛ Audio directo del sistema
+💗 Ejemplos:
+🍫 .play1 despacito
+🍨 .ttmp3 https://tiktok.com/@user/video
+🍪 .fb https://facebook.com/watch?v=xxx
 
-3️⃣ ➛.*fb* <link de facebook>
-   📹 ➛ Descarga video de Facebook
-   ❄️ ➛ Descarga rápida PHANTOM
-
-── *💡 EJEMPLOS* ╏ ⛓️
-➛.*play1* despacito
-➛.*ttmp3* https://tiktok.com/@user/video
-➛.*fb* https://facebook.com/watch?v=xxx
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━
-*Owner*: @${ownerNum}
-━━━━━━━━━━━`, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
+─── 💗 CONTACTO ───
+Número: +52 862 102 9907
+Owner: @${ownerNum}`, mentions: [ownerNum + '@s.whatsapp.net'] }, { quoted: m })
     }
 
-    await react(conn, m, '❄️')
+    await react(conn, m, '🍫')
     try {
         if (command === 'play1') {
-            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ PLAY1
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`YOUTUBE\`\` ❄️ —˙𖦹.꒷
-
-── *📊 ESTADO* ╏ ❄️
-🔍 ➛ Buscando canción...
-⬇️ ➛ Descargando audio MP3...
-👻 ➛ PHANTOM eligiendo tema...
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
             const searchResult = await ytsearch(text)
             if (!searchResult.videos.length) throw new Error("No se encontró la canción.")
             const video = searchResult.videos[0]
@@ -88,30 +59,16 @@ let handler = async (m, { conn, command }) => {
             if (!dl) throw new Error('No se pudo descargar el audio de YT')
 
             const audioBuffer = await getBuffer(dl)
-            await react(conn, m, '⚡')
+            let caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 PLAY1 ───\nFecha: ${fecha}\n\n🍫 Título: ${video.title}\n🍨 Canal: ${video.author.name}\n🍪 Duración: ${video.timestamp}\n💗 Link: ${video.url}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
             await conn.sendMessage(m.chat, {
                 audio: audioBuffer,
                 mimetype: 'audio/mpeg',
-                fileName: `${video.title}.mp3`
+                fileName: `${video.title}.mp3`,
+                caption: caption
             }, { quoted: m })
         }
 
         if (command === 'ttmp3') {
-            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ TTMP3
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`TIKTOK\`\` ❄️ —˙𖦹.꒷
-
-── *📊 ESTADO* ╏ ❄️
-⬇️ ➛ Descargando audio de TikTok...
-⚡ ➛ Extrayendo audio...
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
             const apiUrl = `${api.url}/dl/tiktokmp3?url=${encodeURIComponent(text)}&key=${api.key}`
             const res = await fetch(apiUrl).then(r => r.json())
             const data = res?.data || res?.result
@@ -120,30 +77,16 @@ let handler = async (m, { conn, command }) => {
             if (!dl) throw new Error('No se pudo descargar. Link mal o privado')
 
             const audioBuffer = await getBuffer(dl)
-            await react(conn, m, '⚡')
+            let caption = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 TTMP3 ───\nFecha: ${fecha}\n\n🍫 Título: ${title}\n🍨 Fuente: TikTok\n🍪 Estado: Listo\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
             await conn.sendMessage(m.chat, {
                 audio: audioBuffer,
                 mimetype: 'audio/mpeg',
-                fileName: `${title}.mp3`
+                fileName: `${title}.mp3`,
+                caption: caption
             }, { quoted: m })
         }
 
         if (command === 'fb' || command === 'facebook') {
-            await m.reply(`❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐍𝐃𝐎 ﹒ FACEBOOK
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`FACEBOOK\`\` 📹 —˙𖦹.꒷
-
-── *📊 ESTADO* ╏ ❄️
-⬇️ ➛ Descargando video de Facebook...
-👻 ➛ PHANTOM procesando video
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`)
             const apiUrl = `${api.url}/dl/facebook?url=${encodeURIComponent(text)}&key=${api.key}`
             const res = await fetch(apiUrl)
 
@@ -157,52 +100,18 @@ let handler = async (m, { conn, command }) => {
                 videoBuffer = Buffer.from(await res.arrayBuffer())
             }
 
-            await react(conn, m, '⚡')
             await conn.sendMessage(m.chat, {
                 video: videoBuffer,
-                caption: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐂𝐎𝐌𝐏𝐋𝐄𝐓𝐀𝐃𝐎 ﹒ FACEBOOK
-
-.⃟𖥔 ݁. 𖦹˙— \`\`DESCARGADO\`\` ✅ —˙𖦹.꒷
-
-── *📊 RESULTADO* ╏ ❄️
-✅ ➛ Video descargado correctamente
-📥 ➛ Disfrútalo
-👻 ➛ PHANTOM lo aprueba
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+                caption: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 FACEBOOK ───\nFecha: ${fecha}\n\n🍫 Video descargado correctamente\n🍨 Disfrútalo\n🍪 Cupid lo aprueba\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907`
             }, { quoted: m })
         }
 
-        await react(conn, m, '❄️')
+        await react(conn, m, '🍫')
     } catch (e) {
-        await react(conn, m, '❌')
-        const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
+        await react(conn, m, '🍫')
+        const fecha2 = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
         console.log("ERROR:", e)
-        return conn.sendMessage(m.chat, { text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ ${command.toUpperCase()}
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
-
-── *📝 DESCRIPCIÓN* ╏ ❄️
-❌ ➛ ${e.message}
-⚡ ➛ PHANTOM no pudo completar la descarga
-
-── *💡 SOLUCIÓN* ╏ ⛓️
-🔧 ➛ Verifica que el link sea válido
-🔧 ➛ Asegúrate que no sea privado
-❄️ ➛ Intenta de nuevo
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━` }, { quoted: m })
+        return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n─── 🍪 ERROR ${command.toUpperCase()} ───\nFecha: ${fecha2}\n\n🍫 ${e.message}\n🍨 Verifica que el link sea válido\n🍪 Asegúrate que no sea privado\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
     }
 }
 
