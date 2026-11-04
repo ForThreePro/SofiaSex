@@ -9,13 +9,13 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
   try {
     if (!(isAdmin || isOwner)) {
-      await react('❌')
+      await react('🍫')
       return conn.sendMessage(m.chat, {
-        text: `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL\n꒰ ◞⁺⊹ ．${fecha}\n\n── *📝 AVISO* ╏ ❄️\n❌ ➛ Solo admins pueden invocar al sistema\n👻 ➛ PHANTOM solo obedece a los admins pe\n━━━━━━━━━━━\n⛓️ *PHANTOM IA - VENTAS* ⚡\n🦂 *Contacto:* +51 927 174 369\n━━━━━━━━━━━`
+        text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Solo admins pueden invocar pe\n꒰💗꒱ Cupid solo obedece a admins\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍫꒱ Número: +52 862 102 9907`
       }, { quoted: m })
     }
 
-    const customMessage = args.join(' ') || '❄️ LLAMADO GENERAL - PHANTOM IA'
+    const customMessage = args.join(' ') || '🍫 LLAMADO GENERAL - CUPID DOLLS'
     const groupMetadata = await conn.groupMetadata(m.chat).catch(() => ({ subject: 'Grupo', participants: [] }))
     const groupName = groupMetadata.subject
 
@@ -60,22 +60,22 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩'])
 
-    const catalogoImg = { url: 'https://files.evogb.win/luvW09.jpg' }
+    const catalogoImg = { url: 'https://files.evogb.win/yoMAez.jpg' }
 
-    let messageText = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+    let messageText = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐋𝐋𝐀𝐌𝐀𝐃𝐎 ﹒ GENERAL
-꒰ ◞⁺⊹ ．${fecha}
+─── ꒰🍨꒱ LLAMADO GENERAL ───
+꒰꒱ ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`TAGALL\`\` 👻 —˙𖦹.꒷
-👻 PHANTOM los está llamando... ¡Despierten! ❄️
+꒰🍫꒱ Cupid los está llamando pe
+꒰💗꒱ ¡Despierten dolls!
 
-── *📊 INFO PHANTOM* ╏ ❄️
-👥 ➛ Grupo: *${groupName}*
-👤 ➛ Usuarios: *${participants.length}*
-💬 ➛ Mensaje: *${customMessage}*
+─── ꒰🍪꒱ INFO ───
+꒰꒱ Grupo: *${groupName}*
+꒰🍨꒱ Usuarios: *${participants.length}*
+꒰🍫꒱ Mensaje: *${customMessage}*
 
-── *🌍 USUARIOS POR PAÍS* ╏ ⛓️
+─── ꒰💗꒱ USUARIOS ───
 `
 
     for (const flag of orderedFlags) {
@@ -89,14 +89,14 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     }
 
     messageText += `
-── *📝 NOTA* ╏ 👻
-❄️ ➛ Todos fueron llamados
-⛓️ ➛ PHANTOM IA los llamó
+꒰🍨꒱ Todos fueron llamados pe
+꒰🍪꒱ Cupid los llamó
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+꒰🍨꒱ falto estás cositas
+꒰🍫꒱
+
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907`
 
     await conn.sendMessage(m.chat, {
       image: catalogoImg,
@@ -104,26 +104,12 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       mentions: participants.map(a => a.jid || a.id)
     }, { quoted: m })
 
-    await react('❄️')
+    await react('🍫')
 
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
-    await react('❌')
-    let errorMsg = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ TAGALL
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
-
-── *📝 AVISO* ╏ ❄️
-❌ ➛ Ocurrió un error al ejecutar el comando
-👻 ➛ PHANTOM falló
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+    await react('🍫')
+    let errorMsg = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Ocurrió un error pe\n꒰💗꒱ Cupid falló\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
     conn.sendMessage(m.chat, { text: errorMsg }, { quoted: m })
   }
 }
