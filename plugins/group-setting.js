@@ -4,18 +4,29 @@ moment.locale('es')
 let handler = async (m, { conn, command }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
-    const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
 
     let isClose = command === 'abrir' ? 'not_announcement' : 'announcement'
-    let estado = command === 'abrir' ? 'ABIERTO 🟢❄️' : 'CERRADO 🔴❄️'
 
     try {
         await conn.groupSettingUpdate(m.chat, isClose)
-        await react(command === 'abrir' ? '🟢' : '🔴')
-        await conn.sendMessage(m.chat, { text: head + `\n${estado}\n👑 Por: @${m.sender.split('@')[0]} 👻`, mentions: [m.sender] }, { quoted: m })
+        await react('🍫')
+        await conn.sendMessage(m.chat, { 
+            text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
+
+─── ꒰🍨꒱ GRUPO ${command === 'abrir' ? 'ABIERTO' : 'CERRADO'} ───
+꒰꒱ ${fecha}
+
+${command === 'abrir' ? '꒰🍫꒱ ABIERTO 🍫\n꒰🍨꒱ Todos pueden escribir pe' : '꒰🍪꒱ CERRADO 🍪\n꒰💗꒱ Solo admins pueden escribir pe'}
+꒰꒱ Por: @${m.sender.split('@')[0]}
+
+꒰🍨꒱ falto estás cositas
+꒰🍫꒱
+
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907`, mentions: [m.sender] }, { quoted: m })
     } catch {
-        await react('❌')
-        await m.reply(head + `\n❌ No se pudo cambiar. ¿Soy admin?`, m)
+        await react('🍫')
+        await m.reply(`꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n\n꒰🍪꒱ No se pudo cambiar pe\n꒰💗꒱ ¿Soy admin?\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍫꒱ Número: +52 862 102 9907`, m)
     }
 }
 
