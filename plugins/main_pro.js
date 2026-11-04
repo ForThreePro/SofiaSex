@@ -63,4 +63,4 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 handler.help = ['owner','ping','cleartmp','cpu','ram','uptime','info','tts <texto>']
 handler.tags = ['main']
 handler.command = /^(owner|creator|ping|p|cleartmp|cpu|ram|uptime|info|g?tts|ttss)$/i
-export default handler
+export default handlerf
