@@ -8,53 +8,50 @@ let handler = async (m, { conn }) => {
     }
 
     try {
-        await react('🔗')
+        await react('🍫')
         let link = await conn.groupInviteCode(m.chat)
         let groupMetadata = await conn.groupMetadata(m.chat)
 
-        let texto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        let texto = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐋𝐈𝐍𝐊 ﹒ DEL GRUPO
-꒰ ◞⁺⊹ ．${fecha}
+─── ꒰🍨꒱ LINK DEL GRUPO ───
+꒰꒱ ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`INVITACIÓN\`\` 🔗 —˙𖦹.꒷
+꒰🍫꒱ Invitación del grupo pe
+꒰꒱
+꒰🍨꒱ Grupo: *${groupMetadata.subject}*
+꒰🍪꒱ Cupid te pasa el link
 
-── *📊 INFORMACIÓN* ╏ ❄️
-👥 ➛ Grupo: *${groupMetadata.subject}*
-👻 ➛ PHANTOM te pasa el link
+꒰💗꒱ Enlace
+꒰꒱ https://chat.whatsapp.com/${link}
 
-── *🔗 ENLACE* ╏ ⛓️
-https://chat.whatsapp.com/${link}
+꒰🍫꒱ Solo admins pueden resetear el link
+꒰🍨꒱ No lo compartas con desconocidos
 
-── *📝 NOTAS* ╏ ❄️
-🔒 ➛ Solo admins pueden resetear el link
-⚠️ ➛ No lo compartas con desconocidos
-❄️ ➛ PHANTOM lo aprueba
+꒰🍨꒱ falto estás cositas
+꒰🍫꒱
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907`
 
         await conn.sendMessage(m.chat, { text: texto }, { quoted: m })
     } catch (e) {
-        await react('❌')
-        let error = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+        await react('🍫')
+        let error = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐄𝐑𝐑𝐎𝐑 ﹒ LINK
-꒰ ◞⁺⊹ ．${fecha}
+─── ꒰🍨꒱ ERROR LINK ───
+꒰꒱ ${fecha}
 
-.⃟𖥔 ݁. 𖦹˙— \`\`ERROR\`\` ❌ —˙𖦹.꒷
+꒰🍫꒱ No pude obtener el link pe
+꒰꒱
+꒰🍨꒱ ¿Soy admin del grupo?
+꒰🍪꒱ Cupid dice: hazme admin pe
 
-── *📝 AVISO* ╏ ❄️
-❌ ➛ No pude obtener el link
-🔒 ➛ ¿Soy admin del grupo?
-👻 ➛ PHANTOM dice: hazme admin pe
+꒰🍨꒱ falto estás cositas
+꒰꒱
 
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907`
         conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
 }
