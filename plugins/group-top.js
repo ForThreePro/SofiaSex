@@ -8,20 +8,37 @@ Array.prototype.getRandom = function(){ return this[Math.floor(Math.random()*thi
 let handler = async (m, { groupMetadata, command, conn, text }) => {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
-    const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+    const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
 
-    if (!groupMetadata) return m.reply(head+`\n❌ Solo en grupos`, m)
-    if (!text) { await react('❌'); return m.reply(head+`\n❄️ Usa: *.top <motivo>*\nEj: *.top Más activos*`, m) }
+    if (!groupMetadata) return m.reply(head+`\n꒰🍪꒱ Solo en grupos pe\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍫꒱ Número: +52 862 102 9907`, m)
+    if (!text) { 
+        await react('🍫'); 
+        return m.reply(head+`\n꒰🍨꒱ Usa: *.top <motivo>* pe\n꒰🍪꒱ Ej: *.top Más lindas*\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍫꒱ Número: +52 862 102 9907`, m) 
+    }
 
     let ps = groupMetadata.participants.map(v=>v.id)
-    if (ps.length < 10) { await react('⚠️'); return m.reply(head+`\n⚠️ Mínimo 10 usuarios`, m) }
+    if (ps.length < 10) { 
+        await react('🍫'); 
+        return m.reply(head+`\n꒰💗꒱ Mínimo 10 usuarios pe\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`, m) 
+    }
 
     let picks = Array.from({length:10},()=>ps.getRandom())
-    let x = pickRandom(['❄️','⛓️','⚡','👻','🦂','🧊','😈','🔮','💎','👑'])
+    let x = pickRandom(['🍫','🍨','🍪','💗'])
 
-    let top = head + `\n🏆 *TOP 10 ${text.toUpperCase()}* ${x}\n\n` +
-      picks.map((p,i)=>`${x} *${i+1}.* ${user(p)}`).join('\n') +
-      `\n\n🎲 Aleatorio del sistema`
+    let top = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
+
+─── ꒰🍨꒱ TOP 10 ${text.toUpperCase()} ───
+꒰꒱ ${fecha}
+
+` + picks.map((p,i)=>`${x} *${i+1}.* ${user(p)}`).join('\n') + `
+
+꒰🍪꒱ Aleatorio del sistema pe
+
+꒰🍨꒱ falto estás cositas
+꒰🍫꒱
+
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907`
 
     await react(x)
     return m.reply(top, null, { mentions: picks })
