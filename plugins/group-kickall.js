@@ -23,19 +23,16 @@ let handler = async (m, { conn }) => {
 ─── ꒰🍨꒱ SISTEMA ACCESO DENEGADO ───
 ꒰꒱ ${fecha}
 
-꒰🍫꒱ Solo mi dueño puede usar esto pe
+꒰🍫꒱ Solo mi dueño puede usar esto
 ꒰꒱
 ꒰🍨꒱ Comando: *.kickall*
 ꒰🍪꒱ Solo: +52 862 102 9907 / +521 862 102 9907
 
-꒰🍨꒱ falto estás cositas
-꒰꒱
-
-─── ꒰💗꒱ CONTACTO ───
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
 ꒰🍫꒱ Número: +52 862 102 9907`, mentions: [m.sender] }, { quoted: m })
     }
 
-    if (!m.isGroup) return m.reply('꒰🍫꒱ Solo en grupos pe')
+    if (!m.isGroup) return m.reply('꒰🍫꒱ Solo en grupos')
 
     try {
         await react('🍫')
@@ -70,7 +67,7 @@ let handler = async (m, { conn }) => {
 
         if (!toKick.length) {
             await react('🍫')
-            return m.reply('꒰🍫꒱ No hay nadie para sacar pe, solo estamos tú y yo ꒰💗꒱')
+            return m.reply('꒰🍫꒱ No hay nadie para sacar, solo estamos tú y yo ꒰💗꒱')
         }
 
         let sacados = 0
@@ -92,7 +89,7 @@ let handler = async (m, { conn }) => {
 ─── ꒰🍨꒱ GRUPO COMPLETADO KICKALL ───
 ꒰꒱ ${fecha}
 
-꒰🍫꒱ Listo pe, solo quedamos nosotros
+꒰🍫꒱ Listo, solo quedamos nosotros
 ꒰🍨꒱ Sacando a todos, incluido el creador, menos a ti y a Cupid
 
 ꒰🍪꒱ Eliminados: *${sacados}*
@@ -101,15 +98,12 @@ let handler = async (m, { conn }) => {
 ꒰🍫꒱ Total a sacar: *${toKick.length}*
 ꒰🍨꒱ Creador: *SÍ se elimina si no eres tú*
 
-꒰🍨꒱ falto estás cositas
-꒰🍫꒱
-
-─── ꒰💗꒱ CONTACTO ───
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
 ꒰🍪꒱ Número: +52 862 102 9907` 
         })
 
     } catch (e) {
-        return m.reply(`꒰🍫꒱ ${e.message}\n꒰🍨꒱ El bot debe ser admin pe`)
+        return m.reply(`꒰🍫꒱ ${e.message}\n꒰🍨꒱ El bot debe ser admin`)
     }
 }
 
