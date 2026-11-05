@@ -1,72 +1,54 @@
-import crypto from "crypto"
-import { FormData, Blob } from "formdata-node"
-import { fileTypeFromBuffer } from "file-type"
+import { webp2mp4 } from '../lib/webp2mp4.js'
+import { toAudio } from '../lib/converter.js'
 import moment from 'moment-timezone'
 moment.locale('es')
 
-let handler = async (m, { conn }) => {
+let handler = async (m, { conn, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
-  const react = async (text) => {
-    try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
+  const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
+  const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+
+  if (['tovid', 'tovideo'].includes(command)) {
+    if (!m.quoted || !/webp/.test(m.quoted.mimetype || '')) {
+      await react('🍫')
+      return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *sticker* pe` + foot, m)
+    }
+    try {
+      await react('🍫')
+      let media = await m.quoted.download()
+      let out = await webp2mp4(media)
+      await react('🍫')
+      await conn.sendFile(m.chat, out, 'video.mp4', head + `꒰🍫꒱ *Tovideo completado pe*` + foot, m)
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir pe` + foot, m) }
   }
 
-  let q = m.quoted? m.quoted : m
-  let mime = (q.msg || q).mimetype || ''
-  if (!mime) {
-    await react('❌')
-    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n⤷ ┇ 𝐔𝐏𝐋𝐎𝐀𝐃𝐄𝐑 ﹒ USO ：✿ 。\n꒰ ◞⁺⊹ ．${fecha}\n\n➛ Responde a una *imagen, video, audio o documento* para subirlo. ❄️`, m)
+  if (['tomp3', 'toaudio'].includes(command)) {
+    let q = m.quoted ? m.quoted : m
+    let mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
+    if (!/video|audio/.test(mime)) { await react('🍫'); return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *video o audio* pe` + foot, m) }
+    try {
+      await react('🍫')
+      let media = await q.download?.()
+      let audio = await toAudio(media, 'mp4')
+      await react('🍫')
+      await conn.sendFile(m.chat, audio.data, 'audio.mp3', head + `꒰🍨꒱ *Audio extraído pe*` + foot, m, null, { mimetype: 'audio/mp4' })
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir a audio pe` + foot, m) }
   }
 
-  try {
-    await react('⏳')
-    let media = await q.download()
-    let link = await myCloud(media)
-    if (!link.url) throw new Error('Sin URL')
-
-    let txt = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
-
-⤷ ┇ 𝐔𝐏𝐋𝐎𝐀𝐃𝐄𝐑 ﹒ COMPLETADO ：✿ 。
-꒰ ◞⁺⊹ ．${fecha}
-
-.⃟𖥔 ݁. 𖦹˙— \`\`RESULTADO\`\` ❄️ —˙𖦹.꒷
-
-── *📊 DATOS* ╏ ❄️
-🔗 ➛ ${link.url}
-📦 ➛ ${formatBytes(media.length)}
-🖥️ ➛ evogb.win
-
-━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-━━━━━━━━━━━`
-
-    await react('❄️')
-    await conn.reply(m.chat, txt, m)
-  } catch (e) {
-    await react('❌')
-    await conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error al subir el archivo.`, m)
+  if (['toimg', 'simg'].includes(command)) {
+    let q = m.quoted ? m.quoted : m
+    if (!((q.mimetype || '').includes('webp'))) { await react('🍫'); return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *sticker* pe` + foot, m) }
+    try {
+      await react('🍫')
+      let media = await q.download()
+      await react('🍫')
+      await conn.sendMessage(m.chat, { image: media, caption: head + `꒰💗꒱ *Sticker a imagen pe*` + foot }, { quoted: m })
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir pe` + foot, m) }
   }
 }
 
-function formatBytes(bytes) {
-  if (bytes === 0) return '0 B'
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
-  const i = Math.floor(Math.log(bytes) / Math.log(1024))
-  return `${(bytes / 1024 ** i).toFixed(2)} ${sizes[i]}`
-}
-
-async function myCloud(content) {
-  const fileType = await fileTypeFromBuffer(content)
-  const ext = fileType? fileType.ext : 'bin'
-  const mime = fileType? fileType.mime : 'application/octet-stream'
-  const formData = new FormData()
-  formData.append("file", new Blob([content], { type: mime }), `${crypto.randomBytes(5).toString("hex")}.${ext}`)
-  const response = await fetch("https://evogb.win/api/upload", { method: "POST", body: formData })
-  if (!response.ok) throw new Error('Error en el servidor')
-  return await response.json()
-}
-
-handler.help = ['upp', 'tourl'];
-handler.tags = ['tools'];
-handler.command = ['upp', 'tourl'];
+handler.help = ['tovid', 'tomp3', 'toimg']
+handler.tags = ['tools']
+handler.command = ['tovid', 'tovideo', 'tomp3', 'toaudio', 'toimg', 'stickerimg', 'simg']
 export default handler
