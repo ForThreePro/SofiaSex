@@ -20,7 +20,7 @@ rpg: '🍫', anime: '🍨', internet: '🍪', image: '💗'
 const TOP_COMANDOS = ['.play', '.sticker', '.ia', '.menu', '.ytmp4']
 
 const FRASES_CUPID = [
-"La dulzura llegó... y Cupid manda pe",
+"La dulzura llegó... y Cupid manda",
 "Dulceando el chat, un comando a la vez",
 "La noche es dulce y Cupid está en línea",
 "Cuidado con el chocolate, mancha",
@@ -61,7 +61,7 @@ for (const plugin of plugins) {
 }
 
 const userName = m.pushName || 'Usuario'
-const IMG_MENU = 'https://files.evogb.win/yoMAez.jpg'
+const IMG_MENU = 'https://files.evogb.win/Xy803o.jpg'
 const ping = Math.round(performance.now() - start)
 const ownerNum = global.owner?.[0]?.[0] || '528621029907'
 const CANAL_LINK = 'https://whatsapp.com/channel/0029Vb8emrOJuyACodGSbP0z'
@@ -79,12 +79,12 @@ let menuTexto = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 ─── ꒰🍨꒱ VERSIÓN 3.0 CUPID ───
 ꒰꒱ estado: *${estadoBot}* • Ping: ${ping}ms
 
-꒰🍪꒱ ${saludo} @${userName} pe
+꒰🍪꒱ ${saludo} @${userName}
 > *"${fraseRandom}"*
 
 ꒰💗꒱ *CANAL OFICIAL*
 ${CANAL_LINK}
-> _Únete para recibir novedades pe_
+> _Únete para recibir novedades_
 
 ─── ꒰🍫꒱ TOP COMANDOS ───
 ${TOP_COMANDOS.map((c,i) => `${i+1}. ${c}`).join(' | ')}
@@ -97,7 +97,7 @@ ${TOP_COMANDOS.map((c,i) => `${i+1}. ${c}`).join(' | ')}
 
 ꒰꒱ *${fecha}* ─ ${fecha2} ─ ${hora}
 
-> ꒰🍫꒱ Usa . antes de cada comando pe
+> ꒰🍫꒱ Usa . antes de cada comando
 
 `
 
@@ -119,17 +119,7 @@ for (const tag of tagsOrdenados) {
   menuTexto += ` ꒰🍫꒱ ───\n\n`
 }
 
-menuTexto += `꒰🍨꒱ falto estás cositas
-꒰🍫꒱
-
-─── ꒰💗꒱ CONTACTO ───
-꒰🍪꒱ Número: +52 862 102 9907
-꒰🍨꒱ Owner: @${ownerNum}
-꒰🍫꒱ Version: 3.0 CUPID DOLLS
-꒰꒱ ${CANAL_LINK}
-
-> "La dulzura llegó... y Cupid manda pe" 💗
-> "Cupid Dolls - Donde lo dulce manda"`
+menuTexto += `\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907\n꒰🍨꒱ Owner: @${ownerNum}\n꒰🍫꒱ Version: 3.0 CUPID DOLLS\n꒰꒱ ${CANAL_LINK}\n\n> "La dulzura llegó... y Cupid manda" 💗\n> "Cupid Dolls - Donde lo dulce manda"`
 
 await conn.sendMessage(m.chat, {
   image: { url: IMG_MENU },
@@ -138,7 +128,7 @@ await conn.sendMessage(m.chat, {
 }, { quoted: m })
 
 } catch (e) {
-await conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *ERROR CUPID*: ${e.message}\n꒰💗꒱ Se derritió el chocolate pe...` }, { quoted: m })
+await conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *ERROR CUPID*: ${e.message}\n꒰💗꒱ Se derritió el chocolate...` }, { quoted: m })
 }
 }
 
