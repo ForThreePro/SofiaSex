@@ -21,13 +21,13 @@ setInterval(async () => {
   for (let i of global.tempGroups) {
     const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
     const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
-    const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+    const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
     if (i.exitTime - now <= 300000 && i.exitTime - now > 0 && !i.warned) {
-      try { await global.conn.sendMessage(i.id, { text: head + `\n꒰🍨꒱ El bot se irá en 5 minutos pe 💗` + foot }); i.warned = true; save() } catch {}
+      try { await global.conn.sendMessage(i.id, { text: head + `\n꒰🍨꒱ El bot se irá en 5 minutos 💗` + foot }); i.warned = true; save() } catch {}
     }
     if (now >= i.exitTime) {
       try {
-        await global.conn.sendMessage(i.id, { text: head + `\n꒰🍫꒱ Tiempo terminado, saliendo pe... 💗` + foot })
+        await global.conn.sendMessage(i.id, { text: head + `\n꒰🍫꒱ Tiempo terminado, saliendo... 💗` + foot })
         await new Promise(r=>setTimeout(r,1200))
         await global.conn.groupLeave(i.id)
       } catch {}
@@ -40,33 +40,33 @@ setInterval(async () => {
 let handler = async (m, { conn, args, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
-  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
-  if (!isOwner(m)) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Solo dueño del sistema pe`+foot) }
+  if (!isOwner(m)) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Solo dueño del sistema`+foot) }
   if (command === 'templist') {
-    if (!global.tempGroups.length) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰💗꒱ Sin grupos temporizados pe`+foot) }
+    if (!global.tempGroups.length) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰💗꒱ Sin grupos temporizados`+foot) }
     let list = global.tempGroups.map((v,i)=>`${i+1}. *${v.name}* - ${msToTime(v.exitTime-Date.now())}`).join('\n')
-    await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍫꒱ *Grupos temporizados pe:*\n${list}`+foot)
+    await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍫꒱ *Grupos temporizados:*\n${list}`+foot)
   }
   if (command === 'tempcancel') {
     let idx = global.tempGroups.findIndex(v=>v.id===m.chat)
-    if (idx===-1) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Sin temporizador activo pe`+foot) }
+    if (idx===-1) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Sin temporizador activo`+foot) }
     global.tempGroups.splice(idx,1); save()
-    await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍫꒱ Temporizador cancelado pe`+foot)
+    await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍫꒱ Temporizador cancelado`+foot)
   }
   // temporizador / temp
-  if (!m.isGroup) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Solo en grupos pe`+foot) }
-  if (!args[0]) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍨꒱ Usa: *.temp 1h* / *.temp 30m* / *.temp 1d* pe`+foot) }
+  if (!m.isGroup) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Solo en grupos`+foot) }
+  if (!args[0]) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍨꒱ Usa: *.temp 1h* / *.temp 30m* / *.temp 1d*`+foot) }
   let ms=0, rx=/(\d+)([dhm])/g, mt
   while((mt=rx.exec(args[0].toLowerCase()))!==null){ let v=parseInt(mt[1]); if(mt[2]==='d')ms+=v*86400000; if(mt[2]==='h')ms+=v*3600000; if(mt[2]==='m')ms+=v*60000 }
-  if (ms<60000) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Mínimo 1m pe`+foot) }
+  if (ms<60000) { await react(conn,m,"🍫"); return m.reply(head+`\n꒰🍪꒱ Mínimo 1m`+foot) }
 
   let idx = global.tempGroups.findIndex(v=>v.id===m.chat)
   if(idx!==-1) global.tempGroups.splice(idx,1)
   global.tempGroups.push({ id:m.chat, name: await conn.getName(m.chat), exitTime: Date.now()+ms, warned:false })
   save()
   await react(conn,m,"🍫")
-  return m.reply(head+`\n꒰🍫꒱ Temporizador activado pe: *${msToTime(ms)}*`+foot)
+  return m.reply(head+`\n꒰🍫꒱ Temporizador activado: *${msToTime(ms)}*`+foot)
 }
 
 handler.help = ['temporizador 30d','tempcancel','templist']
