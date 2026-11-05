@@ -6,29 +6,27 @@ const handler = async (m, { conn, command }) => {
   const react = async (text) => {
     try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
   }
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   if (!m.mentionedJid[0] && !m.quoted) {
     await react('🍫')
-    let texto = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+    let texto = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 ADMINISTRACION PROMOTE ───
-Fecha: ${fecha}
+─── ꒰🍨꒱ ADMINISTRACION PROMOTE ───
+꒰꒱ ${fecha}
 
-🍫 Uso:
-🍨 Menciona a un usuario
-🍪 Responde al mensaje del usuario
-💗 Cupid: menciona pe
+꒰🍫꒱ Uso:
+꒰🍨꒱ Menciona a un usuario
+꒰🍪꒱ Responde al mensaje del usuario
+꒰💗꒱ Cupid: menciona
 
-🍪 Ejemplos:
-🍫 .promote @user
-🍨 .demote @user
+꒰🍪꒱ Ejemplos:
+꒰🍫꒱ .promote @user
+꒰🍨꒱ .demote @user
 
-🍫 Aviso:
-💗 Solo admins
-🍪 Solo los del sistema
-
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+꒰🍫꒱ Aviso:
+꒰💗꒱ Solo admins
+꒰🍪꒱ Solo los del sistema` + foot
     return conn.sendMessage(m.chat, { text: texto }, { quoted: m })
   }
 
@@ -41,43 +39,34 @@ Número: +52 862 102 9907`
     await conn.groupParticipantsUpdate(m.chat, [user], action)
   } catch {
     await react('🍫')
-    let error = `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+    let error = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 ERROR ADMIN ───
-Fecha: ${fecha}
+─── ꒰🍨꒱ ERROR ADMIN ───
+꒰꒱ ${fecha}
 
-🍫 No se pudo completar la acción
-🍨 Verifica permisos del bot
-🍪 Cupid dice: el bot no es admin pe
-
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+꒰🍫꒱ No se pudo completar la acción
+꒰🍨꒱ Verifica permisos del bot
+꒰🍪꒱ Cupid dice: el bot no es admin` + foot
     return conn.sendMessage(m.chat, { text: error }, { quoted: m })
   }
 
   let msgAccion = action === 'promote'
-? `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+? `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 PROMOVIDO NUEVO ADMIN ───
-Fecha: ${fecha}
+─── ꒰🍨꒱ PROMOVIDO NUEVO ADMIN ───
+꒰꒱ ${fecha}
 
-🍫 Nuevo Admin: @${user.split('@')[0]}
-🍨 Por: @${m.sender.split('@')[0]}
-🍪 Cupid aprobó al nuevo admin
+꒰🍫꒱ Nuevo Admin: @${user.split('@')[0]}
+꒰🍨꒱ Por: @${m.sender.split('@')[0]}
+꒰🍪꒱ Cupid aprobó al nuevo admin` + foot
+    : `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
-    : `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+─── ꒰🍨꒱ DEGRADADO QUITAR ADMIN ───
+꒰꒱ ${fecha}
 
-─── 🍪 DEGRADADO QUITAR ADMIN ───
-Fecha: ${fecha}
-
-🍫 Ya no es Admin: @${user.split('@')[0]}
-🍨 Por: @${m.sender.split('@')[0]}
-🍪 Cupid le quitó el poder
-
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+꒰🍫꒱ Ya no es Admin: @${user.split('@')[0]}
+꒰🍨꒱ Por: @${m.sender.split('@')[0]}
+꒰🍪꒱ Cupid le quitó el poder` + foot
 
   await conn.sendMessage(m.chat, { text: msgAccion, mentions: [user, m.sender] }, { quoted: m })
 }
