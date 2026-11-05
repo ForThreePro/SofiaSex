@@ -1,5 +1,7 @@
 import axios from 'axios'
 import FormData from 'form-data'
+import moment from 'moment-timezone'
+moment.locale('es')
 
 async function stellarUpscale(buffer, scale, key) {
   let form = new FormData()
@@ -28,10 +30,14 @@ async function stellarUpscale(buffer, scale, key) {
 }
 
 let handler = async (m, { conn, usedPrefix }) => {
+  const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
+  const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
+
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!/image/.test(mime)) {
-    return conn.reply(m.chat, `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n*CUPID DOLLS Edition*\n\n꒰🍨꒱ Responde a una imagen con *${usedPrefix}hd* pe\n\n> 🍫 Hará: x2 y luego automático a x4`, m)
+    return conn.reply(m.chat, head + `\n꒰🍨꒱ Responde a una imagen con *${usedPrefix}hd*\n\n> 🍫 Hará: x2 y luego automático a x4` + foot, m)
   }
 
   let key = 'proyectsV2'
@@ -41,26 +47,22 @@ let handler = async (m, { conn, usedPrefix }) => {
     let media = await q.download()
 
     // PASO 1: x2
-    await conn.reply(m.chat, '꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍨꒱ *PASO 1/2:* Mejorando a x2 pe...', m)
+    await conn.reply(m.chat, head + `\n꒰🍨꒱ *PASO 1/2:* Mejorando a x2...` + foot, m)
     let firstHD = await stellarUpscale(media, 2, key)
 
     // PASO 2: x2 de nuevo = x4 total
-    await conn.reply(m.chat, '꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *PASO 2/2:* Mejorando a x4 automático pe...', m)
+    await conn.reply(m.chat, head + `\n꒰🍪꒱ *PASO 2/2:* Mejorando a x4 automático...` + foot, m)
     let finalHD = await stellarUpscale(firstHD, 2, key)
 
     await conn.sendFile(m.chat, finalHD, 'hd-x4.jpg', 
-`꒰🍫꒱ *HD x4 COMPLETADO* ꒰💗꒱
-
-> 🍫 x2 → x4 automático
-> 🍨 CUPID DOLLS
-> 🍪 Stellar API`, m)
+head + `\n꒰🍫꒱ *HD x4 COMPLETADO* ꒰💗꒱\n\n> 🍫 x2 → x4 automático\n> 🍨 CUPID DOLLS\n> 🍪 Stellar API` + foot, m)
 
     await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
   } catch (e) {
     console.error(e)
     await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
-    conn.reply(m.chat, `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ Error pe: ${e.message}`, m)
+    conn.reply(m.chat, head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
   }
 }
 
