@@ -6,44 +6,45 @@ moment.locale('es')
 let handler = async (m, { conn, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
-  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   if (['tovid', 'tovideo'].includes(command)) {
     if (!m.quoted || !/webp/.test(m.quoted.mimetype || '')) {
-      await react('❌')
-      return conn.reply(m.chat, head + `❌ Responde a un *sticker*`, m)
+      await react('🍫')
+      return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *sticker* pe` + foot, m)
     }
     try {
-      await react('⏳')
+      await react('🍫')
       let media = await m.quoted.download()
       let out = await webp2mp4(media)
-      await react('❄️')
-      await conn.sendFile(m.chat, out, 'video.mp4', head + `❄️ *Tovideo completado*`, m)
-    } catch { await react('❌'); await conn.reply(m.chat, head + `❌ No se pudo convertir`, m) }
+      await react('🍫')
+      await conn.sendFile(m.chat, out, 'video.mp4', head + `꒰🍫꒱ *Tovideo completado pe*` + foot, m)
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir pe` + foot, m) }
   }
 
   if (['tomp3', 'toaudio'].includes(command)) {
     let q = m.quoted ? m.quoted : m
     let mime = (m.quoted ? m.quoted : m.msg).mimetype || ''
-    if (!/video|audio/.test(mime)) { await react('❌'); return conn.reply(m.chat, head + `❌ Responde a un *video o audio*`, m) }
+    if (!/video|audio/.test(mime)) { await react('🍫'); return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *video o audio* pe` + foot, m) }
     try {
-      await react('⏳')
+      await react('🍫')
       let media = await q.download?.()
       let audio = await toAudio(media, 'mp4')
-      await react('❄️')
-      await conn.sendFile(m.chat, audio.data, 'audio.mp3', head + `❄️ *Audio extraído*`, m, null, { mimetype: 'audio/mp4' })
-    } catch { await react('❌'); await conn.reply(m.chat, head + `❌ No se pudo convertir a audio`, m) }
+      await react('🍫')
+      await conn.sendFile(m.chat, audio.data, 'audio.mp3', head + `꒰🍨꒱ *Audio extraído pe*` + foot, m, null, { mimetype: 'audio/mp4' })
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir a audio pe` + foot, m) }
   }
 
   if (['toimg', 'simg'].includes(command)) {
     let q = m.quoted ? m.quoted : m
-    if (!((q.mimetype || '').includes('webp'))) { await react('❌'); return conn.reply(m.chat, head + `❌ Responde a un *sticker*`, m) }
+    if (!((q.mimetype || '').includes('webp'))) { await react('🍫'); return conn.reply(m.chat, head + `꒰🍪꒱ Responde a un *sticker* pe` + foot, m) }
     try {
-      await react('⏳')
+      await react('🍫')
       let media = await q.download()
-      await react('❄️')
-      await conn.sendMessage(m.chat, { image: media, caption: head + `❄️ *Sticker a imagen*` }, { quoted: m })
-    } catch { await react('❌'); await conn.reply(m.chat, head + `❌ No se pudo convertir`, m) }
+      await react('🍫')
+      await conn.sendMessage(m.chat, { image: media, caption: head + `꒰💗꒱ *Sticker a imagen pe*` + foot }, { quoted: m })
+    } catch { await react('🍫'); await conn.reply(m.chat, head + `꒰🍪꒱ No se pudo convertir pe` + foot, m) }
   }
 }
 
