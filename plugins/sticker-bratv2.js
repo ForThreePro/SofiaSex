@@ -10,10 +10,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
   const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
-  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   let txt = text || m.quoted?.text || m.quoted?.caption || ''
-  if (!txt) return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto* pe` + foot, m)
+  if (!txt) return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
 
   // ===== CAMBIA LA FUENTE AQUÍ =====
   // 1 = Brat Classic Blur
@@ -109,7 +109,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   } catch (e) {
     console.error(e)
     await react('🍫')
-    await m.reply(head + `\n꒰🍪꒱ Error pe: ${e.message}` + foot, m)
+    await m.reply(head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
   }
 }
 
