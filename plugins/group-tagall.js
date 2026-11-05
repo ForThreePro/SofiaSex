@@ -11,7 +11,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     if (!(isAdmin || isOwner)) {
       await react('🍫')
       return conn.sendMessage(m.chat, {
-        text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Solo admins pueden invocar pe\n꒰💗꒱ Cupid solo obedece a admins\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍫꒱ Número: +52 862 102 9907`
+        text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Solo admins pueden invocar\n꒰💗꒱ Cupid solo obedece a admins\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍫꒱ Número: +52 862 102 9907`
       }, { quoted: m })
     }
 
@@ -60,14 +60,14 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
 
     const orderedFlags = countryFlags.map(c => c.bandera).concat(['🚩'])
 
-    const catalogoImg = { url: 'https://files.evogb.win/yoMAez.jpg' }
+    const catalogoImg = { url: 'https://files.evogb.win/Xy803o.jpg' }
 
     let messageText = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
 ─── ꒰🍨꒱ LLAMADO GENERAL ───
 ꒰꒱ ${fecha}
 
-꒰🍫꒱ Cupid los está llamando pe
+꒰🍫꒱ Cupid los está llamando
 ꒰💗꒱ ¡Despierten dolls!
 
 ─── ꒰🍪꒱ INFO ───
@@ -89,13 +89,10 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     }
 
     messageText += `
-꒰🍨꒱ Todos fueron llamados pe
+꒰🍨꒱ Todos fueron llamados
 ꒰🍪꒱ Cupid los llamó
 
-꒰🍨꒱ falto estás cositas
-꒰🍫꒱
-
-─── ꒰💗꒱ CONTACTO ───
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
 ꒰🍪꒱ Número: +52 862 102 9907`
 
     await conn.sendMessage(m.chat, {
@@ -109,7 +106,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
     await react('🍫')
-    let errorMsg = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Ocurrió un error pe\n꒰💗꒱ Cupid falló\n\n꒰🍨꒱ falto estás cositas\n꒰꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+    let errorMsg = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Ocurrió un error\n꒰💗꒱ Cupid falló\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
     conn.sendMessage(m.chat, { text: errorMsg }, { quoted: m })
   }
 }
