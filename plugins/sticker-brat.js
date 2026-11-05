@@ -9,17 +9,18 @@ moment.locale('es')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
-  const head = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n꒰ ◞⁺⊹ ．${fecha}\n`
+  const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   let q = m.quoted ? m.quoted : m
   let txt = text || q.text || q.caption || ''
   if (!txt) {
-    await react('❌')
-    return m.reply(head + `\n❌ Usa: *${usedPrefix}${command} Tu texto*`, m)
+    await react('🍫')
+    return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto* pe` + foot, m)
   }
 
   try {
-    await react('⏳')
+    await react('🍫')
     let apiUrl = `https://api.stellarwa.xyz/tools/brat?text=${encodeURIComponent(txt)}&key=proyectsV2`
     let res = await fetch(apiUrl)
     if (!res.ok) throw new Error(`API ${res.status}`)
@@ -38,10 +39,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let stickerBuffer = fs.readFileSync(tmpOutput)
     await conn.sendMessage(m.chat, { sticker: stickerBuffer }, { quoted: m })
     fs.unlinkSync(tmpInput); fs.unlinkSync(tmpOutput)
-    await react('❄️')
+    await react('🍫')
   } catch (e) {
-    await react('❌')
-    await m.reply(head + `\n❌ Error al generar sticker`, m)
+    await react('🍫')
+    await m.reply(head + `\n꒰🍪꒱ Error al generar sticker pe` + foot, m)
   }
 }
 
