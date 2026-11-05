@@ -10,13 +10,13 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
   const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
-  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   let q = m.quoted ? m.quoted : m
   let txt = text || q.text || q.caption || ''
   if (!txt) {
     await react('🍫')
-    return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto* pe` + foot, m)
+    return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
   }
 
   try {
@@ -42,7 +42,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     await react('🍫')
   } catch (e) {
     await react('🍫')
-    await m.reply(head + `\n꒰🍪꒱ Error al generar sticker pe` + foot, m)
+    await m.reply(head + `\n꒰🍪꒱ Error al generar sticker` + foot, m)
   }
 }
 
