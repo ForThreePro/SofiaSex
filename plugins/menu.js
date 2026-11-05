@@ -11,30 +11,30 @@ anime: 'ANIME', internet: 'INTERNET', image: 'IMÁGENES'
 }
 
 const ICONOS_CATEGORIA = {
-info: '❄️', descargas: '⚡', buscadores: '🔎', grupo: '👥',
-fun: '🎲', ia: '🤖', tools: '🛠️', sticker: '🖼️',
-config: '⚙️', owner: '👑', main: '📋', game: '🎮',
-rpg: '⚔️', anime: '🎌', internet: '🌐', image: '🖼️'
+info: '🍫', descargas: '🍨', buscadores: '🍪', grupo: '💗',
+fun: '🍫', ia: '🍨', tools: '🍪', sticker: '💗',
+config: '🍫', owner: '🍨', main: '🍪', game: '💗',
+rpg: '🍫', anime: '🍨', internet: '🍪', image: '💗'
 }
 
 const TOP_COMANDOS = ['.play', '.sticker', '.ia', '.menu', '.ytmp4']
 
-const FRASES_FROST = [
-"El frío llegó... y PHANTOM manda",
-"Congelando el chat, un comando a la vez",
-"La noche es fría y PHANTOM está en línea",
-"Cuidado con el hielo, resbala",
-"Hoy toca congelar hasta amanecer",
-"Si no hay hielo, hay frost",
-"El frío es mi superpoder",
-"PHANTOM IA - Donde el frío manda ❄️",
-"Más frío que el invierno de PHANTOM"
+const FRASES_CUPID = [
+"La dulzura llegó... y Cupid manda pe",
+"Dulceando el chat, un comando a la vez",
+"La noche es dulce y Cupid está en línea",
+"Cuidado con el chocolate, mancha",
+"Hoy toca endulzar hasta amanecer",
+"Si no hay dulce, hay Cupid",
+"Lo dulce es mi superpoder",
+"Cupid Dolls - Donde lo dulce manda 💗",
+"Más dulce que el chocolate de Cupid"
 ]
 
 let handler = async (m, { conn }) => {
 try {
 let start = performance.now()
-await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
 const fecha = moment.tz('America/Lima').format('dddd')
 const fecha2 = moment.tz('America/Lima').format('DD [de] MMMM [de] YYYY')
@@ -61,45 +61,43 @@ for (const plugin of plugins) {
 }
 
 const userName = m.pushName || 'Usuario'
-const IMG_MENU = 'https://files.evogb.win/luvW09.jpg'
+const IMG_MENU = 'https://files.evogb.win/yoMAez.jpg'
 const ping = Math.round(performance.now() - start)
-const ownerNum = global.owner?.[0]?.[0] || '51927174369'
+const ownerNum = global.owner?.[0]?.[0] || '528621029907'
 const CANAL_LINK = 'https://whatsapp.com/channel/0029Vb8emrOJuyACodGSbP0z'
 
 const hourNow = moment.tz('America/Lima').hour()
 let saludo = hourNow < 12? 'Buenos días' : hourNow < 18? 'Buenas tardes' : 'Buenas noches'
-const fraseRandom = FRASES_FROST[Math.floor(Math.random() * FRASES_FROST.length)]
+const fraseRandom = FRASES_CUPID[Math.floor(Math.random() * FRASES_CUPID.length)]
 const estadoBot = dias > 0? `En línea • ${dias}d ${horas}h` : `En línea • ${horas}h ${minutos}m`
 
-const EMOJIS_EXTRA = ['❄️','⛓️','⚡','👻','🦂','🧊','💎','🔮','👑','🤖']
+const EMOJIS_EXTRA = ['🍫','🍨','🍪','💗']
 let emojiIndex = 0
 
-let menuTexto = `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡
+let menuTexto = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-⛓️ ┇ 𝐕𝐄𝐑𝐒𝐈𝐎𝐍 ﹒ 3.0 PHANTOM FROST
-꒰ ◞⁺⊹ ．estado: *${estadoBot}* • Ping: ${ping}ms
+─── ꒰🍨꒱ VERSIÓN 3.0 CUPID ───
+꒰꒱ estado: *${estadoBot}* • Ping: ${ping}ms
 
-  ꒱ ׁ. ᘏ 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 ׅ 𝆬 ָ֢ ෆ
-👻 ࣪ ꕀ ${saludo} @${userName}. ˚. ᵎᵎ
+꒰🍪꒱ ${saludo} @${userName} pe
 > *"${fraseRandom}"*
 
-❄️ *CANAL OFICIAL*
+꒰💗꒱ *CANAL OFICIAL*
 ${CANAL_LINK}
-> _Únete para recibir novedades_
+> _Únete para recibir novedades pe_
 
-──❄️ *TOP COMANDOS* ╏ Más usados
+─── ꒰🍫꒱ TOP COMANDOS ───
 ${TOP_COMANDOS.map((c,i) => `${i+1}. ${c}`).join(' | ')}
 
-──⚡ *INFORMACION* ╏ 👻
-*Usuarios*: ${totalUsers} | *Comandos*: ${pluginsCount}
-*Owner*: @${ownerNum}
-*RAM*: ${ram}mb/${totalram}gb
-*Edición*: PHANTOM IA x FROST
+─── ꒰🍨꒱ INFORMACION ───
+꒰꒱ Usuarios: ${totalUsers} | Comandos: ${pluginsCount}
+꒰🍫꒱ Owner: @${ownerNum}
+꒰🍪꒱ RAM: ${ram}mb/${totalram}gb
+꒰💗꒱ Edición: CUPID DOLLS
 
- ׅ 埃斯 : 𝖲𝖨𝖲𝖳𝖤𝖬𝖠 ﹙ 💻 ﹚
-*${fecha}* ─ ${fecha2} ─ ${hora}
+꒰꒱ *${fecha}* ─ ${fecha2} ─ ${hora}
 
-> ❍ Usa. antes de cada comando ❄️
+> ꒰🍫꒱ Usa . antes de cada comando pe
 
 `
 
@@ -114,23 +112,24 @@ for (const tag of tagsOrdenados) {
   const icono = ICONOS_CATEGORIA[tag] || EMOJIS_EXTRA[emojiIndex++ % EMOJIS_EXTRA.length]
   const nombreCat = CATEGORY_META[tag] || tag.toUpperCase()
 
-  menuTexto += `.⃟𖥔 ݁. 𖦹˙— \`\`${nombreCat}\`\` [${cmds.length}] ${icono} —˙𖦹.꒷\n`
+  menuTexto += `─── ꒰${icono}꒱ ${nombreCat} [${cmds.length}] ───\n`
   for (const c of cmds) {
-    menuTexto += ` ${icono} ➛.${c}\n`
+    menuTexto += ` ${icono} ➛ .${c}\n`
   }
-  menuTexto += ` ㅤ└──.✦ ── ⊰ ̟!!.✦. ˙\n\n`
+  menuTexto += ` ꒰🍫꒱ ───\n\n`
 }
 
-menuTexto += `━━━━━━━━━━━
-⛓️ *PHANTOM IA - VENTAS* ⚡
-🦂 *Contacto:* +51 927 174 369
-*Owner*: @${ownerNum}
-*Version*: 3.0 PHANTOM FROST
-*${CANAL_LINK}*
+menuTexto += `꒰🍨꒱ falto estás cositas
+꒰🍫꒱
 
-> "El frío llegó... y PHANTOM manda" ❄️
-> "PHANTOM IA - Donde el frío manda"
-━━━━━━━━━━━`
+─── ꒰💗꒱ CONTACTO ───
+꒰🍪꒱ Número: +52 862 102 9907
+꒰🍨꒱ Owner: @${ownerNum}
+꒰🍫꒱ Version: 3.0 CUPID DOLLS
+꒰꒱ ${CANAL_LINK}
+
+> "La dulzura llegó... y Cupid manda pe" 💗
+> "Cupid Dolls - Donde lo dulce manda"`
 
 await conn.sendMessage(m.chat, {
   image: { url: IMG_MENU },
@@ -139,7 +138,7 @@ await conn.sendMessage(m.chat, {
 }, { quoted: m })
 
 } catch (e) {
-await conn.sendMessage(m.chat, { text: `❌ *ERROR PHANTOM*: ${e.message}\n❄️ Se congeló el sistema...` }, { quoted: m })
+await conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *ERROR CUPID*: ${e.message}\n꒰💗꒱ Se derritió el chocolate pe...` }, { quoted: m })
 }
 }
 
