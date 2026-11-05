@@ -17,7 +17,7 @@ let handler = async (m, { conn }) => {
 ─── ꒰🍨꒱ LINK DEL GRUPO ───
 ꒰꒱ ${fecha}
 
-꒰🍫꒱ Invitación del grupo pe
+꒰🍫꒱ Invitación del grupo
 ꒰꒱
 ꒰🍨꒱ Grupo: *${groupMetadata.subject}*
 ꒰🍪꒱ Cupid te pasa el link
@@ -28,10 +28,7 @@ let handler = async (m, { conn }) => {
 ꒰🍫꒱ Solo admins pueden resetear el link
 ꒰🍨꒱ No lo compartas con desconocidos
 
-꒰🍨꒱ falto estás cositas
-꒰🍫꒱
-
-─── ꒰💗꒱ CONTACTO ───
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
 ꒰🍪꒱ Número: +52 862 102 9907`
 
         await conn.sendMessage(m.chat, { text: texto }, { quoted: m })
@@ -42,15 +39,12 @@ let handler = async (m, { conn }) => {
 ─── ꒰🍨꒱ ERROR LINK ───
 ꒰꒱ ${fecha}
 
-꒰🍫꒱ No pude obtener el link pe
+꒰🍫꒱ No pude obtener el link
 ꒰꒱
 ꒰🍨꒱ ¿Soy admin del grupo?
-꒰🍪꒱ Cupid dice: hazme admin pe
+꒰🍪꒱ Cupid dice: hazme admin
 
-꒰🍨꒱ falto estás cositas
-꒰꒱
-
-─── ꒰💗꒱ CONTACTO ───
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
 ꒰🍪꒱ Número: +52 862 102 9907`
         conn.sendMessage(m.chat, { text: error }, { quoted: m })
     }
