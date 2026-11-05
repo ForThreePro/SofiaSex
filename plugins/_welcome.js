@@ -12,10 +12,10 @@ const handler = async (m, { conn, args, isAdmin, isOwner }) => {
 
   if (/on/i.test(args[0])) {
     chat.bienvenida = true
-    return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Bienvenida activada - Cupid despertó\nFecha: ${fecha}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
+    return conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍫꒱ Bienvenida activada - Cupid despertó\n꒰꒱ ${fecha}\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907` }, { quoted: m })
   } else if (/off/i.test(args[0])) {
     chat.bienvenida = false
-    return conn.sendMessage(m.chat, { text: `🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗\n\n🍫 Bienvenida desactivada - Cupid a dormir\nFecha: ${fecha}\n\n─── 💗 CONTACTO ───\nNúmero: +52 862 102 9907` }, { quoted: m })
+    return conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍫꒱ Bienvenida desactivada - Cupid a dormir\n꒰꒱ ${fecha}\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907` }, { quoted: m })
   }
 }
 
@@ -33,8 +33,8 @@ handler.before = async function (m, { conn, groupMetadata }) {
   const userJid = m.messageStubParameters?.[0] || m.participant
   if (!userJid) return !0
 
-  // TU FOTO POR DEFECTO
-  const DEFAULT_IMG = 'https://files.evogb.win/yoMAez.jpg'
+  // MISMA FOTO QUE MENÚ / TAGALL
+  const DEFAULT_IMG = 'https://files.evogb.win/Xy803o.jpg'
   let imgBuffer = null
   try {
     let userPP = await conn.profilePictureUrl(userJid, 'image')
@@ -58,42 +58,42 @@ handler.before = async function (m, { conn, groupMetadata }) {
     case WAMessageStubType.GROUP_PARTICIPANT_ADD:
       audio = chat.audiowelcome
       txt = chat.customWelcome ? chat.customWelcome.replace(/@user/gi, userTag).replace(/@group/gi, groupName).replace(/@desc/gi, groupDesc) :
-`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+`꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 BIENVENIDO ───
+─── ꒰🍨꒱ BIENVENIDO ───
 
-🍫 ${userTag} apareció en *${groupName}*
-🍨 Miembro N°: *${membersCount}*
-🍪 Cupid dice: bienvenido a Cupid Dolls
+꒰🍫꒱ ${userTag} apareció en *${groupName}*
+꒰🍨꒱ Miembro N°: *${membersCount}*
+꒰🍪꒱ Cupid dice: bienvenido a Cupid Dolls
 
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
+꒰🍪꒱ Número: +52 862 102 9907`
       break
     case WAMessageStubType.GROUP_PARTICIPANT_LEAVE:
       audio = chat.audiobye
       txt = chat.customBye ? chat.customBye.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+`꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 DESPEDIDA ───
+─── ꒰🍨꒱ DESPEDIDA ───
 
-🍫 ${userTag} desapareció de *${groupName}*
-🍨 Cupid: "Uno menos en Cupid"
+꒰🍫꒱ ${userTag} desapareció de *${groupName}*
+꒰🍨꒱ Cupid: "Uno menos en Cupid"
 
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
+꒰🍪꒱ Número: +52 862 102 9907`
       break
     case WAMessageStubType.GROUP_PARTICIPANT_REMOVE:
       audio = chat.audiokick
       txt = chat.customKick ? chat.customKick.replace(/@user/gi, userTag).replace(/@group/gi, groupName) :
-`🍫 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 💗
+`꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
-─── 🍪 EXPULSADO ───
+─── ꒰🍨꒱ EXPULSADO ───
 
-🍫 ${userTag} fue eliminado de *${groupName}*
-🍨 Cupid: "Fuera de Cupid"
+꒰🍫꒱ ${userTag} fue eliminado de *${groupName}*
+꒰🍨꒱ Cupid: "Fuera de Cupid"
 
-─── 💗 CONTACTO ───
-Número: +52 862 102 9907`
+─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
+꒰🍪꒱ Número: +52 862 102 9907`
       break
   }
 
