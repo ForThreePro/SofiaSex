@@ -7,16 +7,14 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
   const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
-  const foot = `\n\n꒰🍨꒱ falto estás cositas\n꒰🍫꒱\n\n─── ꒰💗꒱ CONTACTO ───\n꒰🍪꒱ Número: +52 862 102 9907`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
-  // Sacar link limpio de la respuesta de la API
   const getLink = (data) => {
     if (!data) return null
     if (typeof data === 'string') return data.startsWith('http') ? data : null
     return data.url || data.link || data.result?.url || data.data?.url || data.data?.link || data.result || null
   }
 
-  // Si la API solo da un ID, pedir metadata para sacar la URL real
   const getLinkById = async (id) => {
     try {
       let r = await fetch(`https://evogb.win/api/metadata/${id}`)
@@ -25,16 +23,13 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } catch { return null }
   }
 
-  // Enviar preview + link
   const sendPreview = async (link, id) => {
     if (!link && id) link = await getLinkById(id)
-    if (!link) return conn.reply(m.chat, head + `\n꒰🍪꒱ Se subió pe pero no me dio link, ID: ${id || '?'}` + foot, m)
+    if (!link) return conn.reply(m.chat, head + `\n꒰🍪꒱ Se subió pero no me dio link, ID: ${id || '?'}` + foot, m)
     try {
-      // Preview: manda la imagen subida como imagen
-      await conn.sendMessage(m.chat, { image: { url: link }, caption: head + `\n꒰🍫꒱ *Subido pe:*\n\n${link}\n꒰🍨꒱ ID: ${id || 'no dio id pe'}` + foot }, { quoted: m })
+      await conn.sendMessage(m.chat, { image: { url: link }, caption: head + `\n꒰🍫꒱ *Subido con éxito*\n\n꒰🍨꒱ Link: ${link}\n꒰🍫꒱ ID: ${id || '—'}` + foot }, { quoted: m })
     } catch {
-      // Si no es imagen (video/archivo) manda solo el link
-      await conn.reply(m.chat, head + `\n꒰🍫꒱ *Subido pe:*\n\n${link}` + foot, m)
+      await conn.reply(m.chat, head + `\n꒰🍫꒱ *Subido con éxito*\n\n꒰🍨꒱ Link: ${link}` + foot, m)
     }
   }
 
@@ -43,7 +38,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let urlMatch = (text || '').match(/https?:\/\/[^\s]+/i)
     if (!urlMatch) {
       await react('🍫')
-      return conn.reply(m.chat, head + `\n꒰🍨꒱ Usa pe: *${usedPrefix}tourl https://tu-imagen.jpg*` + foot, m)
+      return conn.reply(m.chat, head + `\n꒰🍨꒱ Usa: *${usedPrefix}tourl https://tu-imagen.jpg*` + foot, m)
     }
     try {
       await react('🍫')
@@ -58,7 +53,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       await react('🍫')
     } catch (e) {
       await react('🍫')
-      await conn.reply(m.chat, head + `\n꒰🍪꒱ Error pe: ${e.message}` + foot, m)
+      await conn.reply(m.chat, head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
     }
     return
   }
@@ -69,7 +64,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || q.mimetype || ''
     if (!mime) {
       await react('🍫')
-      return conn.reply(m.chat, head + `\n꒰🍨꒱ Responde a una imagen / video / archivo con *${usedPrefix}upp* pe` + foot, m)
+      return conn.reply(m.chat, head + `\n꒰🍨꒱ Responde a una imagen / video / archivo con *${usedPrefix}upp*` + foot, m)
     }
     try {
       await react('🍫')
@@ -91,7 +86,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     } catch (e) {
       console.error(e)
       await react('🍫')
-      await conn.reply(m.chat, head + `\n꒰🍪꒱ Error pe: ${e.message}` + foot, m)
+      await conn.reply(m.chat, head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
     }
     return
   }
