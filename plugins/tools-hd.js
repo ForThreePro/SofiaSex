@@ -31,36 +31,36 @@ let handler = async (m, { conn, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!/image/.test(mime)) {
-    return conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n*PHANTOM FROST Edition*\n\n❄️ Responde a una imagen con *${usedPrefix}hd*\n\n> ❄️ Hará: x2 y luego automático a x4`, m)
+    return conn.reply(m.chat, `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n*CUPID DOLLS Edition*\n\n꒰🍨꒱ Responde a una imagen con *${usedPrefix}hd* pe\n\n> 🍫 Hará: x2 y luego automático a x4`, m)
   }
 
   let key = 'proyectsV2'
 
   try {
-    await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
     let media = await q.download()
 
     // PASO 1: x2
-    await conn.reply(m.chat, '❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❄️ *PASO 1/2:* Mejorando a x2...', m)
+    await conn.reply(m.chat, '꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍨꒱ *PASO 1/2:* Mejorando a x2 pe...', m)
     let firstHD = await stellarUpscale(media, 2, key)
 
     // PASO 2: x2 de nuevo = x4 total
-    await conn.reply(m.chat, '❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❄️ *PASO 2/2:* Mejorando a x4 automático...', m)
+    await conn.reply(m.chat, '꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *PASO 2/2:* Mejorando a x4 automático pe...', m)
     let finalHD = await stellarUpscale(firstHD, 2, key)
 
     await conn.sendFile(m.chat, finalHD, 'hd-x4.jpg', 
-`❄️ 𓆩 *HD x4 COMPLETADO* 𓆪 ⚡
+`꒰🍫꒱ *HD x4 COMPLETADO* ꒰💗꒱
 
-> ✿ x2 → x4 automático
-> ✿ PHANTOM IA | FROST
-> ✿ Stellar API`, m)
+> 🍫 x2 → x4 automático
+> 🍨 CUPID DOLLS
+> 🍪 Stellar API`, m)
 
-    await conn.sendMessage(m.chat, { react: { text: '❄️', key: m.key } })
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
   } catch (e) {
     console.error(e)
-    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    conn.reply(m.chat, `❄️ 𓆩 𝗣𝗛𝗔𝗡𝗧𝗢𝗠 𝗜𝗔 𓆪 ⚡\n\n❌ Error: ${e.message}`, m)
+    await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
+    conn.reply(m.chat, `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ Error pe: ${e.message}`, m)
   }
 }
 
