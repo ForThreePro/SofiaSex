@@ -16,18 +16,22 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let txt = text || q.text || q.caption || ''
   if (!txt) {
     await react('🍫')
-    return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
+    return m.reply(head + `\n─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
   }
 
+  let tmpInput = ''
+  let tmpOutput = ''
   try {
     await react('🍫')
+    await m.reply(head + `\n─── ꒰🍨꒱ GENERANDO ───\n\n꒰🍫꒱ Generando tu sticker Brat...\n꒰🍨꒱ Espera un momento` + foot, m)
+    txt = txt.slice(0, 60)
     let apiUrl = `https://api.stellarwa.xyz/tools/brat?text=${encodeURIComponent(txt)}&key=proyectsV2`
     let res = await fetch(apiUrl)
     if (!res.ok) throw new Error(`API ${res.status}`)
     let inputBuffer = await res.buffer()
 
-    let tmpInput = path.join(tmpdir(), `brat-${Date.now()}.gif`)
-    let tmpOutput = path.join(tmpdir(), `brat-${Date.now()}.webp`)
+    tmpInput = path.join(tmpdir(), `brat-${Date.now()}.gif`)
+    tmpOutput = path.join(tmpdir(), `brat-${Date.now()}.webp`)
     fs.writeFileSync(tmpInput, inputBuffer)
 
     await new Promise((resolve, reject) => {
@@ -38,11 +42,13 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
     let stickerBuffer = fs.readFileSync(tmpOutput)
     await conn.sendMessage(m.chat, { sticker: stickerBuffer }, { quoted: m })
-    fs.unlinkSync(tmpInput); fs.unlinkSync(tmpOutput)
+    try { fs.unlinkSync(tmpInput); fs.unlinkSync(tmpOutput) } catch {}
     await react('🍫')
   } catch (e) {
+    try { if (tmpInput && fs.existsSync(tmpInput)) fs.unlinkSync(tmpInput) } catch {}
+    try { if (tmpOutput && fs.existsSync(tmpOutput)) fs.unlinkSync(tmpOutput) } catch {}
     await react('🍫')
-    await m.reply(head + `\n꒰🍪꒱ Error al generar sticker` + foot, m)
+    await m.reply(head + `\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error al generar sticker: ${e.message}` + foot, m)
   }
 }
 
