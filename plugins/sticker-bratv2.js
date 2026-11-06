@@ -13,7 +13,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   let txt = text || m.quoted?.text || m.quoted?.caption || ''
-  if (!txt) return m.reply(head + `\n꒰🍨꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
+  if (!txt) return m.reply(head + `\n─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *${usedPrefix}${command} Tu texto*` + foot, m)
 
   // ===== CAMBIA LA FUENTE AQUÍ =====
   // 1 = Brat Classic Blur
@@ -24,6 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
   try {
     await react('🍫')
+    await m.reply(head + `\n─── ꒰🍨꒱ GENERANDO ───\n\n꒰🍫꒱ Generando tu sticker Brat...\n꒰🍨꒱ Espera un momento` + foot, m)
     txt = txt.toLowerCase().slice(0, 60)
 
     const size = 1024
@@ -109,7 +110,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   } catch (e) {
     console.error(e)
     await react('🍫')
-    await m.reply(head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
+    await m.reply(head + `\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error: ${e.message}` + foot, m)
   }
 }
 
