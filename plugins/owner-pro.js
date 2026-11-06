@@ -19,7 +19,7 @@ let handler = async (m, { conn, command }) => {
 
     if (command === 'reset') {
         await react('🍫')
-        await reply(`꒰🍨꒱ Reiniciando el sistema... 🍫`)
+        await reply(`─── ꒰🍨꒱ REINICIO ───\n\n꒰🍫꒱ Reiniciando el sistema...`)
         try { process.send('reset') } catch { process.exit(0) }
     }
 
@@ -28,22 +28,22 @@ let handler = async (m, { conn, command }) => {
             await react('🍫')
             await conn.groupParticipantsUpdate(m.chat, OWNER_NUMBERS, 'promote')
             await react('🍫')
-            await conn.sendMessage(m.chat, { text: head + `\n꒰🍫꒱ Admin del sistema asignado 💗` + footer, mentions: OWNER_NUMBERS }, { quoted: m })
+            await conn.sendMessage(m.chat, { text: head + `\n─── ꒰🍨꒱ AUTOADMIN ───\n\n꒰🍫꒱ Admin del sistema asignado` + footer, mentions: OWNER_NUMBERS }, { quoted: m })
         } catch {
             await react('🍫')
-            await reply(`꒰🍪꒱ No se pudo dar admin. Hazme admin primero 🍫`)
+            await reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ No se pudo dar admin. Hazme admin primero`)
         }
     }
 
     if (['update','actualizar','fix'].includes(command)) {
         await react('🍫')
-        await reply(`꒰🍨꒱ Descargando actualización... 🍫`)
+        await reply(`─── ꒰🍨꒱ ACTUALIZACIÓN ───\n\n꒰🍫꒱ Descargando actualización...`)
         exec('git pull', async (err, stdout, stderr) => {
-            if (err) { await react('🍫'); return reply(`꒰🍪꒱ Error en la actualización`) }
+            if (err) { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error en la actualización`) }
             await react('🍫')
             let out = (stdout || '').trim()
-            if (out.includes('Already up to date')) return reply(`꒰💗꒱ Ya está actualizado al máximo`)
-            return reply(`꒰🍫꒱ Actualizado:\n\`\`\`${out.slice(0, 800)}\`\`\``)
+            if (out.includes('Already up to date')) return reply(`─── ꒰🍨꒱ ACTUALIZACIÓN ───\n\n꒰🍫꒱ Ya está actualizado al máximo`)
+            return reply(`─── ꒰🍨꒱ ACTUALIZACIÓN ───\n\n꒰🍫꒱ Actualizado:\n\`\`\`${out.slice(0, 800)}\`\`\``)
         })
     }
 }
