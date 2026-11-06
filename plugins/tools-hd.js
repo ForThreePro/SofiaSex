@@ -11,7 +11,7 @@ async function stellarUpscale(buffer, scale, key) {
   let { data, headers } = await axios.post(url, form, {
     headers: form.getHeaders(),
     responseType: 'arraybuffer',
-    timeout: 90000
+    timeout: 180000
   })
 
   // Si devuelve JSON con URL
@@ -37,7 +37,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!/image/.test(mime)) {
-    return conn.reply(m.chat, head + `\n꒰🍨꒱ Responde a una imagen con *${usedPrefix}hd*\n\n> 🍫 Hará: x2 y luego automático a x4` + foot, m)
+    return conn.reply(m.chat, head + `\n─── ꒰🍨꒱ USO ───\n\n꒰🍨꒱ Responde a una imagen con *${usedPrefix}hd*\n\n꒰🍫꒱ Hará: x2 y luego automático a x4` + foot, m)
   }
 
   let key = 'proyectsV2'
@@ -46,23 +46,31 @@ let handler = async (m, { conn, usedPrefix }) => {
     await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
     let media = await q.download()
 
+    // Si la imagen ya es pesada, solo 1 paso para no dar timeout
+    let isHeavy = media.length > 2500000
+    let statusMsg = await conn.sendMessage(m.chat, { text: head + `\n─── ꒰🍨꒱ ${isHeavy ? 'PASO 1/1' : 'PASO 1/2'} ───\n\n꒰🍫꒱ ${isHeavy ? 'Imagen pesada, hago solo 1 paso x2 para no tardar...' : 'Mejorando a x2...'}` + foot }, { quoted: m })
+
     // PASO 1: x2
-    await conn.reply(m.chat, head + `\n꒰🍨꒱ *PASO 1/2:* Mejorando a x2...` + foot, m)
     let firstHD = await stellarUpscale(media, 2, key)
 
-    // PASO 2: x2 de nuevo = x4 total
-    await conn.reply(m.chat, head + `\n꒰🍪꒱ *PASO 2/2:* Mejorando a x4 automático...` + foot, m)
-    let finalHD = await stellarUpscale(firstHD, 2, key)
+    let finalHD = firstHD
+    if (!isHeavy) {
+      // PASO 2: x2 de nuevo = x4 total - edita el mismo mensaje
+      try {
+        await conn.sendMessage(m.chat, { text: head + `\n─── ꒰🍨꒱ PASO 2/2 ───\n\n꒰🍫꒱ Mejorando a x4 automático...` + foot, edit: statusMsg.key })
+      } catch {}
+      finalHD = await stellarUpscale(firstHD, 2, key)
+    }
 
-    await conn.sendFile(m.chat, finalHD, 'hd-x4.jpg', 
-head + `\n꒰🍫꒱ *HD x4 COMPLETADO* ꒰💗꒱\n\n> 🍫 x2 → x4 automático\n> 🍨 CUPID DOLLS\n> 🍪 Stellar API` + foot, m)
+    await conn.sendFile(m.chat, finalHD, isHeavy ? 'hd-x2.jpg' : 'hd-x4.jpg', 
+head + `\n─── ꒰🍨꒱ COMPLETADO ───\n\n꒰🍫꒱ *${isHeavy ? 'HD x2 completado' : 'HD x4 completado'}* ꒰💗꒱\n\n꒰🍨꒱ ${isHeavy ? '1 paso x2 - imagen pesada' : 'x2 → x4 automático'}\n꒰🍪꒱ Stellar API` + foot, m)
 
     await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
 
   } catch (e) {
     console.error(e)
     await conn.sendMessage(m.chat, { react: { text: '🍫', key: m.key } })
-    conn.reply(m.chat, head + `\n꒰🍪꒱ Error: ${e.message}` + foot, m)
+    conn.reply(m.chat, head + `\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error: ${e.message}` + foot, m)
   }
 }
 
