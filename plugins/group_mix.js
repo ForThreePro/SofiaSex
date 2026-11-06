@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, text, command, isAdmin, isOwner }) =
   const react = async (t) => { try { await conn.sendMessage(m.chat, { react: { text: t, key: m.key } }) } catch {} }
   const reply = (txt) => conn.sendMessage(m.chat, { text: head + `\n${txt}` + footer }, { quoted: m })
 
-  if (!isAdmin && !isOwner) { await react('🍫'); return reply(`꒰🍪꒱ Solo admins del sistema`) }
+  if (!isAdmin && !isOwner) { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Solo admins del sistema`) }
 
   if (['resetlink','revokelink'].includes(command)) {
     try {
@@ -16,20 +16,20 @@ let handler = async (m, { conn, usedPrefix, text, command, isAdmin, isOwner }) =
       await conn.groupRevokeInvite(m.chat)
       let code = await conn.groupInviteCode(m.chat)
       await react('🍫')
-      return reply(`꒰🍨꒱ Nuevo link del grupo\n꒰🍫꒱ https://chat.whatsapp.com/${code}`)
-    } catch { await react('🍫'); return reply(`꒰🍪꒱ Necesito ser admin`) }
+      return reply(`─── ꒰🍨꒱ LINK ───\n\n꒰🍫꒱ Nuevo link del grupo\n꒰🍨꒱ https://chat.whatsapp.com/${code}`)
+    } catch { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Necesito ser admin`) }
   }
 
   if (['setname','setgroupname'].includes(command)) {
-    if (!text) { await react('🍫'); return reply(`꒰🍨꒱ Usa: *${usedPrefix}setname Nuevo nombre*`) }
-    try { await react('🍫'); await conn.groupUpdateSubject(m.chat, text); await react('🍫'); return reply(`꒰🍫꒱ Nombre cambiado a: *${text}*`) }
-    catch { await react('🍫'); return reply(`꒰🍪꒱ Error al cambiar nombre`) }
+    if (!text) { await react('🍫'); return reply(`─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *${usedPrefix}setname Nuevo nombre*`) }
+    try { await react('🍫'); await conn.groupUpdateSubject(m.chat, text); await react('🍫'); return reply(`─── ꒰🍨꒱ NOMBRE ───\n\n꒰🍫꒱ Nombre cambiado a: *${text}*`) }
+    catch { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error al cambiar nombre`) }
   }
 
   if (['setdesc','setgroupdesc'].includes(command)) {
-    if (!text) { await react('🍫'); return reply(`꒰🍨꒱ Usa: *${usedPrefix}setdesc Nueva descripción*`) }
-    try { await react('🍫'); await conn.groupUpdateDescription(m.chat, text); await react('🍫'); return reply(`꒰💗꒱ Descripción actualizada`) }
-    catch { await react('🍫'); return reply(`꒰🍪꒱ Error al cambiar descripción`) }
+    if (!text) { await react('🍫'); return reply(`─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *${usedPrefix}setdesc Nueva descripción*`) }
+    try { await react('🍫'); await conn.groupUpdateDescription(m.chat, text); await react('🍫'); return reply(`─── ꒰🍨꒱ DESCRIPCIÓN ───\n\n꒰💗꒱ Descripción actualizada`) }
+    catch { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error al cambiar descripción`) }
   }
 
   if (['setfoto','setppgroup','setppgc'].includes(command)) {
@@ -42,10 +42,10 @@ let handler = async (m, { conn, usedPrefix, text, command, isAdmin, isOwner }) =
       } else if (/image/.test(mime)) {
         let img = await q.download()
         await conn.updateProfilePicture(m.chat, img)
-      } else { await react('🍫'); return reply(`꒰🍪꒱ Responde a una imagen o pasa un link`) }
+      } else { await react('🍫'); return reply(`─── ꒰🍨꒱ USO ───\n\n꒰🍪꒱ Responde a una imagen o pasa un link`) }
       await react('🍫')
-      return reply(`꒰🍫꒱ Foto del grupo actualizada`)
-    } catch { await react('🍫'); return reply(`꒰🍪꒱ Error al actualizar foto`) }
+      return reply(`─── ꒰🍨꒱ FOTO ───\n\n꒰🍫꒱ Foto del grupo actualizada`)
+    } catch { await react('🍫'); return reply(`─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error al actualizar foto`) }
   }
 }
 
