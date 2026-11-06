@@ -19,35 +19,35 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 
     if (command==='owner'||command==='creator') {
         await react('🍫')
-        return conn.sendMessage(m.chat, { text: head+`\n꒰🍫꒱ *Dueño del sistema:*\n꒰🍨꒱ +52 862 102 9907\n꒰🍪꒱ wa.me/528621029907`+foot, mentions:['528621029907@s.whatsapp.net'] }, { quoted:m })
+        return conn.sendMessage(m.chat, { text: head+`\n─── ꒰🍨꒱ OWNER ───\n\n꒰🍫꒱ *Dueño del sistema:*\n꒰🍨꒱ +52 862 102 9907\n꒰🍪꒱ wa.me/528621029907`+foot, mentions:['528621029907@s.whatsapp.net'] }, { quoted:m })
     }
     if (command==='ping'||command==='p') {
         let start=Date.now(); await react('🍫')
         let speed=Date.now()-start
-        return conn.reply(m.chat, head+`\n꒰🍫꒱ *Pong:* ${speed}ms 🍫`+foot, m)
+        return conn.reply(m.chat, head+`\n─── ꒰🍨꒱ PING ───\n\n꒰🍫꒱ *Pong:* ${speed}ms`+foot, m)
     }
     if (command==='cleartmp') {
         const p='./tmp'; if(fs.existsSync(p)) fs.readdirSync(p).forEach(f=>fs.unlinkSync(`${p}/${f}`))
-        await react('🍫'); return m.reply(head+`\n꒰🍫꒱ Sistema limpiado`+foot)
+        await react('🍫'); return m.reply(head+`\n─── ꒰🍨꒱ LIMPIEZA ───\n\n꒰🍫꒱ Sistema limpiado`+foot)
     }
     if (command==='cpu') {
-        await react('🍫'); return m.reply(head+`\n꒰🍨꒱ CPU del sistema: ${os.loadavg()[0].toFixed(2)}%`+foot)
+        await react('🍫'); return m.reply(head+`\n─── ꒰🍨꒱ CPU ───\n\n꒰🍫꒱ CPU del sistema: ${os.loadavg()[0].toFixed(2)}%`+foot)
     }
     if (command==='ram') {
         let ram=(process.memoryUsage().heapUsed/1024/1024).toFixed(2)
-        await react('🍫'); return m.reply(head+`\n꒰🍪꒱ RAM del sistema: ${ram} MB`+foot)
+        await react('🍫'); return m.reply(head+`\n─── ꒰🍨꒱ RAM ───\n\n꒰🍪꒱ RAM del sistema: ${ram} MB`+foot)
     }
     if (command==='uptime') {
-        await react('🍫'); return m.reply(head+`\n꒰💗꒱ Tiempo en línea: ${clockString(process.uptime()*1000)}`+foot)
+        await react('🍫'); return m.reply(head+`\n─── ꒰🍨꒱ UPTIME ───\n\n꒰💗꒱ Tiempo en línea: ${clockString(process.uptime()*1000)}`+foot)
     }
     if (command==='info') {
         let ram=(process.memoryUsage().heapUsed/1024/1024).toFixed(2)
         await react('🍫')
-        return m.reply(head+`\n꒰🍫꒱ *Info del Sistema*\n꒰🍨꒱ ${clockString(process.uptime()*1000)}\n꒰🍪꒱ ${ram} MB\n꒰💗꒱ ${os.loadavg()[0].toFixed(2)}%`+foot, m)
+        return m.reply(head+`\n─── ꒰🍨꒱ INFO ───\n\n꒰🍫꒱ *Info del Sistema*\n꒰🍨꒱ Uptime: ${clockString(process.uptime()*1000)}\n꒰🍪꒱ RAM: ${ram} MB\n꒰💗꒱ CPU: ${os.loadavg()[0].toFixed(2)}%`+foot, m)
     }
     if (['tts','gtts','ttss'].includes(command)) {
         let txt = text || m.quoted?.text || ''
-        if(!txt){ await react('🍫'); return m.reply(head+`\n꒰🍨꒱ Usa: *${usedPrefix}tts Hola*`+foot, m) }
+        if(!txt){ await react('🍫'); return m.reply(head+`\n─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *${usedPrefix}tts Hola*`+foot, m) }
         try{
             await react('🍫')
             let url = googleTTS.getAudioUrl(txt,{lang:'es',slow:false,host:'https://translate.google.com',timeout:10000})
@@ -56,7 +56,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
             let buf = fs.readFileSync(tmp)
             await conn.sendMessage(m.chat,{audio:buf,mimetype:'audio/ogg; codecs=opus',ptt:true},{quoted:m})
             fs.unlinkSync(tmp); await react('🍫')
-        }catch{ await react('🍫'); m.reply(head+`\n꒰🍪꒱ Error TTS`+foot, m) }
+        }catch{ await react('🍫'); m.reply(head+`\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error TTS`+foot, m) }
     }
 }
 
