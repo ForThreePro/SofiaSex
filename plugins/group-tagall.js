@@ -6,12 +6,14 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
   const react = async (text) => {
     try { await conn.sendMessage(m.chat, { react: { text: text, key: m.key } }) } catch {}
   }
+  const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+  const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
 
   try {
     if (!(isAdmin || isOwner)) {
       await react('🍫')
       return conn.sendMessage(m.chat, {
-        text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Solo admins pueden invocar\n꒰💗꒱ Cupid solo obedece a admins\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍫꒱ Número: +52 862 102 9907`
+        text: head + `\n─── ꒰🍨꒱ ERROR TAGALL ───\n\n꒰🍪꒱ Solo admins pueden invocar\n꒰💗꒱ Cupid solo obedece a admins` + foot
       }, { quoted: m })
     }
 
@@ -36,7 +38,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
       { prefijo: '91', bandera: '🇮🇳' }, { prefijo: '61', bandera: '🇦🇺' },
       { prefijo: '64', bandera: '🇳🇿' }, { prefijo: '1', bandera: '🇺🇸' },
       { prefijo: '7', bandera: '🇷🇺' }, { prefijo: '63', bandera: '🇵🇭' },
-      { prefijo: '95', bandera: '🇲' }
+      { prefijo: '95', bandera: '🇲🇲' }
     ]
 
     const getCountryFlag = (mem) => {
@@ -89,7 +91,8 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
     }
 
     messageText += `
-꒰🍨꒱ Todos fueron llamados
+─── ꒰🍨꒱ LLAMADO ───
+꒰🍫꒱ Todos fueron llamados
 ꒰🍪꒱ Cupid los llamó
 
 ─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───
@@ -106,7 +109,7 @@ const handler = async (m, { isOwner, isAdmin, conn, participants, args }) => {
   } catch (error) {
     console.error("[ERROR EN TODOS]:", error)
     await react('🍫')
-    let errorMsg = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n─── ꒰🍨꒱ ERROR TAGALL ───\n꒰꒱ ${fecha}\n\n꒰🍪꒱ Ocurrió un error\n꒰💗꒱ Cupid falló\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
+    let errorMsg = head + `\n─── ꒰🍨꒱ ERROR TAGALL ───\n\n꒰🍪꒱ Ocurrió un error\n꒰💗꒱ Cupid falló` + foot
     conn.sendMessage(m.chat, { text: errorMsg }, { quoted: m })
   }
 }
