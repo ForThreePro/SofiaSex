@@ -17,7 +17,7 @@ config: '🍫', owner: '🍨', main: '🍪', game: '💗',
 rpg: '🍫', anime: '🍨', internet: '🍪', image: '💗'
 }
 
-const TOP_COMANDOS = ['.play', '.sticker', '.ia', '.menu', '.ytmp4']
+const TOP_COMANDOS_FIJO = ['.play', '.sticker', '.ia', '.menu', '.ytmp4']
 
 const FRASES_CUPID = [
 "La dulzura llegó... y Cupid manda",
@@ -74,6 +74,12 @@ const estadoBot = dias > 0? `En línea • ${dias}d ${horas}h` : `En línea • 
 const EMOJIS_EXTRA = ['🍫','🍨','🍪','💗']
 let emojiIndex = 0
 
+// TOP dinámico: si hay contador real lo usa, si no usa la lista fija
+let TOP_COMANDOS = TOP_COMANDOS_FIJO
+let uso = global.cmdUsage || {}
+let ordenados = Object.entries(uso).sort((a,b) => b[1]-a[1]).map(([cmd]) => cmd.startsWith('.') ? cmd : '.'+cmd)
+if (ordenados.length >= 3) TOP_COMANDOS = ordenados.slice(0, 5)
+
 let menuTexto = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱
 
 ─── ꒰🍨꒱ VERSIÓN 3.0 CUPID ───
@@ -87,7 +93,7 @@ ${CANAL_LINK}
 > _Únete para recibir novedades_
 
 ─── ꒰🍫꒱ TOP COMANDOS ───
-${TOP_COMANDOS.map((c,i) => `${i+1}. ${c}`).join(' | ')}
+${TOP_COMANDOS.map((c,i) => `꒰🍫꒱ ${i+1}. ${c}`).join(' | ')}
 
 ─── ꒰🍨꒱ INFORMACION ───
 ꒰꒱ Usuarios: ${totalUsers} | Comandos: ${pluginsCount}
@@ -128,7 +134,10 @@ await conn.sendMessage(m.chat, {
 }, { quoted: m })
 
 } catch (e) {
-await conn.sendMessage(m.chat, { text: `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰🍪꒱ *ERROR CUPID*: ${e.message}\n꒰💗꒱ Se derritió el chocolate...` }, { quoted: m })
+const fecha = moment.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss a')
+const head = `꒰🍫꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ꒰💗꒱\n\n꒰꒱ ${fecha}\n`
+const foot = `\n\n─── ꒰💗꒱ 𝐂𝐮𝐩𝐢𝐝 𝐃𝐨𝐥𝐥𝐬 ───\n꒰🍪꒱ Número: +52 862 102 9907`
+await conn.sendMessage(m.chat, { text: head + `\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ *ERROR CUPID*: ${e.message}\n꒰💗꒱ Se derritió el chocolate...` + foot }, { quoted: m })
 }
 }
 
