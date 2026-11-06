@@ -18,7 +18,7 @@ const handler = async (m, { conn, text }) => {
   text = m.quoted?.text || text
   if (!text) {
     await react('🍫')
-    return conn.reply(m.chat, head + `\n꒰🍨꒱ Usa: *.bratv Tu texto*` + foot, m)
+    return conn.reply(m.chat, head + `\n─── ꒰🍨꒱ USO ───\n\n꒰🍫꒱ Usa: *.bratv Tu texto*` + foot, m)
   }
   try {
     await react('🍫')
@@ -33,7 +33,7 @@ const handler = async (m, { conn, text }) => {
     await react('🍫')
   } catch (e) {
     await react('🍫')
-    await conn.reply(m.chat, head + `\n꒰🍪꒱ Error al generar sticker` + foot, m)
+    await conn.reply(m.chat, head + `\n─── ꒰🍨꒱ ERROR ───\n\n꒰🍪꒱ Error al generar sticker` + foot, m)
   }
 }
 
