@@ -64,7 +64,7 @@ const userName = m.pushName || 'Usuario'
 const IMG_MENU = 'https://files.evogb.win/Xy803o.jpg'
 const ping = Math.round(performance.now() - start)
 const ownerNum = global.owner?.[0]?.[0] || '528621029907'
-const CANAL_LINK = 'https://whatsapp.com/channel/0029Vb8emrOJuyACodGSbP0z'
+const CANAL_LINK = 'https://whatsapp.com/channel/0029Vb921jL0lwgxYQ6Igs2D'
 
 const hourNow = moment.tz('America/Lima').hour()
 let saludo = hourNow < 12? 'Buenos días' : hourNow < 18? 'Buenas tardes' : 'Buenas noches'
